@@ -1,0 +1,22 @@
+{
+  "records": 22,
+  "exact_duplicate_groups": [],
+  "template_duplicate_groups": [],
+  "near_duplicate_pairs": [],
+  "exact_duplicate_rate": 0.0,
+  "near_duplicate_rate": 0.0,
+  "metadata_token_single_purpose_rate": 1.0,
+  "metadata_token_purposes": {
+    "cb": [
+      "ambiguous"
+    ],
+    "choice": [
+      "age"
+    ]
+  },
+  "inputs": [
+    "data/generated/staged-smoke-llm1.jsonl",
+    "data/generated/staged-smoke-llm2.jsonl",
+    "data/generated/staged-smoke-llm3.jsonl"
+  ]
+}

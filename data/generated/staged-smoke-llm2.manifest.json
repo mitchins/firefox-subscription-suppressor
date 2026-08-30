@@ -1,0 +1,229 @@
+{
+  "spec_version": "fire-synthetic-checkbox-v1.2",
+  "combinator_version": "fire-staged-combinator-v1.2",
+  "prompt_sha256": "e4c23259cc32bf858950864da9e8486a3e0d9735f529775666f02f3cd913a01a",
+  "root_seed": "fire-staged-smoke-2026-08-30",
+  "backend": "llm2",
+  "endpoint": "http://192.168.1.14:8000/v1/chat/completions",
+  "model": "/data/model-conversion/final/Nemotron-3.5-Lightning-30B-A3B-W4A16-G64-cal512",
+  "response_field": "content",
+  "role": "bounded paraphraser/robustness challenger",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "decoding": {
+    "temperature": 0,
+    "top_p": 1,
+    "n": 1,
+    "max_tokens": 220
+  },
+  "sampling_seed_source": "seed_id suffix",
+  "deterministic_seed_support": "requested; backend compliance not independently established",
+  "model_artifact_revision": "model-id:/data/model-conversion/final/Nemotron-3.5-Lightning-30B-A3B-W4A16-G64-cal512",
+  "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",
+  "tokenizer_runtime_hardware": "server-reported details unavailable; client=python-stdlib-http",
+  "generator_sha256": "2a95cfc6cc7628d4e443f82737ac49e8456916936531661c0a24f389e6a66e9c",
+  "policy_validator_sha256": "bd28d7ad8b29ce96c2a9df1ba969f3b4a01d4c2f515ca64d851722fdf0b29c83",
+  "transform_version": "fire-staged-combinator-v1.2",
+  "transform_sha256": "b7ca07b46783dc0af33532922ea856990a1d2b5cde85e7969a94090f756f6ee6",
+  "started_at": "2026-08-30T08:39:34.658256+00:00",
+  "completed_at": "2026-08-30T08:39:38.540697+00:00",
+  "requested": 20,
+  "accepted": 7,
+  "rejected": 13,
+  "rejections": [
+    {
+      "index": "0",
+      "seed_id": "seed-55a1f3dfd4de2b338a019dd4",
+      "error": "conditional negative is not expressed"
+    },
+    {
+      "index": "3",
+      "seed_id": "seed-e2a1d002d77509b3aa132b9a",
+      "error": "semantic safety conflicts: mixed-legal-marketing, positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "4",
+      "seed_id": "seed-f9fefb970cf7b403d8d6195d",
+      "error": "emoji transform not observed"
+    },
+    {
+      "index": "5",
+      "seed_id": "seed-63c8c31e3fa1b09ba1f6c552",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "7",
+      "seed_id": "seed-141227743bd0df7d92f0b8ed",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "8",
+      "seed_id": "seed-22e1a95735abaacbebff7e8a",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "9",
+      "seed_id": "seed-0cad367276917ba4fd619038",
+      "error": "post-transform label semantic conflicts: missing-protected-purpose"
+    },
+    {
+      "index": "10",
+      "seed_id": "seed-d4d9ed115f49ac76e1344060",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "11",
+      "seed_id": "seed-d41ef3bc984bfc4cdce231ce",
+      "error": "no-polarity challenge contains a negative operator"
+    },
+    {
+      "index": "12",
+      "seed_id": "seed-0c714d5a05b96b95272e49f6",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "14",
+      "seed_id": "seed-e6e8956dfea6d8ed82766962",
+      "error": "no-polarity challenge contains a negative operator"
+    },
+    {
+      "index": "16",
+      "seed_id": "seed-b21df7c56b8bc3f6c630ce99",
+      "error": "conditional negative is not expressed"
+    },
+    {
+      "index": "19",
+      "seed_id": "seed-8ade6a0a323e258bdfc9b8fc",
+      "error": "implicit positive is not expressed"
+    }
+  ],
+  "output_sha256": "3d28e8ec1661c348bb4e32249cb51052cbc7e57d1fff97afddc08c9e95e08cdf",
+  "synthetic_only": true,
+  "planned_coverage": {
+    "family_surface_checked": 20,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 6,
+    "profile": 13
+  },
+  "accepted_coverage": {
+    "family_surface_checked": 7,
+    "style": 3,
+    "metadata_style": 3,
+    "noise": 5,
+    "profile": 5
+  },
+  "missing_coverage": {
+    "family_surface_checked": [
+      [
+        1,
+        "label_only",
+        false
+      ],
+      [
+        1,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        12,
+        "label_only",
+        false
+      ],
+      [
+        13,
+        "label_only",
+        false
+      ],
+      [
+        15,
+        "label_only",
+        false
+      ],
+      [
+        3,
+        "label_only",
+        false
+      ],
+      [
+        3,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        4,
+        "label_only",
+        false
+      ],
+      [
+        5,
+        "label_only",
+        false
+      ],
+      [
+        6,
+        "label_only",
+        false
+      ],
+      [
+        7,
+        "label_only",
+        false
+      ],
+      [
+        8,
+        "label_only",
+        false
+      ],
+      [
+        9,
+        "label_only",
+        false
+      ]
+    ],
+    "style": [
+      "plain"
+    ],
+    "metadata_style": [
+      "descriptive"
+    ],
+    "noise": [
+      "emoji"
+    ],
+    "profile": [
+      [
+        "SaaS",
+        "preferences"
+      ],
+      [
+        "finance",
+        "account_creation"
+      ],
+      [
+        "finance",
+        "preferences"
+      ],
+      [
+        "health",
+        "account_creation"
+      ],
+      [
+        "marketplace",
+        "preferences"
+      ],
+      [
+        "publisher",
+        "lead_capture"
+      ],
+      [
+        "publisher",
+        "newsletter_signup"
+      ],
+      [
+        "retailer",
+        "newsletter_signup"
+      ]
+    ]
+  }
+}

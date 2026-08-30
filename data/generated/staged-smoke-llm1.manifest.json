@@ -1,0 +1,220 @@
+{
+  "spec_version": "fire-synthetic-checkbox-v1.2",
+  "combinator_version": "fire-staged-combinator-v1.2",
+  "prompt_sha256": "e4c23259cc32bf858950864da9e8486a3e0d9735f529775666f02f3cd913a01a",
+  "root_seed": "fire-staged-smoke-2026-08-30",
+  "backend": "llm1",
+  "endpoint": "http://192.168.4.3:8000/v1/chat/completions",
+  "model": "coolthor/gemma-4-12B-it-NVFP4A16",
+  "response_field": "content",
+  "role": "clean semantic baseline",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "decoding": {
+    "temperature": 0,
+    "top_p": 1,
+    "n": 1,
+    "max_tokens": 220
+  },
+  "sampling_seed_source": "seed_id suffix",
+  "deterministic_seed_support": "requested; backend compliance not independently established",
+  "model_artifact_revision": "model-id:coolthor/gemma-4-12B-it-NVFP4A16",
+  "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",
+  "tokenizer_runtime_hardware": "server-reported details unavailable; client=python-stdlib-http",
+  "generator_sha256": "2a95cfc6cc7628d4e443f82737ac49e8456916936531661c0a24f389e6a66e9c",
+  "policy_validator_sha256": "bd28d7ad8b29ce96c2a9df1ba969f3b4a01d4c2f515ca64d851722fdf0b29c83",
+  "transform_version": "fire-staged-combinator-v1.2",
+  "transform_sha256": "b7ca07b46783dc0af33532922ea856990a1d2b5cde85e7969a94090f756f6ee6",
+  "started_at": "2026-08-30T08:39:34.658261+00:00",
+  "completed_at": "2026-08-30T08:39:44.547389+00:00",
+  "requested": 20,
+  "accepted": 7,
+  "rejected": 13,
+  "rejections": [
+    {
+      "index": "0",
+      "seed_id": "seed-55a1f3dfd4de2b338a019dd4",
+      "error": "conditional negative is not expressed"
+    },
+    {
+      "index": "2",
+      "seed_id": "seed-d3b41daa9e9511105b8fd85e",
+      "error": "mixed legal/marketing meaning is not expressed"
+    },
+    {
+      "index": "3",
+      "seed_id": "seed-e2a1d002d77509b3aa132b9a",
+      "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "5",
+      "seed_id": "seed-63c8c31e3fa1b09ba1f6c552",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "9",
+      "seed_id": "seed-0cad367276917ba4fd619038",
+      "error": "post-transform label semantic conflicts: missing-protected-purpose"
+    },
+    {
+      "index": "10",
+      "seed_id": "seed-d4d9ed115f49ac76e1344060",
+      "error": "positive marketing lacks marketing signal"
+    },
+    {
+      "index": "11",
+      "seed_id": "seed-d41ef3bc984bfc4cdce231ce",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "12",
+      "seed_id": "seed-0c714d5a05b96b95272e49f6",
+      "error": "purpose legal is not expressed"
+    },
+    {
+      "index": "15",
+      "seed_id": "seed-e86ac5569a04d9afce845cd3",
+      "error": "semantic safety conflicts: missing-marketing-purpose"
+    },
+    {
+      "index": "16",
+      "seed_id": "seed-b21df7c56b8bc3f6c630ce99",
+      "error": "negative polarity lacks explicit opt-out wording"
+    },
+    {
+      "index": "17",
+      "seed_id": "seed-3b2605f108000fa1b023081f",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "18",
+      "seed_id": "seed-31be7d33e095c7c8ddbe109f",
+      "error": "mixed legal/marketing meaning is not expressed"
+    },
+    {
+      "index": "19",
+      "seed_id": "seed-8ade6a0a323e258bdfc9b8fc",
+      "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+    }
+  ],
+  "output_sha256": "a1559e74d84c3acf244154dfe7363e6a361776717673ebbdffd38a70b3bf8d99",
+  "synthetic_only": true,
+  "planned_coverage": {
+    "family_surface_checked": 20,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 6,
+    "profile": 13
+  },
+  "accepted_coverage": {
+    "family_surface_checked": 7,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 4,
+    "profile": 6
+  },
+  "missing_coverage": {
+    "family_surface_checked": [
+      [
+        0,
+        "label_only",
+        false
+      ],
+      [
+        1,
+        "label_only",
+        false
+      ],
+      [
+        1,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        10,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        14,
+        "label_only",
+        false
+      ],
+      [
+        14,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        15,
+        "label_only",
+        false
+      ],
+      [
+        3,
+        "label_only",
+        false
+      ],
+      [
+        3,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        5,
+        "label_only",
+        false
+      ],
+      [
+        6,
+        "label_only",
+        false
+      ],
+      [
+        7,
+        "label_only",
+        false
+      ],
+      [
+        9,
+        "label_only",
+        false
+      ]
+    ],
+    "noise": [
+      "fragment",
+      "typo"
+    ],
+    "profile": [
+      [
+        "SaaS",
+        "preferences"
+      ],
+      [
+        "community",
+        "account_creation"
+      ],
+      [
+        "finance",
+        "account_creation"
+      ],
+      [
+        "finance",
+        "preferences"
+      ],
+      [
+        "health",
+        "account_creation"
+      ],
+      [
+        "publisher",
+        "newsletter_signup"
+      ],
+      [
+        "retailer",
+        "newsletter_signup"
+      ]
+    ]
+  }
+}
