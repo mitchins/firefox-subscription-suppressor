@@ -182,6 +182,8 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 - Add domain/template-aware train/dev/test splitting.
 - Generate adversarial polarity sets.
 
+The first three-backend staged pilot is documented in [STAGED_PILOT_REPORT.md](docs/STAGED_PILOT_REPORT.md). All three backends satisfy the response contract and produce useful candidates, but the pilot is not admitted to training: blind Luna review accepted 7/178 records, and the corpus still has metadata leakage plus euphemism/dark-pattern coverage gaps.
+
 **Exit:** versioned 10k–15k corpus, gold set, and one-command training/evaluation run.
 
 ### Phase 2 — Firefox prototype

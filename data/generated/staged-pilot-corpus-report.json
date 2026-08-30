@@ -1,0 +1,130 @@
+{
+  "records": 178,
+  "exact_duplicate_groups": [
+    [
+      32,
+      128
+    ]
+  ],
+  "template_duplicate_groups": [
+    [
+      32,
+      128
+    ],
+    [
+      42,
+      50
+    ],
+    [
+      61,
+      119
+    ],
+    [
+      69,
+      123
+    ],
+    [
+      117,
+      137
+    ]
+  ],
+  "near_duplicate_pairs": [
+    {
+      "left": 32,
+      "right": 128,
+      "jaccard": 1.0
+    }
+  ],
+  "exact_duplicate_rate": 0.0056179775280898875,
+  "near_duplicate_rate": 0.0056179775280898875,
+  "metadata_token_single_purpose_rate": 0.4,
+  "metadata_token_purposes": {
+    "cb": [
+      "ambiguous",
+      "functional",
+      "other"
+    ],
+    "choice": [
+      "ambiguous",
+      "functional",
+      "marketing",
+      "security"
+    ],
+    "communication": [
+      "ambiguous"
+    ],
+    "consent": [
+      "marketing"
+    ],
+    "control": [
+      "functional"
+    ],
+    "email": [
+      "ambiguous",
+      "marketing"
+    ],
+    "field": [
+      "ambiguous"
+    ],
+    "in": [
+      "security"
+    ],
+    "input": [
+      "functional",
+      "marketing",
+      "other"
+    ],
+    "notification": [
+      "ambiguous",
+      "functional",
+      "marketing"
+    ],
+    "notifications": [
+      "marketing"
+    ],
+    "opt": [
+      "security"
+    ],
+    "option": [
+      "functional",
+      "marketing",
+      "other"
+    ],
+    "preference": [
+      "age",
+      "ambiguous",
+      "functional",
+      "marketing",
+      "security"
+    ],
+    "preferences": [
+      "ambiguous",
+      "marketing"
+    ],
+    "profile": [
+      "functional",
+      "marketing"
+    ],
+    "selection": [
+      "age"
+    ],
+    "settings": [
+      "age",
+      "security"
+    ],
+    "updates": [
+      "ambiguous",
+      "functional",
+      "marketing"
+    ],
+    "user": [
+      "functional",
+      "security"
+    ]
+  },
+  "inputs": [
+    "data/generated/staged-pilot-llm1.jsonl",
+    "data/generated/staged-pilot-llm2.jsonl",
+    "data/generated/staged-pilot-llm3.jsonl"
+  ]
+}

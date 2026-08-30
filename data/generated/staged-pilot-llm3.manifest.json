@@ -1,0 +1,1234 @@
+{
+  "spec_version": "fire-synthetic-checkbox-v1.2",
+  "combinator_version": "fire-staged-combinator-v1.2",
+  "prompt_sha256": "e4c23259cc32bf858950864da9e8486a3e0d9735f529775666f02f3cd913a01a",
+  "root_seed": "fire-staged-pilot-2026-08-30",
+  "backend": "llm3",
+  "endpoint": "http://localhost:1234/v1/chat/completions",
+  "model": "qwen3.8-27b-uncensored-mlx-4-bit",
+  "response_field": "reasoning_content",
+  "role": "idiomatic/diversity specialist",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "decoding": {
+    "temperature": 0,
+    "top_p": 1,
+    "n": 1,
+    "max_tokens": 220
+  },
+  "sampling_seed_source": "seed_id suffix",
+  "deterministic_seed_support": "requested; backend compliance not independently established",
+  "model_artifact_revision": "model-id:qwen3.8-27b-uncensored-mlx-4-bit",
+  "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",
+  "tokenizer_runtime_hardware": "server-reported details unavailable; client=python-stdlib-http",
+  "generator_sha256": "2a95cfc6cc7628d4e443f82737ac49e8456916936531661c0a24f389e6a66e9c",
+  "policy_validator_sha256": "bd28d7ad8b29ce96c2a9df1ba969f3b4a01d4c2f515ca64d851722fdf0b29c83",
+  "transform_version": "fire-staged-combinator-v1.2",
+  "transform_sha256": "b7ca07b46783dc0af33532922ea856990a1d2b5cde85e7969a94090f756f6ee6",
+  "started_at": "2026-08-30T09:04:15.513889+00:00",
+  "completed_at": "2026-08-30T09:36:02.140591+00:00",
+  "requested": 200,
+  "accepted": 65,
+  "rejected": 135,
+  "rejections": [
+    {
+      "index": "3",
+      "seed_id": "seed-073560f1d6bb35356bb52bd4",
+      "error": "negative polarity lacks explicit opt-out wording"
+    },
+    {
+      "index": "5",
+      "seed_id": "seed-0b811d8ec4b47cb6cd8a7eef",
+      "error": "purpose security is not expressed"
+    },
+    {
+      "index": "7",
+      "seed_id": "seed-a45f5747969c190a0df922b4",
+      "error": "purpose functional is not expressed"
+    },
+    {
+      "index": "9",
+      "seed_id": "seed-286a8d08b9a409c1cf686fa9",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "11",
+      "seed_id": "seed-58a7eebd0c140ec1a1f665c9",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "12",
+      "seed_id": "seed-954c37b80b3e108e8b25ae1a",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "13",
+      "seed_id": "seed-2b684cf4d4a5f32a669496cc",
+      "error": "purpose legal is not expressed"
+    },
+    {
+      "index": "15",
+      "seed_id": "seed-611f199f46f9d3de5bd6626e",
+      "error": "post-transform mixed meaning was lost"
+    },
+    {
+      "index": "16",
+      "seed_id": "seed-22f9ba9030464bcc9779c520",
+      "error": "post-transform label semantic conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "17",
+      "seed_id": "seed-3b7fa49fd8978d1d0840a4d1",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "18",
+      "seed_id": "seed-024150da708854b3586c6be1",
+      "error": "purpose functional is not expressed"
+    },
+    {
+      "index": "19",
+      "seed_id": "seed-c0669a53c7a66489bdb55f75",
+      "error": "conditional negative is not expressed"
+    },
+    {
+      "index": "22",
+      "seed_id": "seed-0507cf207790828b2104fd96",
+      "error": "emoji transform not observed"
+    },
+    {
+      "index": "23",
+      "seed_id": "seed-f8cb0db1e9f52e4ea027ffcf",
+      "error": "no-polarity challenge contains a negative operator"
+    },
+    {
+      "index": "25",
+      "seed_id": "seed-491e23863eafbeeb20a85acb",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "26",
+      "seed_id": "seed-5e4e1590f2912e752a71932a",
+      "error": "post-transform label semantic conflicts: missing-explicit-opt-out"
+    },
+    {
+      "index": "27",
+      "seed_id": "seed-3b307ff96f5db546c2d1c0e6",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "28",
+      "seed_id": "seed-62d475b1789134b4184752bd",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "29",
+      "seed_id": "seed-a53c7f97928e5cf869d941a9",
+      "error": "purpose legal is not expressed"
+    },
+    {
+      "index": "32",
+      "seed_id": "seed-3cdf99554d94134f8ff10edb",
+      "error": "post-transform label semantic conflicts: missing-positive-opt-in-entailment, positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "35",
+      "seed_id": "seed-17a336d78a5a3667c3419734",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "39",
+      "seed_id": "seed-cdb4563ecb68cffa38853448",
+      "error": "purpose functional is not expressed"
+    },
+    {
+      "index": "40",
+      "seed_id": "seed-d54e5843d427c2a1a34a77c7",
+      "error": "post-transform label semantic conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "41",
+      "seed_id": "seed-b6a35ad947c224406e5ce2e1",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "43",
+      "seed_id": "seed-170881e3079bd94be1b6b196",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "44",
+      "seed_id": "seed-037ccf6b50a02c64be758a6e",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "45",
+      "seed_id": "seed-a3682768d6be0a3c25c7fab2",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "47",
+      "seed_id": "seed-de07eb79633cc820fa342d47",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "48",
+      "seed_id": "seed-0924c76fc63a515ed2967b09",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "53",
+      "seed_id": "seed-23d7dae3fe42daf873e90a0e",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "55",
+      "seed_id": "seed-8709de9f9cc01214ab7a2f95",
+      "error": "purpose functional is not expressed"
+    },
+    {
+      "index": "57",
+      "seed_id": "seed-416e4023ce541941e5a4e978",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "58",
+      "seed_id": "seed-7224c0ddc2fa60c825841bd2",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "59",
+      "seed_id": "seed-dc9074bbed9fbc85edb0a05e",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "60",
+      "seed_id": "seed-f92367679b054c0e0fc36595",
+      "error": "positive marketing lacks marketing signal"
+    },
+    {
+      "index": "61",
+      "seed_id": "seed-c108f4a52786d0cedb0c8c00",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "63",
+      "seed_id": "seed-455eb538e4bf1eab0af6ba6d",
+      "error": "post-transform mixed meaning was lost"
+    },
+    {
+      "index": "64",
+      "seed_id": "seed-98a7221cab903cab3370c7cf",
+      "error": "post-transform label semantic conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "65",
+      "seed_id": "seed-3eb7f9d10484a1d407ee121f",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "67",
+      "seed_id": "seed-bbd4ae5827c08f8700a97561",
+      "error": "conditional negative is not expressed"
+    },
+    {
+      "index": "68",
+      "seed_id": "seed-00f29f0fddb22d86012bebd2",
+      "error": "no-polarity challenge contains a marketing polarity signal"
+    },
+    {
+      "index": "69",
+      "seed_id": "seed-e1c29012a70c4d02600125b9",
+      "error": "purpose security is not expressed"
+    },
+    {
+      "index": "70",
+      "seed_id": "seed-132cd650579e200718f038ce",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "71",
+      "seed_id": "seed-d639f7fef88b3afee0092833",
+      "error": "purpose functional is not expressed"
+    },
+    {
+      "index": "72",
+      "seed_id": "seed-13a6beb25944aeff307b53ea",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "73",
+      "seed_id": "seed-76887e578c3bc786419df1e2",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "74",
+      "seed_id": "seed-7a361c003a26903b3dafb7dd",
+      "error": "post-transform label semantic conflicts: missing-explicit-opt-out"
+    },
+    {
+      "index": "75",
+      "seed_id": "seed-22b4bd2554958f2083c03f28",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "76",
+      "seed_id": "seed-9e29133484200cf4b44d9bd1",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "77",
+      "seed_id": "seed-e226b211d323bdf442e1ad8f",
+      "error": "purpose legal is not expressed"
+    },
+    {
+      "index": "78",
+      "seed_id": "seed-4b07326f70e4624800f4b667",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "79",
+      "seed_id": "seed-bf39cc67b7ad5e41f9752d18",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "80",
+      "seed_id": "seed-0f2333b8cfbfc1cffe21ae40",
+      "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "83",
+      "seed_id": "seed-7ac61caf4aced831ee3e2dc8",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "84",
+      "seed_id": "seed-2450e0694c4919d2e246e756",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "85",
+      "seed_id": "seed-e5fa1be6f59acfe19eb3bc63",
+      "error": "purpose security is not expressed"
+    },
+    {
+      "index": "86",
+      "seed_id": "seed-b3c27647aec8b898eabeb4d1",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "87",
+      "seed_id": "seed-718fbc995438861e21f9e876",
+      "error": "post-transform label semantic conflicts: missing-protected-purpose"
+    },
+    {
+      "index": "88",
+      "seed_id": "seed-f2994be0f7992ceff250346e",
+      "error": "post-transform label semantic conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "89",
+      "seed_id": "seed-a4117f6ca00b75aaa79b984a",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "90",
+      "seed_id": "seed-7aad95bdabdcb8d80f8c8dd0",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "91",
+      "seed_id": "seed-249560521ccab3f33ba9b158",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "92",
+      "seed_id": "seed-c6c09c2814108eb1820eae08",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "93",
+      "seed_id": "seed-2d39f68b70549dd0278aa9bc",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "95",
+      "seed_id": "seed-b39edbfb92d609ebf176c8cf",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "96",
+      "seed_id": "seed-4d15351f2b96b2ad5202470a",
+      "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "97",
+      "seed_id": "seed-7e43eb20aa53e5bf2cba9fc3",
+      "error": "purpose age is not expressed"
+    },
+    {
+      "index": "98",
+      "seed_id": "seed-aac15afa41cb3c7cb8578652",
+      "error": "placeholder or empty candidate"
+    },
+    {
+      "index": "100",
+      "seed_id": "seed-9d22df1a0509a6cb4f30d549",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "101",
+      "seed_id": "seed-ec2ce14bf3cb2c9fecc40861",
+      "error": "purpose security is not expressed"
+    },
+    {
+      "index": "104",
+      "seed_id": "seed-4cfc4d4de7e56953064961e5",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "105",
+      "seed_id": "seed-e66f5e7806321f23f66d0a1b",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "106",
+      "seed_id": "seed-c160a7e021c6a062a8434f03",
+      "error": "emoji transform not observed"
+    },
+    {
+      "index": "107",
+      "seed_id": "seed-c0d2c6c4b7590b77616b207e",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "108",
+      "seed_id": "seed-91f53152b148f040fb255784",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "109",
+      "seed_id": "seed-a0b5d7313127aaca8097606b",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "111",
+      "seed_id": "seed-f0ab6e19cacd39ef83126460",
+      "error": "post-transform mixed meaning was lost"
+    },
+    {
+      "index": "112",
+      "seed_id": "seed-130ae8c7328251637d0b947e",
+      "error": "post-transform label semantic conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "113",
+      "seed_id": "seed-717cb016d8b2f48d91509904",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "118",
+      "seed_id": "seed-98a55bf717a6718c0aefcc0c",
+      "error": "emoji transform not observed"
+    },
+    {
+      "index": "119",
+      "seed_id": "seed-42feab051fdd4f6d004d37ad",
+      "error": "purpose functional is not expressed"
+    },
+    {
+      "index": "120",
+      "seed_id": "seed-095c5c9da783d9b9c3c74418",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "121",
+      "seed_id": "seed-87c0d43d563a24dae8b026e0",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "122",
+      "seed_id": "seed-5f409ccd1f2cc51d72ebc5b4",
+      "error": "post-transform label semantic conflicts: missing-explicit-opt-out"
+    },
+    {
+      "index": "123",
+      "seed_id": "seed-bd0e843c1917707af40a5a67",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "124",
+      "seed_id": "seed-2032c02c99de3457052e83aa",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "125",
+      "seed_id": "seed-d4258a15c9b418b316532934",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "126",
+      "seed_id": "seed-68f3549b71c493bd7fbfa203",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "129",
+      "seed_id": "seed-4d79d603ebb18dd3febb79ce",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "131",
+      "seed_id": "seed-3b3625a09f91af147b4739a8",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "132",
+      "seed_id": "seed-3b6432aecd84978ace510b4f",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "134",
+      "seed_id": "seed-eb214a87e829f2d6bdbf70ae",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "135",
+      "seed_id": "seed-1aafddd2f29576f11b73c701",
+      "error": "could not apply controlled typo"
+    },
+    {
+      "index": "136",
+      "seed_id": "seed-343ff3038de4eb59126ff96d",
+      "error": "post-transform label semantic conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "137",
+      "seed_id": "seed-f5fc53b6a5b73dd3f9b50f6f",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "138",
+      "seed_id": "seed-b1ca1daf4814014bb5712f6f",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "139",
+      "seed_id": "seed-6f213c72216ada20a7210042",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "140",
+      "seed_id": "seed-ea68ea6e620d058c21bd3d8d",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "141",
+      "seed_id": "seed-b38d13df800217ddaf9e0a54",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "143",
+      "seed_id": "seed-35677bc9ca4a26d0bbf60247",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "144",
+      "seed_id": "seed-f31d8d2a801f245124e2f712",
+      "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "146",
+      "seed_id": "seed-d57fb65898879f9d6b315802",
+      "error": "placeholder or empty candidate"
+    },
+    {
+      "index": "147",
+      "seed_id": "seed-39f7baf98ea44610e1a3bfb9",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "149",
+      "seed_id": "seed-d8e38f50e7bdc48f9a6d765c",
+      "error": "purpose security is not expressed"
+    },
+    {
+      "index": "150",
+      "seed_id": "seed-906d71d9b89495a4dc7c1c70",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "151",
+      "seed_id": "seed-393aeb67a7852bda1a9c60c2",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "152",
+      "seed_id": "seed-96e319b5d44006d873ebd572",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "153",
+      "seed_id": "seed-d528ebb67ab94eae21f3cd0f",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "154",
+      "seed_id": "seed-254425de205e5edda490fb7e",
+      "error": "emoji transform not observed"
+    },
+    {
+      "index": "155",
+      "seed_id": "seed-f8c02d5c683fbde4014fe0dc",
+      "error": "euphemism is not expressed"
+    },
+    {
+      "index": "156",
+      "seed_id": "seed-c48b56f7bd18242b8a56ece5",
+      "error": "dark pattern is not expressed"
+    },
+    {
+      "index": "157",
+      "seed_id": "seed-ad1187b6bedadde7347414bd",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "158",
+      "seed_id": "seed-9b396f822bee05c1d8e0df9b",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "159",
+      "seed_id": "seed-c50948c9220c197fb5f9ea26",
+      "error": "post-transform mixed meaning was lost"
+    },
+    {
+      "index": "161",
+      "seed_id": "seed-cfeb74c387988dd3dfe41458",
+      "error": "purpose security is not expressed"
+    },
+    {
+      "index": "163",
+      "seed_id": "seed-9c120a648f27c34a18c418f1",
+      "error": "double negative is not expressed"
+    },
+    {
+      "index": "164",
+      "seed_id": "seed-b01ddbfaf0b34f71128f6020",
+      "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "165",
+      "seed_id": "seed-dce7c48c294ece64a0befcf7",
+      "error": "mixed legal/marketing meaning is not expressed"
+    },
+    {
+      "index": "167",
+      "seed_id": "seed-682949d20b6f7827dc715c37",
+      "error": "positive marketing lacks marketing signal"
+    },
+    {
+      "index": "168",
+      "seed_id": "seed-86d514c9ceb6d0621f9d6ead",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "170",
+      "seed_id": "seed-6d15bf495a037a748418226f",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "172",
+      "seed_id": "seed-1c4f129bc7b88adbaf5c48d8",
+      "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "177",
+      "seed_id": "seed-42bb8537746babdc2786383a",
+      "error": "post-transform explicit negative lost polarity"
+    },
+    {
+      "index": "181",
+      "seed_id": "seed-c7c88758e04203c03c0f9f53",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "184",
+      "seed_id": "seed-f024c95af0dc4553a039880f",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "187",
+      "seed_id": "seed-7a95d397d2458eccb57bf1d8",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "188",
+      "seed_id": "seed-9c68d5ea38935e29051d5b3e",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "189",
+      "seed_id": "seed-6fd6a381287fcd8d7fd3d9e6",
+      "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+    },
+    {
+      "index": "190",
+      "seed_id": "seed-0e793764a133c0eb8ddb593f",
+      "error": "negative polarity lacks explicit opt-out wording"
+    },
+    {
+      "index": "191",
+      "seed_id": "seed-4ed38b9958e3c640026553a6",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "192",
+      "seed_id": "seed-084b9ade7987dd1894a67877",
+      "error": "purpose legal is not expressed"
+    },
+    {
+      "index": "193",
+      "seed_id": "seed-0a4df34e990a34f08488a33a",
+      "error": "candidate lacks a safe fragment prefix"
+    },
+    {
+      "index": "196",
+      "seed_id": "seed-9091b0bdb5ad850eafdc7ffa",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "197",
+      "seed_id": "seed-820aacd5f12d341c9ddf04c0",
+      "error": "normalized label duplicate"
+    },
+    {
+      "index": "198",
+      "seed_id": "seed-786ff845cea3970f3e25c408",
+      "error": "post-transform explicit negative lost polarity"
+    }
+  ],
+  "output_sha256": "8be7c9d561eb7ff0a7c199957921c05ae80c2b06b7d983860385dd7dd3eba514",
+  "synthetic_only": true,
+  "planned_coverage": {
+    "family_surface_checked": 160,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 6,
+    "profile": 16
+  },
+  "accepted_coverage": {
+    "family_surface_checked": 60,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 5,
+    "profile": 16
+  },
+  "missing_coverage": {
+    "family_surface_checked": [
+      [
+        0,
+        "label_only",
+        false
+      ],
+      [
+        0,
+        "label_plus_aria",
+        false
+      ],
+      [
+        0,
+        "label_plus_aria",
+        true
+      ],
+      [
+        0,
+        "label_plus_legend",
+        true
+      ],
+      [
+        0,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        0,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        0,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        1,
+        "label_only",
+        true
+      ],
+      [
+        1,
+        "label_plus_aria",
+        false
+      ],
+      [
+        1,
+        "label_plus_aria",
+        true
+      ],
+      [
+        1,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        1,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        1,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        10,
+        "label_only",
+        false
+      ],
+      [
+        10,
+        "label_only",
+        true
+      ],
+      [
+        10,
+        "label_plus_aria",
+        false
+      ],
+      [
+        10,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        11,
+        "label_only",
+        true
+      ],
+      [
+        11,
+        "label_plus_aria",
+        false
+      ],
+      [
+        11,
+        "label_plus_aria",
+        true
+      ],
+      [
+        11,
+        "label_plus_legend",
+        false
+      ],
+      [
+        11,
+        "label_plus_legend",
+        true
+      ],
+      [
+        11,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        12,
+        "label_only",
+        true
+      ],
+      [
+        12,
+        "label_plus_aria",
+        false
+      ],
+      [
+        12,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        13,
+        "label_only",
+        false
+      ],
+      [
+        13,
+        "label_only",
+        true
+      ],
+      [
+        13,
+        "label_plus_aria",
+        false
+      ],
+      [
+        13,
+        "label_plus_aria",
+        true
+      ],
+      [
+        13,
+        "label_plus_legend",
+        false
+      ],
+      [
+        13,
+        "label_plus_legend",
+        true
+      ],
+      [
+        13,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        13,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        13,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        13,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        14,
+        "label_plus_aria",
+        false
+      ],
+      [
+        14,
+        "label_plus_legend",
+        false
+      ],
+      [
+        14,
+        "label_plus_legend",
+        true
+      ],
+      [
+        14,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        14,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        14,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        15,
+        "label_plus_aria",
+        false
+      ],
+      [
+        15,
+        "label_plus_aria",
+        true
+      ],
+      [
+        15,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        2,
+        "label_only",
+        false
+      ],
+      [
+        2,
+        "label_only",
+        true
+      ],
+      [
+        2,
+        "label_plus_aria",
+        false
+      ],
+      [
+        2,
+        "label_plus_aria",
+        true
+      ],
+      [
+        2,
+        "label_plus_legend",
+        true
+      ],
+      [
+        2,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        2,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        3,
+        "label_only",
+        false
+      ],
+      [
+        3,
+        "label_plus_aria",
+        false
+      ],
+      [
+        3,
+        "label_plus_legend",
+        true
+      ],
+      [
+        3,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        3,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        4,
+        "label_only",
+        false
+      ],
+      [
+        4,
+        "label_only",
+        true
+      ],
+      [
+        4,
+        "label_plus_aria",
+        false
+      ],
+      [
+        4,
+        "label_plus_aria",
+        true
+      ],
+      [
+        4,
+        "label_plus_legend",
+        false
+      ],
+      [
+        4,
+        "label_plus_legend",
+        true
+      ],
+      [
+        4,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        4,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        4,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        4,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        5,
+        "label_only",
+        false
+      ],
+      [
+        5,
+        "label_only",
+        true
+      ],
+      [
+        5,
+        "label_plus_aria",
+        false
+      ],
+      [
+        5,
+        "label_plus_aria",
+        true
+      ],
+      [
+        5,
+        "label_plus_legend",
+        false
+      ],
+      [
+        5,
+        "label_plus_legend",
+        true
+      ],
+      [
+        5,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        5,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        5,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        5,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        6,
+        "label_only",
+        false
+      ],
+      [
+        6,
+        "label_plus_aria",
+        false
+      ],
+      [
+        6,
+        "label_plus_aria",
+        true
+      ],
+      [
+        6,
+        "label_plus_legend",
+        true
+      ],
+      [
+        6,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        7,
+        "label_only",
+        false
+      ],
+      [
+        8,
+        "label_only",
+        false
+      ],
+      [
+        8,
+        "label_plus_aria",
+        false
+      ],
+      [
+        8,
+        "label_plus_aria",
+        true
+      ],
+      [
+        8,
+        "label_plus_legend",
+        false
+      ],
+      [
+        8,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        8,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        8,
+        "mixed_dom_context",
+        true
+      ],
+      [
+        9,
+        "label_only",
+        false
+      ],
+      [
+        9,
+        "label_only",
+        true
+      ],
+      [
+        9,
+        "label_plus_aria",
+        false
+      ],
+      [
+        9,
+        "label_plus_aria",
+        true
+      ],
+      [
+        9,
+        "label_plus_legend",
+        false
+      ],
+      [
+        9,
+        "label_plus_legend",
+        true
+      ],
+      [
+        9,
+        "label_plus_name_id",
+        false
+      ],
+      [
+        9,
+        "label_plus_name_id",
+        true
+      ],
+      [
+        9,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        9,
+        "mixed_dom_context",
+        true
+      ]
+    ],
+    "noise": [
+      "fragment"
+    ]
+  }
+}
