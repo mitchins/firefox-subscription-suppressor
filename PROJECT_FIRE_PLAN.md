@@ -107,6 +107,8 @@ Keep the model input and output inspectable. Use rule traces plus model confiden
 
 The LAN LLMs are an offline development dependency for dataset creation and augmentation only. The shipped extension must not depend on them.
 
+The approved generation protocol is [GENERATION_PROMPT_SPEC.md](docs/GENERATION_PROMPT_SPEC.md). LAN backend 1 of 3 is the OpenAI-compatible Gemma service at `http://192.168.4.3:8000/v1/chat/completions`, model `coolthor/gemma-4-12B-it-NVFP4A16`. This endpoint belongs only to the offline generation pipeline and must not appear in extension runtime code, permissions, configuration, or packaged artifacts.
+
 ### Record format
 
 Store one normalized training example per line in a versioned model-specific format, retaining provenance and structured annotations in a separate manifest. If fastText is used, export a compatible view. Every field must be explicitly namespaced. Example:
@@ -176,6 +178,7 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 ### Phase 1 — Data pipeline
 
 - Implement seed ingestion, normalization, provenance manifests, deduplication, prompt-based LAN generation, and human review queues.
+- Integrate the approved prompt/seed combinator and backend registry; reject malformed, unsafe, contradictory, or duplicate model output before it enters the corpus.
 - Add domain/template-aware train/dev/test splitting.
 - Generate adversarial polarity sets.
 
