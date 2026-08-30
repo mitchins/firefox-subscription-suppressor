@@ -6,6 +6,22 @@
 
 A privacy-preserving Firefox extension that detects optional marketing/newsletter consent checkboxes and automatically leaves them unchecked, while preserving required, legal, age, privacy, and functional choices.
 
+## Product decision
+
+v1 will ship with the full auto-uncheck machinery implemented, but **auto-action disabled by default** until the safety gates pass. Highlight/suggest-only is the first usable mode, followed by shadow auto-action that logs what would have changed without mutating the page. Promotion to active auto-uncheck is a release-policy change in the same decision engine, not a separate product direction.
+
+The initial auto-action envelope is deliberately narrow:
+
+- Native `<input type="checkbox">` only.
+- Currently checked controls only.
+- Clearly positive-polarity marketing opt-ins only: checked means the user opts into marketing.
+- Deliberately high calibrated classifier confidence.
+- No ambiguity involving terms, privacy, age, payment, account functionality, or other required behavior.
+- Mutation handling proven idempotent and resistant to framework reversion.
+- Dynamically rewritten labels are reclassified before any action; no action occurs while their meaning is stale or unresolved.
+
+The promotion gate requires zero false auto-actions across a large real-world negative corpus, plus explicit polarity torture tests. A target of 0 false positives across approximately 30,000 independent negative cases corresponds to an approximate 95% rule-of-three upper bound of 0.01%. Synthetic data may support training and fuzzing, but cannot satisfy this certification gate.
+
 ## Problem
 
 Checkboxes rarely declare their intent using a reliable HTML standard. A useful classifier must combine visible label text with accessible names and DOM metadata, handle negation and awkward dark-pattern wording, and fail conservatively when intent is unclear.
@@ -170,6 +186,7 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 - Implement Manifest V3-compatible extension structure and content-script checkbox discovery.
 - Add label/ARIA/metadata extraction, safety rules, classifier inference, and conservative action policy.
 - Add debug explanation mode and per-site disable/undo controls.
+- Ship highlight/suggest-only as the default safety mode.
 
 **Exit:** extension works on fixture pages and never changes protected controls in automated tests.
 
@@ -177,9 +194,11 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 
 - Run against a consented or carefully selected public-form corpus without submissions.
 - Compare predicted actions to human judgments.
+- Run shadow auto-action against at least 30,000 independent real-world negative cases and record would-have-acted decisions without mutating pages.
+- Run explicit polarity torture tests and verify that synthetic examples are excluded from certification metrics.
 - Tune thresholds and expand only the error classes observed in the wild.
 
-**Exit:** release candidate meets safety and performance gates on unseen domains.
+**Exit:** release candidate meets safety and performance gates on unseen domains; only then may the default policy be promoted from highlight/suggest-only to the narrow auto-action envelope.
 
 ### Phase 4 — Packaging and release
 
@@ -200,13 +219,15 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 
 ## Initial acceptance criteria
 
-- The extension automatically unchecks only high-confidence optional marketing/newsletter boxes whose checked state unambiguously enables marketing on the fixture corpus.
+- The shipped default mode is highlight/suggest-only; no page mutation occurs until the certification gate passes.
+- The implemented auto-action policy unchecks only high-confidence optional marketing/newsletter boxes whose checked state unambiguously enables marketing on the fixture corpus when explicitly enabled for testing.
 - It does not auto-uncheck protected/required examples in the gold set.
 - It handles dynamically added checkboxes without repeated toggling or excessive CPU use.
 - It performs inference entirely locally at runtime and ships without a LAN service dependency.
 - The model, training data version, evaluation metrics, and threshold policy are reproducible from the repository.
 - Users can disable automation per site and undo changes on the current page.
 - It never uses synthetic clicks, never auto-checks a box, and user interaction wins over automation.
+- Shadow mode records would-have-acted decisions without mutating the page.
 
 ## Open decisions
 
@@ -215,7 +236,6 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 - Whether Firefox Android is included in the first release; current planning scope is desktop-first.
 - Whether to support only English initially or add language detection and an explicit non-English `UNKNOWN` path.
 - Whether real-form collection is a separate private corpus repository because of provenance and retention constraints.
-- Thresholds for auto-action versus highlight-only suggestion mode.
 - Which mutation semantics, if any, are compatible with common controlled-input frameworks without causing side effects.
 
 ## Suggested repository layout
