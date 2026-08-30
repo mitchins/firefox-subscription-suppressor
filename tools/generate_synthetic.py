@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any
 
 
-SPEC_VERSION = "fire-synthetic-checkbox-v1"
+SPEC_VERSION = "fire-synthetic-checkbox-v1.1"
 DEFAULT_ENDPOINT = "http://192.168.4.3:8000/v1/chat/completions"
 DEFAULT_MODEL = "coolthor/gemma-4-12B-it-NVFP4A16"
 MAX_FIELD_LENGTH = 512
@@ -100,6 +100,45 @@ quality_flags, generator_seed_id.
 
 Preserve the purpose, polarity, obligation, style, site_profile, surface,
 checked_state, and generator_seed_id from the input exactly.
+
+Polarity is a linguistic requirement, not just a copied enum:
+- checked_enables_marketing means that checking the box opts the user into
+  marketing. Use positive opt-in language such as "Yes, send me...",
+  "Keep me updated...", or "I would like...".
+- unchecked_enables_marketing means that leaving the box unchecked leaves
+  marketing enabled. Use an explicit opt-out construction such as "Do not send
+  me...", "I don't want...", "No thanks, don't...", or "Opt me out of...".
+  Positive-only wording is invalid for this polarity.
+- non_marketing must express a functional, legal, age, security, or other
+  non-marketing purpose and must not smuggle marketing language into metadata.
+
+These examples are binding:
+checked_enables_marketing + checked=true + "Yes, email me occasional offers"
+  -> uncheck
+checked_enables_marketing + checked=false + "Yes, email me occasional offers"
+  -> leave
+unchecked_enables_marketing + checked=true + "Do not send me promotional emails"
+  -> leave
+unchecked_enables_marketing + checked=false + "Do not send me promotional emails"
+  -> suggest
+
+Realize the requested noise and challenge. A typo requires one or two plausible
+errors and controlled_typo; a fragment must be fragmentary_text; an euphemism
+must avoid direct marketing keywords while retaining marketing meaning and use
+euphemistic_marketing; double_negative must be an actual double negative and use
+double_negative; misleading_dark_pattern must be genuinely misleading or
+frictional and use dark_pattern. Do not claim a flag without expressing it.
+
+Noise must be visibly present in the emitted label_text: casing means unusual
+case such as "GET DEALS" or "newS" (ordinary sentence capitalization does not
+count); whitespace means visibly repeated spaces such as "Keep  me updated";
+emoji means at least one emoji; fragment means a noun phrase or incomplete
+phrase such as "Exclusive partner offers" rather than a complete sentence; typo
+means one visible spelling error; euphemism means wording such as "A little
+extra sparkle from us" without direct marketing keywords. For
+double_negative, include two genuine negative operators, not merely the words
+"not not" as a label. If the requested form cannot be realized, fail rather
+than silently producing a normal sentence.
 
 The expected_action is deterministic:
 1. ambiguous purpose, polarity, or obligation -> suggest;
@@ -206,13 +245,14 @@ def make_seed(index: int, root_seed: str) -> dict[str, Any]:
     surfaces = ["label_only", "label_plus_aria", "label_plus_name_id", "label_plus_legend", "mixed_dom_context"]
     noises = ["none", "casing", "whitespace", "typo", "emoji", "fragment", "euphemism"]
     purpose, polarity, obligation, checked, challenge = semantic_cases[index % len(semantic_cases)]
+    noise_options = noises if purpose == "marketing" else [noise for noise in noises if noise != "euphemism"]
     profile = profiles[index % len(profiles)]
     combo: dict[str, Any] = {
         "semantic_seed": {"purpose": purpose, "polarity": polarity, "obligation": obligation},
         "style": styles[index % len(styles)],
         "site_profile": {"archetype": profile[0], "funnel_stage": profile[1], "voice": profile[2]},
         "surface": surfaces[index % len(surfaces)],
-        "noise": noises[index % len(noises)],
+        "noise": noise_options[index % len(noise_options)],
         "polarity_challenge": challenge,
         "checked_state": checked,
         "literal_source_seed": None,
@@ -267,7 +307,16 @@ def response_schema(seed: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def request_record(endpoint: str, model: str, seed: dict[str, Any], max_tokens: int, timeout: int) -> tuple[str, dict[str, Any]]:
+def request_record(
+    endpoint: str,
+    model: str,
+    seed: dict[str, Any],
+    max_tokens: int,
+    timeout: int,
+    response_field: str = "content",
+) -> tuple[str, dict[str, Any]]:
+    if response_field not in {"content", "reasoning_content"}:
+        raise ValueError("response_field must be content or reasoning_content")
     payload = {
         "model": model,
         "messages": [
@@ -278,6 +327,7 @@ def request_record(endpoint: str, model: str, seed: dict[str, Any], max_tokens: 
         "temperature": 0,
         "top_p": 1,
         "n": 1,
+        "chat_template_kwargs": {"enable_thinking": False},
         "response_format": {
             "type": "json_schema",
             "json_schema": {
@@ -299,14 +349,81 @@ def request_record(endpoint: str, model: str, seed: dict[str, Any], max_tokens: 
     except (urllib.error.URLError, TimeoutError) as exc:
         raise RuntimeError(f"LAN request failed: {exc}") from exc
     parsed = json.loads(body)
-    content = parsed["choices"][0]["message"]["content"]
+    message = parsed["choices"][0]["message"]
+    content = message.get(response_field)
     if not isinstance(content, str):
-        raise ValueError("model content is not text")
+        raise ValueError(f"model {response_field} is not text")
     return content, payload
 
 
 def no_sensitive_text(value: str) -> bool:
     return not re.search(r"(?:https?://|www\.|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\b(?:street|road|avenue|account number|card number)\b)", value, re.I)
+
+
+EXPLICIT_OPTOUT = re.compile(
+    r"\b(?:do not|don't|dont)\s+(?:send|email|contact|share|receive|want|"
+    r"get|subscribe|sign me up)|\bno thanks\b|\bno (?:more|marketing|"
+    r"promotional|newsletter|emails?)\b|\bopt[ -]?out\b|\bunsubscribe\b|"
+    r"\bstop (?:receiving|sending|emailing|contacting)\b|\bavoid receiving\b|"
+    r"\bwithout receiving\b|\brather not (?:receive|get|have)\b",
+    re.I,
+)
+MARKETING_LANGUAGE = re.compile(
+    r"\b(?:newsletter|marketing|promotional?|offers?|deals?|news|updates?|"
+    r"arrivals?|inspiration|wellness tips|exclusive|specials?)\b",
+    re.I,
+)
+
+
+def validate_semantic_realization(record: dict[str, Any], seed: dict[str, Any]) -> None:
+    """Reject records that copy labels but fail to express their meaning."""
+    text = " ".join(
+        str(record[field])
+        for field in ("label_text", "aria_label", "name", "id", "legend_or_context")
+        if record[field]
+    )
+    polarity = seed["polarity"]
+    if polarity == "unchecked_enables_marketing":
+        if not EXPLICIT_OPTOUT.search(text):
+            raise ValueError("negative polarity lacks explicit opt-out wording")
+        if re.search(r"\b(?:opt[ -]?in|subscribe|sign me up)\b", text, re.I):
+            raise ValueError("negative polarity contains opt-in metadata")
+    elif polarity == "checked_enables_marketing":
+        if not MARKETING_LANGUAGE.search(text):
+            raise ValueError("positive marketing polarity lacks marketing wording")
+        if EXPLICIT_OPTOUT.search(text) and not re.search(r"don't miss out|do not miss out", text, re.I):
+            raise ValueError("positive polarity contains explicit opt-out wording")
+
+    required_flags = {
+        "typo": "controlled_typo",
+        "fragment": "fragmentary_text",
+        "euphemism": "euphemistic_marketing",
+    }
+    required_flag = required_flags.get(seed["noise"])
+    if required_flag and required_flag not in record["quality_flags"]:
+        raise ValueError(f"noise {seed['noise']} missing {required_flag}")
+    challenge_flags = {
+        "double_negative": "double_negative",
+        "misleading_dark_pattern": "dark_pattern",
+    }
+    required_flag = challenge_flags.get(seed["polarity_challenge"])
+    if required_flag and required_flag not in record["quality_flags"]:
+        raise ValueError(f"challenge {seed['polarity_challenge']} missing {required_flag}")
+    label = record["label_text"]
+    if seed["noise"] == "casing" and not re.search(r"[a-z][A-Z]|\b[A-Z]{2,}\b", label):
+        raise ValueError("casing noise is not visibly realized")
+    if seed["noise"] == "whitespace" and not re.search(r"\s{2,}", label):
+        raise ValueError("whitespace noise is not visibly realized")
+    if seed["noise"] == "emoji" and not any(ord(char) >= 0x1F000 for char in label):
+        raise ValueError("emoji noise is not visibly realized")
+    if seed["noise"] == "fragment" and re.match(r"^(?:I|we|yes|no|please|keep|receive|enable|confirm|get|send|don't|do not)\b", label, re.I):
+        raise ValueError("fragment noise looks like a complete sentence")
+    if seed["noise"] == "euphemism" and seed["purpose"] == "marketing" and MARKETING_LANGUAGE.search(label):
+        raise ValueError("euphemism contains direct marketing keywords")
+    if seed["polarity_challenge"] == "double_negative":
+        negative_count = len(re.findall(r"\b(?:not|never|no|don't|do not|neither|without)\b", label, re.I))
+        if negative_count < 2:
+            raise ValueError("double-negative challenge lacks two negative operators")
 
 
 def validate_output(content: str, seed: dict[str, Any]) -> dict[str, Any]:
@@ -357,6 +474,7 @@ def validate_output(content: str, seed: dict[str, Any]) -> dict[str, Any]:
         raise ValueError(f"expected_action mismatch: {record['expected_action']} != {calculated}")
     if record["expected_action"] == "uncheck" and not (record["purpose"] == "marketing" and record["polarity"] == "checked_enables_marketing" and record["obligation"] == "optional" and record["checked_state"]):
         raise ValueError("unsafe uncheck action")
+    validate_semantic_realization(record, seed)
     return record
 
 
@@ -371,6 +489,7 @@ def main() -> int:
     parser.add_argument("--max-tokens", type=int, default=450)
     parser.add_argument("--timeout", type=int, default=90)
     parser.add_argument("--delay", type=float, default=0.0)
+    parser.add_argument("--response-field", choices=("content", "reasoning_content"), default="content")
     args = parser.parse_args()
     if args.count < 1 or args.count > 1000:
         parser.error("--count must be between 1 and 1000")
@@ -385,7 +504,7 @@ def main() -> int:
     for index in range(args.count):
         seed = make_seed(index, args.root_seed)
         try:
-            content, payload = request_record(args.endpoint, args.model, seed, args.max_tokens, args.timeout)
+            content, payload = request_record(args.endpoint, args.model, seed, args.max_tokens, args.timeout, args.response_field)
             payload_template = payload
             record = validate_output(content, seed)
             dedupe_key = sha256_bytes(canonical_json(record).lower().encode("utf-8"))
@@ -412,6 +531,8 @@ def main() -> int:
         "root_seed": args.root_seed,
         "endpoint": args.endpoint,
         "model": args.model,
+        "response_field": args.response_field,
+        "chat_template_kwargs": {"enable_thinking": False},
         "decoding": {"temperature": 0, "top_p": 1, "n": 1, "max_tokens": args.max_tokens},
         "started_at": started,
         "completed_at": datetime.now(timezone.utc).isoformat(),
