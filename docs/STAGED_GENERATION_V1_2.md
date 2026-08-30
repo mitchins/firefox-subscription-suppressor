@@ -1,4 +1,4 @@
-# FIRE staged generation v1.2
+# FIRE staged generation v1.3
 
 This is the staged successor to `fire-synthetic-checkbox-v1.1`. It separates
 semantic generation from record composition so a model cannot invent the action,
@@ -25,13 +25,25 @@ The model is asked for plausible English wording only. It must preserve purpose,
 polarity, obligation, style, profile, and the requested semantic challenge. It
 must reject placeholders, prose, metadata, copied pages, URLs, and personal data.
 
+The authoritative v1.3 request is built by `tools/generate_staged.py`: the
+validated seed and checklist are caller-owned data, and the model response is
+only `{"candidate_text":"..."}`. The deterministic seed is derived from the
+root seed and record index; the independent metadata slot is derived from
+`SHA-256(root_seed + ":metadata-slot:" + index)`. The first 160 planned records
+cover every semantic family/surface/checked-state combination when the pilot
+count permits it. This uses deterministic index-modulo assignment only for that
+coverage block; later records use weighted sampling. Each manifest reports planned,
+accepted, and missing coverage;
+the command exits nonzero when accepted coverage is incomplete.
+
 ## Semantic families and composition
 
 The deterministic planner samples a weighted set of valid semantic families and
 a weighted compatibility graph of site archetype, funnel stage, and voice. It
 includes direct and implicit opt-ins, explicit and conditional opt-outs, euphemisms, dark
 patterns, double negatives, mixed legal/marketing ambiguity, protected controls,
-and unknown/ambiguous cases. A seed does not use index-modulo assignment.
+and unknown/ambiguous cases. Outside the initial coverage block, a seed does not
+use index-modulo assignment.
 
 Mechanical transforms are caller-owned and preserve the clean candidate parent:
 
@@ -51,6 +63,24 @@ The generator rejects malformed JSON, unknown candidate keys, placeholders,
 unsafe content, missing polarity/purpose/challenge evidence, action-envelope
 violations, surface-invariant violations, and exact normalized duplicates.
 The caller recomputes the action; the model never supplies it.
+
+Malformed JSON, malformed response envelopes, and recoverable realization
+failures receive at most two deterministic retries. Every attempt is retained
+with its sampling seed, payload/response hashes, status, and error; accepted
+records retain the accepted-attempt index. Cross-backend exact, template, and
+near-duplicate rates are checked by `tools/check_staged_corpus.py`.
+
+The v1.3 generator retries only deterministic realization/format failures up to
+three attempts. Every attempt records its sampling seed, payload hash, response
+hash when available, status, and validator error; retries never change the
+semantic seed or caller-owned action policy. Metadata pools are purpose-
+independent and selected from an index-derived slot to reduce metadata leakage.
+
+The v1.3 generator distinguishes hard safety conflicts from explicitly named
+soft challenge conflicts. Soft conflicts are allowed only on misleading-dark-
+pattern or mixed-legal/marketing records, and those records are always
+`suggest`; `uncheck` requires zero conflicts. Challenge coverage is reported
+separately for mechanically accepted and Luna-admitted records.
 
 The 600-record pilot is reviewed by `gpt-5.6-luna` rather than a human review
 queue. Luna scores every record for semantic fidelity, polarity, plausibility,

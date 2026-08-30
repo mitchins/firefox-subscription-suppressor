@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Project FIRE v1.2 staged synthetic records.
+"""Generate Project FIRE v1.3 staged synthetic records.
 
 The model generates only a semantic candidate label. The caller owns all truth,
 DOM structure, mechanical noise, action policy, flags, and provenance.
@@ -8,6 +8,7 @@ DOM structure, mechanical noise, action policy, flags, and provenance.
 from __future__ import annotations
 
 import argparse
+import http.client
 import inspect
 import json
 import random
@@ -36,8 +37,8 @@ from generate_synthetic import (
 )
 
 
-SPEC_VERSION = "fire-synthetic-checkbox-v1.2"
-COMBINATOR_VERSION = "fire-staged-combinator-v1.2"
+SPEC_VERSION = "fire-synthetic-checkbox-v1.3"
+COMBINATOR_VERSION = "fire-staged-combinator-v1.3"
 
 BACKENDS = {
     "llm1": {
@@ -133,7 +134,8 @@ and provenance. Return exactly one JSON object with only the candidate_text key.
 Do not include metadata, explanations, markdown, or reasoning in that field.
 
 The label must express the supplied purpose, polarity, obligation, style, site
-profile, and semantic challenge. A checked_enables_marketing seed means checking
+profile, and semantic challenge. Noise, surface, and metadata_style are
+caller-composed constraints; do not encode them in candidate_text. A checked_enables_marketing seed means checking
 opts into marketing, so use positive opt-in language. An
 unchecked_enables_marketing seed means leaving unchecked leaves marketing enabled,
 so use explicit opt-out language. Never reverse polarity.
@@ -142,8 +144,18 @@ Semantic challenges are real wording requirements: implicit_positive means an
 ordinary checkbox opt-in whose positive meaning is conveyed without an explicit
 "yes" or "I want"; euphemism must imply the
 marketing meaning without direct marketing keywords; a dark pattern must be
-manipulative without becoming an opt-out; a double negative must contain two
-negative operators; a mixed legal/marketing case must genuinely mix both meanings.
+manipulative without becoming an opt-out. For euphemism, pair an opt-in cue such
+as "Keep me in the loop" or "Let me in on" with a separate non-direct marketing
+cue such as "member perks" or "inside scoop"; the opt-in cue alone is not the
+euphemistic referent. Do not use newsletter, marketing, offers, deals, news,
+updates, partner, or similar direct terms. For a dark pattern, use an explicit
+positive opt-in plus genuine urgency or friction, such as "Get exclusive offers
+before they disappear"; do not use "exclusive offers" alone, turn it into an
+opt-out, or make it a required control. A double negative must contain exactly two separated negative
+operators, such as "I don't want to miss not receiving member updates"; adjacent
+"not not" is invalid. Euphemism, dark-pattern, and mixed legal/marketing cases
+are always suggest-only. A mixed legal/marketing case must genuinely mix both
+meanings.
 For no_polarity_signal, express the supplied non-marketing or ambiguous purpose
 without adding a marketing opt-in or opt-out polarity signal. This challenge is
 not valid for a marketing purpose.
@@ -157,22 +169,113 @@ PURPOSE_MARKERS = {
     "age": re.compile(r"\b(?:age|18|adult|majority|birth|eligib)\b", re.I),
     "security": re.compile(r"\b(?:security|secure|two[- ]factor|2fa|multi[- ]factor|authentication|lock|protect)\b", re.I),
 }
-EUPHEMISM_MARKERS = re.compile(r"\b(?:extra sparkle|little something|perks|inside scoop|something special|stay in the loop|be in the know)\b", re.I)
-DARK_MARKERS = re.compile(r"\b(?:don't miss|do not miss|last chance|act now|exclusive|urgent|check here|fear|regret|only)\b", re.I)
+EUPHEMISM_MARKERS = re.compile(r"\b(?:extra sparkle|member perks|perks|inside scoop|little something|something for you)\b", re.I)
+DARK_MARKERS = re.compile(r"\b(?:don't miss|do not miss|last chance|act now|urgent|limited time|while .* lasts|before .* disappear(?:s)?|regret)\b", re.I)
 PROTECTED_MARKERS = re.compile(r"\b(?:terms?|conditions?|privacy|policy|age|18|adult|payment|billing|card|security|secure|two[- ]factor|2fa|authentication|password|required|mandatory|compulsory|essential|necessary|prerequisite|obligatory|must|need to|to continue|to proceed|so you can continue|to complete checkout|before checkout|checkout can be completed|access requires|consent to (?:data|information)|processing)\b", re.I)
-POSITIVE_OPTIN = re.compile(r"\b(?:send|email|receive|get|subscribe|sign me up|opt me in|i would like|i'd like|join|keep me|stay in the loop|be the first|discover|enjoy|learn about)\b", re.I)
+POSITIVE_OPTIN = re.compile(r"\b(?:send|email|receive|get|subscribe|sign me up|opt me in|i would like|i'd like|join|keep me|let me in on|stay in the loop|be the first|discover|enjoy|learn about)\b", re.I)
 EXPLICIT_POSITIVE = re.compile(r"\b(?:yes|i want|i would like|please|sign me up|subscribe)\b", re.I)
 MARKETING_CORE = re.compile(r"\b(?:newsletter|marketing|promotional?|offers?|deals?|promos?|partner(?:s)?|specials?|product (?:news|updates?|drops?|launches?)|exclusive (?:offers?|access)|new arrivals?)\b", re.I)
 NEGATIVE_OPERATOR = re.compile(r"\b(?:not|never|no|don't|do not|neither|without|won't|wouldn't)\b", re.I)
 NEGATIVE_ACTION = re.compile(r"\b(?:reject|decline|skip|disable|refuse|avoid|stop|block|remove|exclude|cancel|turn off|turn down|pause|cease|end|halt|mute|silence|suspend|switch off|deactivate|suppress|prevent|discontinue|forbid|withdraw|deny|revoke|terminate)\b", re.I)
+POLARITY_REVERSAL = re.compile(r"\b(?:freedom|relief|protection|immunity|shield|escape|avoidance|exemption|break|respite|reprieve|release|free|blocked|excluded|removed|barred|disconnected|removal|suppression|elimination|cessation|prevention|blocking|exclusion|disconnection|termination|ban|prohibition|denial|refusal|rejection|cancellation|embargo|moratorium|liberation|reduction|opt[ -]?out)\s+(?:from|against|of|to|regarding|about|around|on)\b|\b(?:get|rid)\s+(?:rid of|yourself of|away from|out of)\b|\b(?:marketing|newsletter|promotion|promotional|advertising)[ -]?free\b", re.I)
 QUANTITY_NEGATION = re.compile(r"\b(?:zero|none|fewer|less|limited|reduced|minimum|only)\b", re.I)
 UNSAFE_POSITIVE_CLAUSE = re.compile(r"\b(?:require|requires|required|obliged|obligatory|need to|must|essential|necessary|prerequisite|to continue|to proceed|proceed|so you can continue|so you may proceed|to complete checkout|before checkout|checkout can be completed|cannot continue|can't continue|or you|but|plus|except|only when|when this box|box is off|gain access|access)\b", re.I)
-SAFE_POSITIVE_LABEL = re.compile(r"^\s*(?:yes,?\s+)?(?:send|email|receive|get|keep me updated|keep me informed|stay in the loop|subscribe|sign me up|opt me in|i would like|i'd like|join|be the first|discover|enjoy)\b.*\b(?:newsletter|marketing|promotional?|offers?|deals?|news|updates?|arrivals?|inspiration|wellness tips|exclusive|specials?|emails?|promos?|launch(?:es|ing)?|product|drop|insider|curated|stay in (?:the )?loop)\b[.!?\s]*$", re.I)
+SAFE_POSITIVE_LABEL = re.compile(r"^\s*(?:yes,?\s+)?(?:(?:send|email|receive|get)\s+(?:me\s+)?|(?:subscribe|sign me up)\s+(?:for|to)\s+|(?:keep me (?:updated|informed)|stay in the loop)\s+(?:about|on|with)\s+|(?:opt me in|i would like|i'd like|join|be the first to|discover|enjoy|learn about)\s+)(?:(?:occasional|regular|weekly|monthly|personalized|curated|exclusive|special|product|member|wellness|new|latest|first)\s+){0,6}(?:newsletter|marketing(?:\s+emails?)?|promotional?\s+emails?|offers?|deals?|promos?|news|updates?|arrivals?|inspiration|wellness\s+tips|emails?|launch(?:es|ing)?|drops?|specials?)[.!?\s]*$", re.I)
 STATE_POLARITY = re.compile(r"\b(?:checked|unchecked|left blank|left unchecked|not checked|box is blank|box is left)\b", re.I)
 CONDITIONAL_OPTOUT = re.compile(r"^\s*(?:(?:if|unless|until|untick|uncheck|leave|skip)\b.{0,100}\b(?:do not|don't|never|no thanks|opt[ -]?out|unsubscribe)\b|(?:do not|don't|never)\b.{0,100}\b(?:if|unless)\b)", re.I)
+DOUBLE_NEGATIVE = re.compile(r"\b(?:not|never|no|don't|do not|neither|without)\b.{1,100}\b(?:not|never|no|don't|do not|neither|without)\b", re.I)
+ADJACENT_NEGATION = re.compile(r"\b(?:not|never|no|don't|do not|neither|without)\s+(?:not|never|no|don't|do not|neither|without)\b", re.I)
+
+HARD_SAFETY_CONFLICTS = {
+    "protected-purpose-marker",
+    "missing-protected-purpose",
+    "positive-polarity-marker",
+    "missing-explicit-opt-out",
+    "double-negative-ambiguity",
+    "missing-marketing-purpose",
+    "marketing-marker-on-nonmarketing-seed",
+    "state-dependent-polarity",
+    "missing-positive-opt-in-entailment",
+}
+SOFT_CHALLENGE_CONFLICTS = {
+    "positive-opt-in-outside-safe-envelope",
+    "mixed-legal-marketing",
+}
 
 
-def infer_safety_conflicts(text: str, seed: dict[str, Any]) -> list[str]:
+def negative_operator_count(text: str) -> int:
+    count = 0
+    for match in NEGATIVE_OPERATOR.finditer(text):
+        following = text[match.end():].lstrip().casefold()
+        if following.startswith("miss out"):
+            continue
+        count += 1
+    return count
+
+
+def hard_conflicts(seed: dict[str, Any], conflicts: list[str]) -> list[str]:
+    """Return conflicts that make a candidate unsafe or semantically unusable."""
+    hard = [conflict for conflict in conflicts if conflict in HARD_SAFETY_CONFLICTS]
+    soft = [conflict for conflict in conflicts if conflict in SOFT_CHALLENGE_CONFLICTS]
+    hard.extend(conflict for conflict in conflicts if conflict not in HARD_SAFETY_CONFLICTS | SOFT_CHALLENGE_CONFLICTS)
+    if soft and seed["challenge"] not in {"misleading_dark_pattern", "mixed_legal_marketing"}:
+        hard.extend(soft)
+    return sorted(set(hard))
+
+
+def unique_evidence(values: list[str | None]) -> str:
+    """Join distinct DOM evidence once so duplicated ARIA/label text is not double-counted."""
+    seen: set[str] = set()
+    result: list[str] = []
+    for value in values:
+        if not value:
+            continue
+        key = re.sub(r"\s+", " ", value).strip().casefold()
+        if key and key not in seen:
+            seen.add(key)
+            result.append(value)
+    return " ".join(result)
+
+
+def retryable_error(message: str) -> bool:
+    """Retry only recoverable realization/format failures, never unsafe content."""
+    retry_markers = (
+        "schema mismatch",
+        "malformed candidate JSON",
+        "malformed HTTP JSON",
+        "malformed response envelope",
+        "one-line JSON",
+        "response field",
+        "request failed",
+        "placeholder",
+        "not expressed",
+        "lost",
+        "lacks",
+        "normalized label duplicate",
+        "could not apply controlled typo",
+        "purpose ",
+        "positive marketing lacks",
+        "negative polarity lacks",
+        "no-polarity challenge",
+        "mixed legal/marketing meaning",
+        "semantic safety conflicts",
+        "post-transform",
+    )
+    non_retryable_markers = (
+        "unsafe candidate",
+        "unsafe ",
+        "protected-purpose-marker",
+        "missing-protected-purpose",
+        "marketing-marker-on-nonmarketing-seed",
+        "sensitive",
+    )
+    return any(marker in message for marker in retry_markers) and not any(marker in message for marker in non_retryable_markers)
+
+
+MAX_ATTEMPTS = 3
+
+
+def infer_safety_conflicts(text: str, seed: dict[str, Any], label_text: str | None = None) -> list[str]:
     """Infer conservative conflicts independently of the supplied seed."""
     conflicts: list[str] = []
     has_marketing = bool(MARKETING_CORE.search(text))
@@ -185,12 +288,13 @@ def infer_safety_conflicts(text: str, seed: dict[str, Any]) -> list[str]:
         if has_protected:
             conflicts.append("protected-purpose-marker")
         if seed["polarity"] == "checked_enables_marketing":
-            negative_count = len(NEGATIVE_OPERATOR.findall(text))
-            if has_optout or negative_count or NEGATIVE_ACTION.search(text) or QUANTITY_NEGATION.search(text) or STATE_POLARITY.search(text):
+            negative_count = negative_operator_count(text)
+            if has_optout or negative_count or NEGATIVE_ACTION.search(text) or POLARITY_REVERSAL.search(text) or QUANTITY_NEGATION.search(text) or STATE_POLARITY.search(text):
                 conflicts.append("negative-polarity-marker")
             if not has_marketing and seed["challenge"] != "euphemism":
                 conflicts.append("missing-marketing-purpose")
-            if seed["challenge"] not in {"euphemism", "misleading_dark_pattern"} and not SAFE_POSITIVE_LABEL.fullmatch(text):
+            grammar_text = label_text if label_text is not None else text
+            if seed["challenge"] not in {"euphemism", "misleading_dark_pattern"} and not SAFE_POSITIVE_LABEL.fullmatch(grammar_text):
                 conflicts.append("positive-opt-in-outside-safe-envelope")
             if UNSAFE_POSITIVE_CLAUSE.search(text):
                 conflicts.append("required-or-conditional-clause")
@@ -205,6 +309,8 @@ def infer_safety_conflicts(text: str, seed: dict[str, Any]) -> list[str]:
                 conflicts.append("double-negative-ambiguity")
     elif seed["purpose"] != "ambiguous" and has_marketing:
         conflicts.append("marketing-marker-on-nonmarketing-seed")
+    if seed["challenge"] == "no_polarity_signal" and has_optin:
+        conflicts.append("positive-polarity-marker")
     if seed["purpose"] != "ambiguous" and seed["obligation"] == "optional" and re.search(r"\b(?:terms?|conditions?|privacy|policy|must|required|agree)\b", text, re.I) and has_marketing:
         conflicts.append("mixed-legal-marketing")
     if seed["purpose"] in {"functional", "legal", "age", "security"} and not PURPOSE_MARKERS[seed["purpose"]].search(text):
@@ -214,7 +320,7 @@ def infer_safety_conflicts(text: str, seed: dict[str, Any]) -> list[str]:
 
 def staged_expected_action(seed: dict[str, Any], conflicts: list[str] | None = None) -> str:
     """Keep inherently ambiguous challenge families out of auto-uncheck."""
-    if seed["challenge"] in {"euphemism", "misleading_dark_pattern"}:
+    if seed["challenge"] in {"euphemism", "misleading_dark_pattern", "mixed_legal_marketing"}:
         return "suggest"
     if conflicts:
         return "suggest"
@@ -227,7 +333,7 @@ def semantic_signature(text: str) -> tuple[object, ...]:
         bool(MARKETING_CORE.search(text)),
         bool(POSITIVE_OPTIN.search(text)),
         bool(EXPLICIT_OPTOUT.search(text) or NEGATIVE_ACTION.search(text)),
-        len(NEGATIVE_OPERATOR.findall(text)),
+        negative_operator_count(text),
         bool(QUANTITY_NEGATION.search(text)),
         bool(PROTECTED_MARKERS.search(text)),
         bool(re.search(r"\b(?:confirm|agree|accept|must|required)\b", text, re.I)),
@@ -293,6 +399,7 @@ def seed_for(index: int, root_seed: str, total_count: int = 600) -> dict[str, An
         "challenge": challenge,
         "checked_state": family["polarity"] == "checked_enables_marketing" and rng.random() > 0.25,
         "family_index": family_index,
+        "metadata_slot": int(sha256_bytes(f"{root_seed}:metadata-slot:{index}".encode())[:16], 16),
     }
     if family["polarity"] == "unchecked_enables_marketing":
         seed["checked_state"] = rng.random() > 0.5
@@ -316,13 +423,22 @@ def sample_schema() -> dict[str, Any]:
     }
 
 
-def request_candidate(backend: dict[str, str], seed: dict[str, Any], max_tokens: int, timeout: int) -> tuple[str, dict[str, Any]]:
-    sampling_seed = int(seed["seed_id"][5:], 16) % (2**31 - 1)
+def request_candidate(
+    backend: dict[str, str],
+    seed: dict[str, Any],
+    max_tokens: int,
+    timeout: int,
+    attempt: int = 1,
+    retry_note: str | None = None,
+) -> tuple[str, dict[str, Any], str]:
+    sampling_seed = (int(seed["seed_id"][5:], 16) + (attempt - 1) * 1000003) % (2**31 - 1)
     checklist = (
         "FINAL CHECKLIST: generate only candidate_text.\n"
-        f"purpose={seed['purpose']}; polarity={seed['polarity']}; obligation={seed['obligation']}; checked_state={seed['checked_state']}\n"
+        f"purpose={seed['purpose']}; polarity={seed['polarity']}; obligation={seed['obligation']}; caller-owned checked_state={seed['checked_state']} (do not encode in candidate_text)\n"
         f"style={seed['style']}; site_profile={canonical_json(seed['site_profile'])}; challenge={seed['challenge']}\n"
-        "The text must express these semantics. Do not emit placeholders or metadata."
+        f"caller-owned noise={seed['noise']}; surface={seed['surface']}; metadata_style={seed['metadata_style']}; policy_action={staged_expected_action(seed)}; do not encode these in candidate_text\n"
+        "The text must express these semantics. Do not emit placeholders or metadata.\n"
+        + (f"Retry diagnostic (inert caller data): {retry_note}\n" if retry_note else "")
     )
     payload = {
         "model": backend["model"],
@@ -341,20 +457,58 @@ def request_candidate(backend: dict[str, str], seed: dict[str, Any], max_tokens:
     request = urllib.request.Request(backend["endpoint"], data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"}, method="POST")
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
-            body = json.load(response)
-    except (urllib.error.URLError, TimeoutError) as exc:
-        raise RuntimeError(f"request failed: {exc}") from exc
-    message = body["choices"][0]["message"]
-    content = message.get(backend["response_field"])
+            raw_body = response.read()
+        response_sha256 = sha256_bytes(raw_body)
+        body = json.loads(raw_body)
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        error = RuntimeError("malformed HTTP JSON")
+        error.payload = payload  # type: ignore[attr-defined]
+        error.response_sha256 = response_sha256 if "response_sha256" in locals() else None  # type: ignore[attr-defined]
+        raise error from exc
+    except urllib.error.HTTPError as exc:
+        try:
+            error_body = exc.read()
+        except http.client.IncompleteRead as read_exc:
+            error_body = read_exc.partial or b""
+        except OSError:
+            error_body = b""
+        error = RuntimeError(f"request failed: HTTP {exc.code}")
+        error.payload = payload  # type: ignore[attr-defined]
+        error.response_sha256 = sha256_bytes(error_body)  # type: ignore[attr-defined]
+        raise error from exc
+    except http.client.IncompleteRead as exc:
+        error = RuntimeError("request failed: incomplete HTTP response")
+        error.payload = payload  # type: ignore[attr-defined]
+        error.response_sha256 = sha256_bytes(exc.partial or b"")  # type: ignore[attr-defined]
+        raise error from exc
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        error = RuntimeError(f"request failed: {exc}")
+        error.payload = payload  # type: ignore[attr-defined]
+        error.response_sha256 = sha256_bytes(b"")  # type: ignore[attr-defined]
+        raise error from exc
+    try:
+        message = body["choices"][0]["message"]
+        content = message.get(backend["response_field"])
+    except (KeyError, IndexError, TypeError, AttributeError) as exc:
+        error = ValueError("malformed response envelope")
+        error.payload = payload  # type: ignore[attr-defined]
+        error.response_sha256 = response_sha256  # type: ignore[attr-defined]
+        raise error from exc
     if not isinstance(content, str):
-        raise ValueError(f"response field {backend['response_field']} is not text")
-    return content, payload
+        error = ValueError(f"response field {backend['response_field']} is not text")
+        error.payload = payload  # type: ignore[attr-defined]
+        error.response_sha256 = response_sha256  # type: ignore[attr-defined]
+        raise error
+    return content, payload, response_sha256
 
 
 def validate_candidate(content: str, seed: dict[str, Any]) -> str:
     if "\n" in content or "```" in content:
         raise ValueError("candidate is not one-line JSON")
-    obj = json.loads(content.strip())
+    try:
+        obj = json.loads(content.strip())
+    except json.JSONDecodeError as exc:
+        raise ValueError("malformed candidate JSON") from exc
     if not isinstance(obj, dict) or set(obj) != {"candidate_text"}:
         raise ValueError("candidate schema mismatch")
     text = obj["candidate_text"]
@@ -370,12 +524,16 @@ def validate_candidate(content: str, seed: dict[str, Any]) -> str:
         raise ValueError("positive marketing has opt-out wording")
     if seed["purpose"] in PURPOSE_MARKERS and not PURPOSE_MARKERS[seed["purpose"]].search(text):
         raise ValueError(f"purpose {seed['purpose']} is not expressed")
-    if seed["challenge"] == "euphemism" and (MARKETING_CORE.search(text) or not EUPHEMISM_MARKERS.search(text)):
-        raise ValueError("euphemism is not expressed")
-    if seed["challenge"] == "misleading_dark_pattern" and not DARK_MARKERS.search(text):
-        raise ValueError("dark pattern is not expressed")
-    if seed["challenge"] == "double_negative" and len(re.findall(r"\b(?:not|never|no|don't|do not|neither|without)\b", text, re.I)) < 2:
-        raise ValueError("double negative is not expressed")
+    if seed["challenge"] == "euphemism" and (
+        MARKETING_LANGUAGE.search(text)
+        or not EUPHEMISM_MARKERS.search(text)
+        or not POSITIVE_OPTIN.search(text)
+    ):
+        raise ValueError("euphemism needs an opt-in cue and a non-direct marketing cue")
+    if seed["challenge"] == "misleading_dark_pattern" and (not DARK_MARKERS.search(text) or not POSITIVE_OPTIN.search(text)):
+        raise ValueError("dark pattern needs positive opt-in and urgency/friction")
+    if seed["challenge"] == "double_negative" and (negative_operator_count(text) != 2 or not DOUBLE_NEGATIVE.search(text) or ADJACENT_NEGATION.search(text)):
+        raise ValueError("double negative must contain exactly two separated negative operators")
     if seed["challenge"] == "direct_positive" and (not POSITIVE_OPTIN.search(text) or EXPLICIT_OPTOUT.search(text)):
         raise ValueError("direct positive is not expressed")
     if seed["challenge"] == "implicit_positive" and (EXPLICIT_OPTOUT.search(text) or EXPLICIT_POSITIVE.search(text) or not POSITIVE_OPTIN.search(text)):
@@ -386,13 +544,16 @@ def validate_candidate(content: str, seed: dict[str, Any]) -> str:
         raise ValueError("marketing no-polarity family is undefined")
     if seed["challenge"] == "no_polarity_signal" and (MARKETING_CORE.search(text) or EXPLICIT_OPTOUT.search(text)):
         raise ValueError("no-polarity challenge contains a marketing polarity signal")
+    if seed["challenge"] == "no_polarity_signal" and POSITIVE_OPTIN.search(text):
+        raise ValueError("no-polarity challenge contains a positive opt-in cue")
     if seed["challenge"] == "no_polarity_signal" and (NEGATIVE_OPERATOR.search(text) or NEGATIVE_ACTION.search(text)):
         raise ValueError("no-polarity challenge contains a negative operator")
     if seed["challenge"] == "mixed_legal_marketing" and not (re.search(r"\b(?:terms?|conditions?|agreement|privacy|consent)\b", text, re.I) and MARKETING_LANGUAGE.search(text)):
         raise ValueError("mixed legal/marketing meaning is not expressed")
     conflicts = infer_safety_conflicts(text, seed)
-    if conflicts:
-        raise ValueError("semantic safety conflicts: " + ", ".join(conflicts))
+    hard = hard_conflicts(seed, conflicts)
+    if hard:
+        raise ValueError("semantic safety conflicts: " + ", ".join(hard))
     return text.strip()
 
 
@@ -449,22 +610,35 @@ def context_for(seed: dict[str, Any]) -> str:
     }[stage]
 
 
-def compose_record(seed: dict[str, Any], clean_text: str, raw_content: str, payload: dict[str, Any], backend_name: str) -> dict[str, Any]:
+def compose_record(
+    seed: dict[str, Any],
+    clean_text: str,
+    raw_content: str,
+    payload: dict[str, Any],
+    backend_name: str,
+    attempt_log: list[dict[str, Any]],
+    accepted_attempt: int,
+) -> dict[str, Any]:
     noisy_text, transforms = apply_noise(clean_text, seed["noise"], seed)
     digest = seed["seed_id"][-12:]
     metadata_pools = {
-        "descriptive": ["email_preferences", "communication_choice", "updates_choice", "consent_choice", "preference_opt_in", "notifications"],
-        "neutral": ["preference", "choice", "settings", "selection", "option", "user_choice"],
-        "conflicting": ["account_settings", "notification_choice", "profile_preference", "communication_choice", "updates_preference"],
+        # These are intentionally shared across semantic purposes. The DOM
+        # metadata may be descriptive, but must not become a label shortcut.
+        "descriptive": [
+            "user_preference", "contact_choice", "account_option", "notification_setting",
+            "subscription_choice", "communication_preference", "profile_option", "service_preference",
+        ],
+        "neutral": ["preference", "choice", "settings", "selection", "option", "user_choice", "toggle", "field"],
+        "conflicting": ["account_settings", "notification_choice", "profile_preference", "communication_choice", "updates_preference", "user_option", "form_setting", "account_choice"],
     }
     if seed["metadata_style"] == "descriptive":
-        name_base = metadata_pools["descriptive"][int(seed["seed_id"][-2:], 16) % len(metadata_pools["descriptive"])]
+        name_base = metadata_pools["descriptive"][seed["metadata_slot"] % len(metadata_pools["descriptive"])]
     elif seed["metadata_style"] == "neutral":
-        name_base = metadata_pools["neutral"][int(seed["seed_id"][-2:], 16) % len(metadata_pools["neutral"])]
+        name_base = metadata_pools["neutral"][seed["metadata_slot"] % len(metadata_pools["neutral"])]
     elif seed["metadata_style"] == "conflicting":
-        name_base = metadata_pools["conflicting"][int(seed["seed_id"][-2:], 16) % len(metadata_pools["conflicting"])]
+        name_base = metadata_pools["conflicting"][seed["metadata_slot"] % len(metadata_pools["conflicting"])]
     else:
-        name_base = ["field", "option", "control", "input", "cb"][int(seed["seed_id"][-2:], 16) % 5]
+        name_base = ["field", "option", "control", "input", "cb"][seed["metadata_slot"] % 5]
     name = f"{name_base}_{digest}"
     identifier = f"{name_base.replace('_', '-')}-{digest}"
     aria = clean_text if seed["surface"] in {"label_plus_aria", "mixed_dom_context"} else None
@@ -487,7 +661,7 @@ def compose_record(seed: dict[str, Any], clean_text: str, raw_content: str, payl
     if seed["challenge"] in {"explicit_negative", "conditional_negative"}:
         observed.append("explicit_opt_out")
     preliminary_fields = [noisy_text, aria, name, identifier, legend]
-    safety_conflicts = infer_safety_conflicts(" ".join(str(value) for value in preliminary_fields if value), seed)
+    safety_conflicts = infer_safety_conflicts(unique_evidence(preliminary_fields), seed, noisy_text)
     record = {
         "record_id": "record-" + backend_name + "-" + seed["seed_id"][5:],
         "parent_record_id": "parent-" + seed["seed_id"][5:],
@@ -517,7 +691,9 @@ def compose_record(seed: dict[str, Any], clean_text: str, raw_content: str, payl
         "candidate_text_sha256": sha256_bytes(clean_text.encode("utf-8")),
         "payload_sha256": sha256_bytes(canonical_json(payload).encode("utf-8")),
         "input_seed_sha256": sha256_bytes(canonical_json(seed).encode("utf-8")),
-        "sampling_seed": int(seed["seed_id"][5:], 16) % (2**31 - 1),
+        "sampling_seed": payload["seed"],
+        "accepted_attempt": accepted_attempt,
+        "generation_attempts": attempt_log,
         "spec_version": SPEC_VERSION,
         "combinator_version": COMBINATOR_VERSION,
         "source_kind": "synthetic_llm_candidate",
@@ -526,10 +702,11 @@ def compose_record(seed: dict[str, Any], clean_text: str, raw_content: str, payl
 
 
 def validate_record(record: dict[str, Any], seed: dict[str, Any]) -> None:
-    text = " ".join(str(record[field]) for field in ("label_text", "aria_label", "name", "id", "legend_or_context") if record[field])
+    text = unique_evidence([record[field] for field in ("label_text", "aria_label", "name", "id", "legend_or_context")])
     label_conflicts = infer_safety_conflicts(record["label_text"], seed)
-    if label_conflicts:
-        raise ValueError("post-transform label semantic conflicts: " + ", ".join(label_conflicts))
+    label_hard_conflicts = hard_conflicts(seed, label_conflicts)
+    if label_hard_conflicts:
+        raise ValueError("post-transform label semantic conflicts: " + ", ".join(label_hard_conflicts))
     if seed["challenge"] == "direct_positive" and (not POSITIVE_OPTIN.search(record["label_text"]) or EXPLICIT_OPTOUT.search(record["label_text"])):
         raise ValueError("post-transform direct positive lost polarity")
     if seed["challenge"] == "implicit_positive" and (not POSITIVE_OPTIN.search(record["label_text"]) or EXPLICIT_POSITIVE.search(record["label_text"]) or EXPLICIT_OPTOUT.search(record["label_text"])):
@@ -538,19 +715,26 @@ def validate_record(record: dict[str, Any], seed: dict[str, Any]) -> None:
         raise ValueError("post-transform explicit negative lost polarity")
     if seed["challenge"] == "conditional_negative" and not CONDITIONAL_OPTOUT.search(record["label_text"]):
         raise ValueError("post-transform conditional negative lost polarity")
-    if seed["challenge"] == "double_negative" and len(NEGATIVE_OPERATOR.findall(record["label_text"])) < 2:
-        raise ValueError("post-transform double negative lost an operator")
-    if seed["challenge"] == "no_polarity_signal" and (MARKETING_CORE.search(record["label_text"]) or EXPLICIT_OPTOUT.search(record["label_text"])):
+    if seed["challenge"] == "double_negative" and (negative_operator_count(record["label_text"]) != 2 or not DOUBLE_NEGATIVE.search(record["label_text"]) or ADJACENT_NEGATION.search(record["label_text"])):
+        raise ValueError("post-transform double negative lost its two separated operators")
+    if seed["challenge"] == "no_polarity_signal" and (MARKETING_CORE.search(record["label_text"]) or EXPLICIT_OPTOUT.search(record["label_text"]) or POSITIVE_OPTIN.search(record["label_text"])):
         raise ValueError("post-transform no-polarity challenge gained polarity")
     if seed["noise"] == "fragment" and semantic_signature(record["clean_candidate_text"]) != semantic_signature(record["label_text"]):
         raise ValueError("fragment transform changed semantic signature")
-    if seed["challenge"] == "euphemism" and MARKETING_CORE.search(record["label_text"]):
-        raise ValueError("post-transform euphemism gained direct marketing wording")
-    if seed["challenge"] == "misleading_dark_pattern" and not DARK_MARKERS.search(record["label_text"]):
-        raise ValueError("post-transform dark pattern was lost")
+    if seed["challenge"] == "euphemism" and (
+        MARKETING_LANGUAGE.search(record["label_text"])
+        or not EUPHEMISM_MARKERS.search(record["label_text"])
+        or not POSITIVE_OPTIN.search(record["label_text"])
+    ):
+        raise ValueError("post-transform euphemism lost its opt-in or non-direct marketing cue")
+    if seed["challenge"] == "misleading_dark_pattern" and (not DARK_MARKERS.search(record["label_text"]) or not POSITIVE_OPTIN.search(record["label_text"])):
+        raise ValueError("post-transform dark pattern lost positive opt-in or urgency/friction")
     if seed["challenge"] == "mixed_legal_marketing" and not (re.search(r"\b(?:terms?|conditions?|agreement|privacy|consent)\b", record["label_text"], re.I) and MARKETING_LANGUAGE.search(record["label_text"])):
         raise ValueError("post-transform mixed meaning was lost")
-    conflicts = infer_safety_conflicts(text, seed)
+    conflicts = infer_safety_conflicts(text, seed, record["label_text"])
+    hard = hard_conflicts(seed, conflicts)
+    if hard:
+        raise ValueError("post-transform semantic conflicts: " + ", ".join(hard))
     expected = staged_expected_action(seed, conflicts)
     if record["safety_conflicts"] != conflicts:
         raise ValueError("safety conflict provenance mismatch")
@@ -558,6 +742,8 @@ def validate_record(record: dict[str, Any], seed: dict[str, Any]) -> None:
         raise ValueError("challenge provenance mismatch")
     if record["expected_action"] != expected:
         raise ValueError("action policy mismatch")
+    if record["expected_action"] == "uncheck" and conflicts:
+        raise ValueError("uncheck requires zero safety conflicts")
     if record["label_text"] in {"...", "GENERATION_FAILED"} or not record["label_text"].strip():
         raise ValueError("placeholder final label")
     if seed["surface"] == "label_only" and any(record[field] is not None for field in ("aria_label", "name", "id", "legend_or_context")):
@@ -601,26 +787,56 @@ def main() -> int:
     args.manifest = args.manifest or Path(f"data/generated/staged-{args.backend}.manifest.json")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     accepted: list[dict[str, Any]] = []
-    rejected: list[dict[str, str]] = []
+    rejected: list[dict[str, Any]] = []
     seen_text: set[str] = set()
     planned_seeds = [seed_for(index, args.root_seed, args.count) for index in range(args.count)]
     started = datetime.now(timezone.utc).isoformat()
     for index in range(args.count):
         seed = planned_seeds[index]
-        try:
-            content, payload = request_candidate(backend, seed, args.max_tokens, args.timeout)
-            clean = validate_candidate(content, seed)
-            record = compose_record(seed, clean, content, payload, args.backend)
-            validate_record(record, seed)
-            text_key = re.sub(r"[^a-z0-9 ]", "", re.sub(r"\s+", " ", record["label_text"].lower())).strip()
-            if text_key in seen_text:
-                raise ValueError("normalized label duplicate")
-            seen_text.add(text_key)
-            accepted.append(record)
-            print(f"accepted {index + 1}/{args.count}: {record['expected_action']} {record['record_id']}", flush=True)
-        except Exception as exc:
-            rejected.append({"index": str(index), "seed_id": seed["seed_id"], "error": str(exc)})
-            print(f"rejected {index + 1}/{args.count}: {exc}", file=sys.stderr, flush=True)
+        attempt_log: list[dict[str, Any]] = []
+        accepted_record: dict[str, Any] | None = None
+        for attempt in range(1, MAX_ATTEMPTS + 1):
+            content: str | None = None
+            payload: dict[str, Any] | None = None
+            response_sha256: str | None = None
+            try:
+                retry_note = attempt_log[-1]["error"] if attempt_log else None
+                content, payload, response_sha256 = request_candidate(backend, seed, args.max_tokens, args.timeout, attempt, retry_note)
+                clean = validate_candidate(content, seed)
+                record = compose_record(seed, clean, content, payload, args.backend, attempt_log, attempt)
+                validate_record(record, seed)
+                text_key = re.sub(r"[^a-z0-9 ]", "", re.sub(r"\s+", " ", record["label_text"].lower())).strip()
+                if text_key in seen_text:
+                    raise ValueError("normalized label duplicate")
+                attempt_log.append({
+                    "attempt": attempt,
+                    "sampling_seed": payload["seed"],
+                    "payload_sha256": sha256_bytes(canonical_json(payload).encode("utf-8")),
+                    "response_sha256": response_sha256,
+                    "status": "accepted",
+                    "error": None,
+                })
+                record["generation_attempts"] = attempt_log
+                accepted_record = record
+                seen_text.add(text_key)
+                accepted.append(record)
+                print(f"accepted {index + 1}/{args.count}: {record['expected_action']} {record['record_id']} attempt={attempt}", flush=True)
+                break
+            except Exception as exc:
+                error_message = str(exc)
+                error_payload = payload or getattr(exc, "payload", None)
+                attempt_log.append({
+                    "attempt": attempt,
+                    "sampling_seed": error_payload.get("seed") if error_payload else None,
+                    "payload_sha256": sha256_bytes(canonical_json(error_payload).encode("utf-8")) if error_payload else None,
+                    "response_sha256": response_sha256 or getattr(exc, "response_sha256", None),
+                    "status": "rejected",
+                    "error": error_message,
+                })
+                print(f"rejected {index + 1}/{args.count} attempt={attempt}: {error_message}", file=sys.stderr, flush=True)
+                if attempt == MAX_ATTEMPTS or not retryable_error(error_message):
+                    rejected.append({"index": str(index), "seed_id": seed["seed_id"], "error": error_message, "attempts": attempt_log})
+                    break
         if args.delay:
             time.sleep(args.delay)
     with args.output.open("w", encoding="utf-8") as handle:
@@ -638,7 +854,8 @@ def main() -> int:
         "role": backend["role"],
         "chat_template_kwargs": {"enable_thinking": False},
         "decoding": {"temperature": 0, "top_p": 1, "n": 1, "max_tokens": args.max_tokens},
-        "sampling_seed_source": "seed_id suffix",
+        "sampling_seed_source": "seed_id suffix plus deterministic attempt offset",
+        "retry_policy": {"max_attempts": MAX_ATTEMPTS, "retryable_error_policy": "deterministic realization/format failures only"},
         "deterministic_seed_support": "requested; backend compliance not independently established",
         "model_artifact_revision": "model-id:" + backend["model"],
         "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",

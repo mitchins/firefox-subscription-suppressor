@@ -1,0 +1,596 @@
+{
+  "spec_version": "fire-synthetic-checkbox-v1.3",
+  "combinator_version": "fire-staged-combinator-v1.3",
+  "prompt_sha256": "b9d77f0265c5290b06719a3758c21718c5c2fa9709934983c99e7f9e173b0699",
+  "root_seed": "fire-staged-v1.3-smoke-2026-08-31",
+  "backend": "llm2",
+  "endpoint": "http://192.168.1.14:8000/v1/chat/completions",
+  "model": "/data/model-conversion/final/Nemotron-3.5-Lightning-30B-A3B-W4A16-G64-cal512",
+  "response_field": "content",
+  "role": "bounded paraphraser/robustness challenger",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "decoding": {
+    "temperature": 0,
+    "top_p": 1,
+    "n": 1,
+    "max_tokens": 220
+  },
+  "sampling_seed_source": "seed_id suffix plus deterministic attempt offset",
+  "retry_policy": {
+    "max_attempts": 3,
+    "retryable_error_policy": "deterministic realization/format failures only"
+  },
+  "deterministic_seed_support": "requested; backend compliance not independently established",
+  "model_artifact_revision": "model-id:/data/model-conversion/final/Nemotron-3.5-Lightning-30B-A3B-W4A16-G64-cal512",
+  "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",
+  "tokenizer_runtime_hardware": "server-reported details unavailable; client=python-stdlib-http",
+  "generator_sha256": "65c89e4d50307f34c3dfcc25f9ddf20027873d2ab33b623ed5b34a845ffc88f8",
+  "policy_validator_sha256": "bd28d7ad8b29ce96c2a9df1ba969f3b4a01d4c2f515ca64d851722fdf0b29c83",
+  "transform_version": "fire-staged-combinator-v1.3",
+  "transform_sha256": "b7ca07b46783dc0af33532922ea856990a1d2b5cde85e7969a94090f756f6ee6",
+  "started_at": "2026-08-30T22:52:13.407650+00:00",
+  "completed_at": "2026-08-30T22:52:23.328124+00:00",
+  "requested": 20,
+  "accepted": 6,
+  "rejected": 14,
+  "rejections": [
+    {
+      "index": "0",
+      "seed_id": "seed-8b0c9b875db8a8b4de5fe668",
+      "error": "semantic safety conflicts: double-negative-ambiguity",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1174644211,
+          "payload_sha256": "8aedc43d47b48062b850a8e14032af1a7ed78e46e54d04fe14fea8f72d95efa5",
+          "response_sha256": "22219604077c77328d0edb09c2a900357e72b2dff96663bf253d7601cff5fdfd",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1175644214,
+          "payload_sha256": "cb197b82a116629ae55acc35672da61808766f5f270028c6a46dd6c6bcdce38e",
+          "response_sha256": "7479e34e5f6bd57ba7c863b4928f650d653a8a124d4593c3dde937d2a0894897",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity, positive-polarity-marker"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1176644217,
+          "payload_sha256": "e24ab86877034f23dec29af74f95a46dd8b6084efe979374a29f5d9ea99be410",
+          "response_sha256": "dc073a426e19e308172710c5527c7d2a6a27b14e94b3a0e700aebbbab308ae83",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        }
+      ]
+    },
+    {
+      "index": "3",
+      "seed_id": "seed-ec8a5c367220a38fecb31d4a",
+      "error": "post-transform label semantic conflicts: missing-marketing-purpose",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 52286795,
+          "payload_sha256": "2d1d039b513b8020aa1b09602febc4207ad77dca1bb16d2399770ff95af789d7",
+          "response_sha256": "96b7c1e6d5c00298291191c094e9ce6cffeb8fb9adb09c8fcdd66b2dcec7c02e",
+          "status": "rejected",
+          "error": "post-transform label semantic conflicts: missing-marketing-purpose"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 53286798,
+          "payload_sha256": "449b6c8c6837e6c7b4e2caea81594d8afd2b124c1f648835a8ec659b06b51b7f",
+          "response_sha256": "21a15a3528e8490b64c0a1a4c638b5b8152938357c5815ab9bfb09fc0eb103e1",
+          "status": "rejected",
+          "error": "post-transform label semantic conflicts: missing-marketing-purpose"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 54286801,
+          "payload_sha256": "eee5fba49f0fbc445d4ae80d287df1490ef7a173be65396eb6fd2cac79630952",
+          "response_sha256": "9fc865f28553c6f0f031309c1a10869f68531ad1384aab89b289df5eb3ae3d23",
+          "status": "rejected",
+          "error": "post-transform label semantic conflicts: missing-marketing-purpose"
+        }
+      ]
+    },
+    {
+      "index": "4",
+      "seed_id": "seed-7d049e59b16f13f310b217aa",
+      "error": "post-transform explicit negative lost polarity",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1738717434,
+          "payload_sha256": "c27100ae4798cab7f153a8f384178f289799be3d9737fab59d363a84c9042fae",
+          "response_sha256": "3f70f1076b0d4845bc4e48636c092807274830f85773ebac655f5a208dccb06d",
+          "status": "rejected",
+          "error": "post-transform explicit negative lost polarity"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1739717437,
+          "payload_sha256": "6580769f852fbb4e8fa627f2d0750f33516836d71ceb5eb8acafb56543d1a3f8",
+          "response_sha256": "ef1e0b74ba3d0831e183efbe84601109baed974ae080783d97718daa9d7a02a0",
+          "status": "rejected",
+          "error": "post-transform explicit negative lost polarity"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1740717440,
+          "payload_sha256": "a8bd6ab04a0d6004f13368c00ab8e177ebe3acd4c0eb3c3c67e48b742a1f38bf",
+          "response_sha256": "610b393d8bc87cc95b22b3ca8664f6262df1c96bba365bcef3dcd660085fcad6",
+          "status": "rejected",
+          "error": "post-transform explicit negative lost polarity"
+        }
+      ]
+    },
+    {
+      "index": "5",
+      "seed_id": "seed-08b47c12c919a436cb872d2e",
+      "error": "no-polarity challenge contains a marketing polarity signal",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 9201127,
+          "payload_sha256": "de8782a9e2ec8ce5755444484a8cfdf71b8b641d9039f686985529b874d1a077",
+          "response_sha256": "425d2ae749fe47caaf87086c502e99162900ed054d2500eb2c0d1624a15d7b63",
+          "status": "rejected",
+          "error": "no-polarity challenge contains a marketing polarity signal"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 10201130,
+          "payload_sha256": "bca4b546d45f0fa0d595891ff5f2ea9b4c68baadcf6f4399cd841e7dd6d5c319",
+          "response_sha256": "6e903d7b14e49dc61342347c51fef1ee5adaad0a44dc32ba5487776af920fead",
+          "status": "rejected",
+          "error": "no-polarity challenge contains a marketing polarity signal"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 11201133,
+          "payload_sha256": "b8cee13b44247bdadaf58c064e3de08860a6600e7803af621e4ded184eed0f9d",
+          "response_sha256": "81ac485d7a0cf3145543a06c878b8429eda2afc303b7a3d46b004d2f37c0bacc",
+          "status": "rejected",
+          "error": "no-polarity challenge contains a marketing polarity signal"
+        }
+      ]
+    },
+    {
+      "index": "7",
+      "seed_id": "seed-4901ef883e32320a92c24b3f",
+      "error": "mixed legal/marketing meaning is not expressed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 858680695,
+          "payload_sha256": "92e1f4edc24c87f698952b6eb20a1f25e0de450e1a6ea240c3c394670a2d03d7",
+          "response_sha256": "de428c189896d518c2d0330b960806e71bec1f083c1d47255be37dd3ec215ec3",
+          "status": "rejected",
+          "error": "mixed legal/marketing meaning is not expressed"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 859680698,
+          "payload_sha256": "02d268ff0cc24d28429810591dc751f08215ee1d98c8157c031186a7d7eb4a21",
+          "response_sha256": "bd606769593eebadbb4d31b6143e98998d84d1940253ad8c22d776a341f2d7cf",
+          "status": "rejected",
+          "error": "mixed legal/marketing meaning is not expressed"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 860680701,
+          "payload_sha256": "0061a05002cdb6cba6c011f6ba61d0974d06f78887b121e66ad72f2c1b70bf0e",
+          "response_sha256": "87173139490f0f08ed4fdb89747d1d24bc627190224ab30deaf6b260752caed4",
+          "status": "rejected",
+          "error": "mixed legal/marketing meaning is not expressed"
+        }
+      ]
+    },
+    {
+      "index": "8",
+      "seed_id": "seed-ed8d4beed13ce42263289fbd",
+      "error": "post-transform euphemism lost its opt-in or non-direct marketing cue",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1003984836,
+          "payload_sha256": "55a88ccff33eb1c276ef838abacf88bac19ed641936c6d7890fa4625ff5ab83a",
+          "response_sha256": "21f5cdfceeaea52ff8e0ce84b4398180aa4947e40d90546dcab1012ee675ece6",
+          "status": "rejected",
+          "error": "post-transform euphemism lost its opt-in or non-direct marketing cue"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1004984839,
+          "payload_sha256": "c2af5b5d2ea17b6cb32c60723e33ab5ee3fa827178ba281199f7cd314a9c5b56",
+          "response_sha256": "1f3b2abae341dc1b3429a18c8e68e6c4a792a163102fce6b7f17e4318b9b7b8d",
+          "status": "rejected",
+          "error": "post-transform euphemism lost its opt-in or non-direct marketing cue"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1005984842,
+          "payload_sha256": "4cd20b6f83505bdff29fee93a43686eaeb8c52a7a67de6489d4344feff561611",
+          "response_sha256": "e0c2214a3c75718e329fbf5ba489056836c16948afff87518fd3db6bef1ba92d",
+          "status": "rejected",
+          "error": "post-transform euphemism lost its opt-in or non-direct marketing cue"
+        }
+      ]
+    },
+    {
+      "index": "9",
+      "seed_id": "seed-605d398b66a054f8d2f466e1",
+      "error": "post-transform label semantic conflicts: missing-protected-purpose",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 564786947,
+          "payload_sha256": "5a0da8ae5f8346a0b92c4b9d60f5ae5f86d73ec50e03ceae2511a47e5d29fdba",
+          "response_sha256": "3631cd4ee42b77881c11089ad2e9a58c30b59721149d8e7058de05d11e610082",
+          "status": "rejected",
+          "error": "purpose functional is not expressed"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 565786950,
+          "payload_sha256": "78c77fc0633181142973204e1e08814305bf54ea00de3ca01f327fb442dbdd81",
+          "response_sha256": "bf02cdf0af461a5caf37e316acd48fb52acebe16cdedf4a8a64142df69f64d08",
+          "status": "rejected",
+          "error": "post-transform label semantic conflicts: missing-protected-purpose"
+        }
+      ]
+    },
+    {
+      "index": "10",
+      "seed_id": "seed-39a53e67b5483fa6b4c357f0",
+      "error": "negative polarity lacks explicit opt-out wording",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 99143902,
+          "payload_sha256": "0da5bdd75751254b8d0a265bcee34ac29850dff17fa3f14cb82fcfb6f95a02ff",
+          "response_sha256": "a88e1a60effe1a0d46be18e91516934875e60f2a3c54a3743672a16ac75cc634",
+          "status": "rejected",
+          "error": "negative polarity lacks explicit opt-out wording"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 100143905,
+          "payload_sha256": "6d792c38f5e4d643ed24629f3c3e795835eecb3d96e8e102f28932ea56981d1a",
+          "response_sha256": "4fbcfe87e347a4f11c894144cbdd8b8666cbcf87467ed344eb574405c105815e",
+          "status": "rejected",
+          "error": "conditional negative is not expressed"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 101143908,
+          "payload_sha256": "c91c33f9fb821366d1c6559cb746a3fb0d70b1649d6fffbef349278facfdb97d",
+          "response_sha256": "6c682e393cc3f131d72d386b46be7ccf601bcbe592999994ad552e62ecf8b12e",
+          "status": "rejected",
+          "error": "negative polarity lacks explicit opt-out wording"
+        }
+      ]
+    },
+    {
+      "index": "11",
+      "seed_id": "seed-bbb0a9f34dfb05c98e99b374",
+      "error": "candidate lacks a safe fragment prefix",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 424830682,
+          "payload_sha256": "e475c232bc3a0366b3d5e2dc363c86b5b0e92e248aa7694c08a5507adc58edd1",
+          "response_sha256": "14bd93157416f5237c438877e09f4524f8590508051b8a8b74cccc0f86e05c4b",
+          "status": "rejected",
+          "error": "purpose functional is not expressed"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 425830685,
+          "payload_sha256": "a124be298304b46be16c73669f5c7f9f5352e8eb46702268eec75babeb0650ad",
+          "response_sha256": "8cfdced73c9d66ae2b692518db46315b23f1152588cd27a2a5c4a10b0adea3c2",
+          "status": "rejected",
+          "error": "candidate lacks a safe fragment prefix"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 426830688,
+          "payload_sha256": "df3a295336254ada9a623ecfbdd261164eb7c73a63b7401da18db6de03dcb753",
+          "response_sha256": "80f94e1e5437c4ee57d8f6428065ee4bd12d055abd98613c06266a98aace7a68",
+          "status": "rejected",
+          "error": "candidate lacks a safe fragment prefix"
+        }
+      ]
+    },
+    {
+      "index": "12",
+      "seed_id": "seed-6d612e728d389dd8ab45806f",
+      "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 2067494381,
+          "payload_sha256": "ed1c3a9abb05b687ff9bd60849eaa56be0fec3a1fab313ecd525598a9b781120",
+          "response_sha256": "8c7019f6d054724f165d5af4ee26057b25c177e3519d3d3098ed3f3e66883ecc",
+          "status": "rejected",
+          "error": "positive marketing lacks marketing signal"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 2068494384,
+          "payload_sha256": "b464fdf669fbb8fef6d7e2f9750acc96af572925f72d7da6a98cb945a187583d",
+          "response_sha256": "584eb0714bf05800b24f1631f835cd9c93b682422c9ea4d74b1ac2f2abb30902",
+          "status": "rejected",
+          "error": "positive marketing lacks marketing signal"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 2069494387,
+          "payload_sha256": "7e9811de3b03f1f2255f7e165f94e4c542cbeb554c59a2f578ea5729737e7a79",
+          "response_sha256": "2b5d5951588a4dd43bec8848555184c5d9f2b7b4c81e242fa9de42ceaf08fb4d",
+          "status": "rejected",
+          "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+        }
+      ]
+    },
+    {
+      "index": "13",
+      "seed_id": "seed-d3efd6d62348876be04f728a",
+      "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1990188224,
+          "payload_sha256": "418a9622a9940efc7e257246f541f4d3e14901a107114bf85fba26144be4ef8a",
+          "response_sha256": "3998fd3d3b4f109a643e896221cc5f13f2e7e8edc386cf5666118d52f13d701f",
+          "status": "rejected",
+          "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1991188227,
+          "payload_sha256": "3ea1a531cba37fcbd73a3c5c0a91d1924ee750f871b5ffb8a0a12fd84eea95e2",
+          "response_sha256": "c953ba9f26e1c81a1e84ceff9e475871576e69985f5e6f7aab495d3f2ba9611f",
+          "status": "rejected",
+          "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1992188230,
+          "payload_sha256": "48d0cae4a91a1fbedc2d46f9aa323666dfa614a8ff5f1445898c0d50585ac4da",
+          "response_sha256": "0e4adf46d063ca1e1744ab45cb3a0c4eda741a43d7a4c25816ba65438cd1210c",
+          "status": "rejected",
+          "error": "semantic safety conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+        }
+      ]
+    },
+    {
+      "index": "14",
+      "seed_id": "seed-668b85699dc151f832be2c81",
+      "error": "normalized label duplicate",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 141485595,
+          "payload_sha256": "ea49a1a617dc764b118229088c8638b7aa2b0cc6485f6ce0a9b6cbdebba27cfc",
+          "response_sha256": "95bccffcee8c05e362a65cbe67d67d777e760db7148c7903ec4b0fefdb6d2bfa",
+          "status": "rejected",
+          "error": "normalized label duplicate"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 142485598,
+          "payload_sha256": "adfb7d9f826cd40c1107a032a87f29a1e4611754f02a244ceea5864aefacf68a",
+          "response_sha256": "b38f5f634801eaf7630d4903e2f867680f3c6d83ee1864de5bcf75135e788290",
+          "status": "rejected",
+          "error": "normalized label duplicate"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 143485601,
+          "payload_sha256": "1b593432bf850ac48bb0e2265ef5898ed88320786ceb75efaf75fab7a9c3abdf",
+          "response_sha256": "c6268d2c7c0928035deac43e0da1c942f39ac62036ebff9d3270ab8c3bd678e9",
+          "status": "rejected",
+          "error": "normalized label duplicate"
+        }
+      ]
+    },
+    {
+      "index": "16",
+      "seed_id": "seed-9366c9ad7bfa89ea4d3333f4",
+      "error": "semantic safety conflicts: double-negative-ambiguity",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 314797699,
+          "payload_sha256": "bbcec6bdd02af2b712581eadb69caf66d1647fa312ba0e722ee92c9b028b5902",
+          "response_sha256": "b0bfb00b11647f9344f67d1f5b64a6cfef73e655f5675a3b9daa4bc2f209d9f3",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 315797702,
+          "payload_sha256": "4edeb2fb82f10ab9a10545969adb88e59e861bc8664fa6adaa36321b7a1be2db",
+          "response_sha256": "1e1238afe3d93f43bd15642f3a05cc7493c7d9bf18b625c7e95f8c8f6e0bd0b4",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity, positive-polarity-marker"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 316797705,
+          "payload_sha256": "78046ee15748ae97e969d16306f2db1eee7b538bab96b28299175a67bebc53a0",
+          "response_sha256": "044c2305e24c9fb38286c893d401185df9dd5b44aa276d4cb1600ba592ffcf0a",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        }
+      ]
+    },
+    {
+      "index": "17",
+      "seed_id": "seed-4b9404cc44de7df785c11adc",
+      "error": "candidate lacks a safe fragment prefix",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1036921342,
+          "payload_sha256": "e0a8847764f3cd1248aad69a81da93e27922d27fcab9c15f737f3ccb462677b3",
+          "response_sha256": "58f25d50f36356fa6b1056d1402c0b4632163bdff5745c5de79f6142247c749a",
+          "status": "rejected",
+          "error": "candidate lacks a safe fragment prefix"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1037921345,
+          "payload_sha256": "86bfd94e80568856749f3fd6a0c9c8d142886577c36c436d52a5a0cece34bda8",
+          "response_sha256": "1cbf00d0fd7f21108204d3ee1222168db1f9e0448b2499fb49f65a30a67a45dd",
+          "status": "rejected",
+          "error": "candidate lacks a safe fragment prefix"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1038921348,
+          "payload_sha256": "7ae6397cf09959588af1758d4177ba4083da23c1dd64ac43d9231de72b6f026c",
+          "response_sha256": "636409be11226ceed4d38a9d37a0b4dfa741d5cf670b8bf472c6f12a1f3c1aa9",
+          "status": "rejected",
+          "error": "candidate lacks a safe fragment prefix"
+        }
+      ]
+    }
+  ],
+  "output_sha256": "b5f18a2543a3ababb0abd9557ae12019fb607bed65958382fe098eb63d593114",
+  "synthetic_only": true,
+  "planned_coverage": {
+    "family_surface_checked": 20,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 6,
+    "profile": 13
+  },
+  "accepted_coverage": {
+    "family_surface_checked": 6,
+    "style": 3,
+    "metadata_style": 3,
+    "noise": 4,
+    "profile": 6
+  },
+  "missing_coverage": {
+    "family_surface_checked": [
+      [
+        0,
+        "label_only",
+        false
+      ],
+      [
+        1,
+        "label_only",
+        false
+      ],
+      [
+        13,
+        "label_only",
+        false
+      ],
+      [
+        14,
+        "label_only",
+        false
+      ],
+      [
+        15,
+        "label_only",
+        false
+      ],
+      [
+        2,
+        "label_only",
+        false
+      ],
+      [
+        2,
+        "label_plus_legend",
+        false
+      ],
+      [
+        3,
+        "label_only",
+        false
+      ],
+      [
+        4,
+        "label_only",
+        false
+      ],
+      [
+        5,
+        "label_only",
+        false
+      ],
+      [
+        6,
+        "label_plus_legend",
+        false
+      ],
+      [
+        7,
+        "label_only",
+        false
+      ],
+      [
+        8,
+        "label_only",
+        false
+      ],
+      [
+        9,
+        "label_only",
+        false
+      ]
+    ],
+    "style": [
+      "plain"
+    ],
+    "metadata_style": [
+      "descriptive"
+    ],
+    "noise": [
+      "emoji",
+      "fragment"
+    ],
+    "profile": [
+      [
+        "community",
+        "preferences"
+      ],
+      [
+        "finance",
+        "preferences"
+      ],
+      [
+        "health",
+        "preferences"
+      ],
+      [
+        "marketplace",
+        "preferences"
+      ],
+      [
+        "publisher",
+        "newsletter_signup"
+      ],
+      [
+        "retailer",
+        "newsletter_signup"
+      ],
+      [
+        "travel",
+        "booking"
+      ]
+    ]
+  }
+}

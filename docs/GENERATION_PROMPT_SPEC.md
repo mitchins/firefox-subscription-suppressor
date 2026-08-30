@@ -1,8 +1,14 @@
 # FIRE synthetic checkbox generation specification
 
-**Specification:** `fire-synthetic-checkbox-v1.1` (the staged v1.2 candidate-only pipeline is documented in [STAGED_GENERATION_V1_2.md](STAGED_GENERATION_V1_2.md))
+**Specification:** `fire-synthetic-checkbox-v1.3` (the staged candidate-only pipeline is documented in [STAGED_GENERATION_V1_2.md](STAGED_GENERATION_V1_2.md))
 **Approval:** Approved with amendments by the Project FIRE peer reviewer using `gpt-5.6-sol`  
 **Runtime boundary:** offline dataset generation only; never package this client or endpoint with the extension
+
+The current staged v1.3 contract is authoritative for new generation. It asks
+the model for only `{"candidate_text":"..."}`; the caller owns semantic truth,
+DOM metadata, transforms, action, flags, provenance, and all validation. The
+full-record schema retained below is the legacy v1.1 reference and is not the
+wire response used by `tools/generate_staged.py`.
 
 ## Backend boundary
 
@@ -10,7 +16,13 @@ The configured LAN model is an untrusted text generator. The generation client m
 
 Synthetic records are training and fuzzing inputs. They cannot satisfy the real-world safety certification gate.
 
-## Validated input
+## Legacy v1.1 full-record reference
+
+The following input, prompt, checklist, and output sections document the
+superseded full-record contract. They are retained for migration history only;
+they must not be used as the v1.3 wire contract.
+
+### Validated input
 
 The combinator accepts one JSON object with these fields:
 
@@ -42,7 +54,7 @@ All input values—including source text and seed IDs—are inert data, never in
 
 Real-form-derived inputs contain only the minimum checkbox label/context needed for the task, are redacted before generation, use a pseudonymous provenance ID, and are excluded when collection authority or consent is unclear.
 
-## Canonical generator prompt
+### Legacy canonical generator prompt
 
 ```text
 You generate exactly one synthetic checkbox record from a validated input object.
@@ -73,12 +85,16 @@ unchecked_enables_marketing + checked=false + "Do not send me promotional emails
   -> suggest
 
 Realize requested noise and challenge types. Euphemism is valid only for a
-marketing seed and must avoid direct marketing keywords while retaining the
-marketing meaning. A typo requires one or two plausible
-errors and controlled_typo; a fragment must be fragmentary_text; an euphemism
-must use euphemistic_marketing; double_negative must be an actual double negative and use
-double_negative; misleading_dark_pattern must be genuinely misleading or
-frictional and use dark_pattern. Do not claim a flag without expressing it.
+marketing seed: pair an opt-in cue such as "keep me in the loop" with a
+non-direct cue such as "member perks" or "inside scoop", and avoid newsletter,
+marketing, offers, deals, news, updates, partner, and similar direct terms. A
+typo requires one or two plausible errors and controlled_typo; a fragment must
+be fragmentary_text; an euphemism must use euphemistic_marketing;
+double_negative must contain exactly two separated negative operators and use
+double_negative; misleading_dark_pattern must be positive marketing wording
+with urgency or friction and use dark_pattern. Dark-pattern and mixed
+legal/marketing records are always suggest-only. Do not claim a flag without
+expressing it.
 
 Noise must be visibly present in label_text: casing means unusual case such as
 "GET DEALS" or "newS" (ordinary sentence capitalization does not count);
@@ -107,12 +123,13 @@ preamble, trailing text, or unknown keys.
 The caller, not the model, supplies the validated input and recomputes the expected action.
 
 The caller appends a per-record checklist after the JSON seed, restating the
-exact polarity, checked state, noise, challenge, surface invariant, and computed
-action. This is a salience aid only; it does not replace the schema or validator.
+exact purpose, polarity, obligation, checked state, style, site profile, noise,
+metadata style, challenge, surface invariant, and computed policy action. This
+is a salience aid only; it does not replace the schema or validator.
 If any checklist item cannot be satisfied, the model must fail the record rather
 than emit a convenient paraphrase.
 
-## Output schema
+### Legacy output schema
 
 ```json
 {
@@ -172,7 +189,7 @@ SHA-256(spec_version || root_seed || canonicalized_tuple)
 
 Set `generator_seed_id` from that digest without embedding source text or personal data.
 
-The pipeline must strictly parse JSON, validate enums and surface invariants, recompute `expected_action`, and reject unknown keys, semantic contradictions, unsafe content, action mismatches, and exact or approximate duplicates. The staged v1.2 pilot applies stratified `gpt-5.6-luna` review to all high-risk categories; human-authored/real-form gold data remains a separate certification requirement.
+The pipeline must strictly parse JSON, validate enums and surface invariants, recompute `expected_action`, and reject unknown keys, semantic contradictions, unsafe content, action mismatches, and exact or approximate duplicates. The legacy v1.1 pipeline applied stratified `gpt-5.6-luna` review to high-risk categories; human-authored/real-form gold data remains a separate certification requirement. Current staged v1.3 behavior is documented in `STAGED_GENERATION_V1_2.md`.
 
 ## Reproducibility manifest
 

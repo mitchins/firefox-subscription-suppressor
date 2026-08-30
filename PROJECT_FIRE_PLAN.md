@@ -107,7 +107,7 @@ Keep the model input and output inspectable. Use rule traces plus model confiden
 
 The LAN LLMs are an offline development dependency for dataset creation and augmentation only. The shipped extension must not depend on them. The current backend registry covers all three supplied models; each backend may have an explicit response-channel adapter, but all share the same approved prompt and validation gates.
 
-The approved generation protocol is [GENERATION_PROMPT_SPEC.md](docs/GENERATION_PROMPT_SPEC.md). LAN backend 1 of 3 is the OpenAI-compatible Gemma service at `http://192.168.4.3:8000/v1/chat/completions`, model `coolthor/gemma-4-12B-it-NVFP4A16`. This endpoint belongs only to the offline generation pipeline and must not appear in extension runtime code, permissions, configuration, or packaged artifacts.
+The approved generation protocol is [GENERATION_PROMPT_SPEC.md](docs/GENERATION_PROMPT_SPEC.md), currently v1.3 with bounded deterministic retries and purpose-independent metadata pools. LAN backend 1 of 3 is the OpenAI-compatible Gemma service at `http://192.168.4.3:8000/v1/chat/completions`, model `coolthor/gemma-4-12B-it-NVFP4A16`. This endpoint belongs only to the offline generation pipeline and must not appear in extension runtime code, permissions, configuration, or packaged artifacts.
 
 ### Record format
 
@@ -183,6 +183,8 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 - Generate adversarial polarity sets.
 
 The first three-backend staged pilot is documented in [STAGED_PILOT_REPORT.md](docs/STAGED_PILOT_REPORT.md). All three backends satisfy the response contract and produce useful candidates, but the pilot is not admitted to training: blind Luna review accepted 7/178 records, and the corpus still has metadata leakage plus euphemism/dark-pattern coverage gaps.
+
+The v1.3 remediation and three-backend smoke are documented in [STAGED_V1_3_SMOKE_REPORT.md](docs/STAGED_V1_3_SMOKE_REPORT.md). The revised generator is SOL-approved, the safety regression suite passes, and all smoke records were independently reviewed by Luna. Before scaling, namespace the root seed per backend to reduce correlated cross-model duplicates; synthetic output remains separate from the gold/certification corpus.
 
 **Exit:** versioned 10k–15k corpus, gold set, and one-command training/evaluation run.
 

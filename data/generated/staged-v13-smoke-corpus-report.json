@@ -1,0 +1,44 @@
+{
+  "records": 23,
+  "exact_duplicate_groups": [
+    [
+      9,
+      17
+    ],
+    [
+      12,
+      22
+    ]
+  ],
+  "template_duplicate_groups": [
+    [
+      9,
+      17
+    ],
+    [
+      12,
+      22
+    ]
+  ],
+  "near_duplicate_pairs": [
+    {
+      "left": 9,
+      "right": 17,
+      "jaccard": 1.0
+    },
+    {
+      "left": 12,
+      "right": 22,
+      "jaccard": 1.0
+    }
+  ],
+  "exact_duplicate_rate": 0.08695652173913043,
+  "near_duplicate_rate": 0.08695652173913043,
+  "metadata_token_single_purpose_rate": 0,
+  "metadata_token_purposes": {},
+  "inputs": [
+    "data/generated/staged-v13-smoke-llm1.jsonl",
+    "data/generated/staged-v13-smoke-llm2.jsonl",
+    "data/generated/staged-v13-smoke-llm3.jsonl"
+  ]
+}

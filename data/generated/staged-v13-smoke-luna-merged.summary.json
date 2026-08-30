@@ -1,0 +1,473 @@
+{
+  "records": 23,
+  "accepted": 2,
+  "errors": [
+    {
+      "record_id": "record-llm1-8b0c9b875db8a8b4de5fe668",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-8b0c9b875db8a8b4de5fe668",
+        "review_id": "adjudication-record-llm1-8b0c9b875db8a8b4de5fe668",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.96,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.96,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.99,
+        "reason": "A clear optional marketing opt-out is unchecked, so marketing remains enabled and no uncheck transform is warranted."
+      }
+    },
+    {
+      "record_id": "record-llm1-9e5919ba6aa144bc4baeeb8d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-9e5919ba6aa144bc4baeeb8d",
+        "review_id": "adjudication-record-llm1-9e5919ba6aa144bc4baeeb8d",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.86,
+        "plausibility": 0.7,
+        "noise_realism": 0.82,
+        "surface_plausibility": 0.88,
+        "conflicts": [
+          "double_negative"
+        ],
+        "verdict": "accept",
+        "confidence": 0.84,
+        "reason": "The double negative expresses a desire to receive member perks, a voluntary marketing opt-in; the awkward wording lowers plausibility but remains interpretable."
+      }
+    },
+    {
+      "record_id": "record-llm1-182567700e8deb6479c7a564",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-182567700e8deb6479c7a564",
+        "review_id": "adjudication-record-llm1-182567700e8deb6479c7a564",
+        "inferred_purpose": "security",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.93,
+        "plausibility": 0.91,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.9,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.91,
+        "reason": "Enabling security verification is clearly protective and non-marketing; the unchecked security control should only be suggested."
+      }
+    },
+    {
+      "record_id": "record-llm1-605d398b66a054f8d2f466e1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-605d398b66a054f8d2f466e1",
+        "review_id": "adjudication-record-llm1-605d398b66a054f8d2f466e1",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.72,
+        "plausibility": 0.78,
+        "noise_realism": 0.72,
+        "surface_plausibility": 0.82,
+        "conflicts": [
+          "semantic_ambiguity"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.58,
+        "reason": "The typo is recoverable, but account notifications could be functional or promotional and the label gives no polarity or obligation."
+      }
+    },
+    {
+      "record_id": "record-llm1-668b85699dc151f832be2c81",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-668b85699dc151f832be2c81",
+        "review_id": "adjudication-record-llm1-668b85699dc151f832be2c81",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.84,
+        "plausibility": 0.68,
+        "noise_realism": 0.86,
+        "surface_plausibility": 0.87,
+        "conflicts": [
+          "double_negative"
+        ],
+        "verdict": "accept",
+        "confidence": 0.81,
+        "reason": "The wording indicates opting into community perks despite its double negative; it is optional marketing and already unchecked."
+      }
+    },
+    {
+      "record_id": "record-llm1-8ed2fc55031099676e506c5c",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm1-8ed2fc55031099676e506c5c",
+        "review_id": "primary-record-llm1-8ed2fc55031099676e506c5c",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.95,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.92,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.96,
+        "reason": "The label explicitly states that age verification is required to proceed and is unrelated to marketing."
+      }
+    },
+    {
+      "record_id": "record-llm2-9e5919ba6aa144bc4baeeb8d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-9e5919ba6aa144bc4baeeb8d",
+        "review_id": "adjudication-record-llm2-9e5919ba6aa144bc4baeeb8d",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.85,
+        "plausibility": 0.69,
+        "noise_realism": 0.82,
+        "surface_plausibility": 0.88,
+        "conflicts": [
+          "double_negative"
+        ],
+        "verdict": "accept",
+        "confidence": 0.82,
+        "reason": "The double negative resolves to wanting member updates, which is an optional marketing opt-in; the unchecked box should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-0c1102a54dc42a1d8c261d29",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-0c1102a54dc42a1d8c261d29",
+        "review_id": "adjudication-record-llm2-0c1102a54dc42a1d8c261d29",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.95,
+        "plausibility": 0.95,
+        "noise_realism": 0.98,
+        "surface_plausibility": 0.92,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.95,
+        "reason": "Entering a birth date is a clear age-related, non-marketing requirement; the unchecked state calls for suggestion only."
+      }
+    },
+    {
+      "record_id": "record-llm2-182567700e8deb6479c7a564",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-182567700e8deb6479c7a564",
+        "review_id": "adjudication-record-llm2-182567700e8deb6479c7a564",
+        "inferred_purpose": "security",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.87,
+        "plausibility": 0.86,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.9,
+        "conflicts": [
+          "obligation_ambiguity"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.68,
+        "reason": "Protecting an account is clearly security-related, but the label does not establish whether the protection is optional or required."
+      }
+    },
+    {
+      "record_id": "record-llm2-88ce2fefdcaf8f420ff6cab1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-88ce2fefdcaf8f420ff6cab1",
+        "review_id": "adjudication-record-llm2-88ce2fefdcaf8f420ff6cab1",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.78,
+        "plausibility": 0.48,
+        "noise_realism": 0.7,
+        "surface_plausibility": 0.38,
+        "conflicts": [
+          "surface_semantic_mismatch"
+        ],
+        "verdict": "reject",
+        "confidence": 0.9,
+        "reason": "The recoverable typo describes navigation, not a meaningful checkbox consent, so the label-only checkbox surface is implausible."
+      }
+    },
+    {
+      "record_id": "record-llm2-8ed2fc55031099676e506c5c",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm2-8ed2fc55031099676e506c5c",
+        "review_id": "primary-record-llm2-8ed2fc55031099676e506c5c",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.97,
+        "plausibility": 0.9,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.86,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.9,
+        "reason": "Please confirming age is a clear non-marketing compliance step; the account-preferences context is somewhat unusual but plausible."
+      }
+    },
+    {
+      "record_id": "record-llm2-c3997cd0efc614846ec0dc81",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-c3997cd0efc614846ec0dc81",
+        "review_id": "adjudication-record-llm2-c3997cd0efc614846ec0dc81",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.92,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.91,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "Exclusive offers are an unmistakable optional marketing opt-in; because the checkbox is unchecked, it should be left unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-8b0c9b875db8a8b4de5fe668",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-8b0c9b875db8a8b4de5fe668",
+        "review_id": "adjudication-record-llm3-8b0c9b875db8a8b4de5fe668",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.98,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.97,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.99,
+        "reason": "This is a clear optional marketing opt-out, and its unchecked state means no conservative uncheck action is needed."
+      }
+    },
+    {
+      "record_id": "record-llm3-9e5919ba6aa144bc4baeeb8d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-9e5919ba6aa144bc4baeeb8d",
+        "review_id": "adjudication-record-llm3-9e5919ba6aa144bc4baeeb8d",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.86,
+        "plausibility": 0.71,
+        "noise_realism": 0.82,
+        "surface_plausibility": 0.88,
+        "conflicts": [
+          "double_negative"
+        ],
+        "verdict": "accept",
+        "confidence": 0.84,
+        "reason": "The double negative expresses wanting occasional store tips, an optional marketing opt-in; the unchecked box remains unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-08b47c12c919a436cb872d2e",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-08b47c12c919a436cb872d2e",
+        "review_id": "adjudication-record-llm3-08b47c12c919a436cb872d2e",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.7,
+        "plausibility": 0.62,
+        "noise_realism": 0.68,
+        "surface_plausibility": 0.62,
+        "conflicts": [
+          "fragmentary_text",
+          "semantic_ambiguity"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.52,
+        "reason": "Contact frequency is plausibly a preference setting, but the fragmentary label does not establish marketing purpose, polarity, or obligation."
+      }
+    },
+    {
+      "record_id": "record-llm3-182567700e8deb6479c7a564",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-182567700e8deb6479c7a564",
+        "review_id": "adjudication-record-llm3-182567700e8deb6479c7a564",
+        "inferred_purpose": "security",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.87,
+        "plausibility": 0.86,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.9,
+        "conflicts": [
+          "obligation_ambiguity"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.68,
+        "reason": "The account-protection purpose is clear and non-marketing, but its optional-versus-required status is not visible."
+      }
+    },
+    {
+      "record_id": "record-llm3-605d398b66a054f8d2f466e1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-605d398b66a054f8d2f466e1",
+        "review_id": "adjudication-record-llm3-605d398b66a054f8d2f466e1",
+        "inferred_purpose": "legal",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.94,
+        "plausibility": 0.84,
+        "noise_realism": 0.72,
+        "surface_plausibility": 0.9,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.91,
+        "reason": "Acknowledging account terms is a legal, non-marketing requirement; the typo is recoverable and the unchecked state permits suggestion only."
+      }
+    },
+    {
+      "record_id": "record-llm3-668b85699dc151f832be2c81",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-668b85699dc151f832be2c81",
+        "review_id": "adjudication-record-llm3-668b85699dc151f832be2c81",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.84,
+        "plausibility": 0.69,
+        "noise_realism": 0.86,
+        "surface_plausibility": 0.87,
+        "conflicts": [
+          "double_negative"
+        ],
+        "verdict": "accept",
+        "confidence": 0.81,
+        "reason": "The phrase indicates wanting community updates, an optional marketing opt-in despite its double negative; the unchecked box stays unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-88ce2fefdcaf8f420ff6cab1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-88ce2fefdcaf8f420ff6cab1",
+        "review_id": "adjudication-record-llm3-88ce2fefdcaf8f420ff6cab1",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "suggest",
+        "semantic_fidelity": 0.35,
+        "plausibility": 0.42,
+        "noise_realism": 0.7,
+        "surface_plausibility": 0.7,
+        "conflicts": [
+          "semantic_ambiguity"
+        ],
+        "verdict": "reject",
+        "confidence": 0.88,
+        "reason": "The colloquial phrase does not reliably identify a protected purpose, polarity, or obligation, so no safe checkbox action can be inferred."
+      }
+    },
+    {
+      "record_id": "record-llm3-8ed2fc55031099676e506c5c",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-8ed2fc55031099676e506c5c",
+        "review_id": "primary-record-llm3-8ed2fc55031099676e506c5c",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.95,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.92,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.96,
+        "reason": "Explicit 18-or-older confirmation is a clear non-marketing age requirement."
+      }
+    },
+    {
+      "record_id": "record-llm3-c3997cd0efc614846ec0dc81",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-c3997cd0efc614846ec0dc81",
+        "review_id": "adjudication-record-llm3-c3997cd0efc614846ec0dc81",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.92,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.91,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "Exclusive offers are a clear optional marketing opt-in; with the box unchecked, the conservative action is to leave it."
+      }
+    }
+  ],
+  "all_reviewed": true,
+  "reviewer_model": "gpt-5.6-luna",
+  "review_prompt_sha256": "6d9b7db54571f75f8ed7fdd45b32e5c34b2551f08fe97b33a2b1f9773b22391a"
+}
