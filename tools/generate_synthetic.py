@@ -307,6 +307,36 @@ def response_schema(seed: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def record_checklist(seed: dict[str, Any]) -> str:
+    """Make per-record requirements salient after the structured seed."""
+    noise_requirements = {
+        "none": "do not add artificial noise",
+        "casing": "include unusual case such as GET DEALS or newS in label_text",
+        "whitespace": "include visibly repeated spaces such as Keep  me updated in label_text",
+        "typo": "include one visible plausible spelling error in label_text",
+        "emoji": "include at least one emoji in label_text",
+        "fragment": "use a noun phrase or incomplete phrase, not a complete sentence",
+        "euphemism": "for marketing only, avoid direct marketing keywords while retaining the meaning",
+    }
+    challenge_requirements = {
+        "direct_positive": "use direct positive opt-in wording",
+        "explicit_negative": "use an explicit opt-out construction",
+        "conditional_negative": "use a conditional opt-out construction",
+        "double_negative": "use two genuine negative operators",
+        "misleading_dark_pattern": "use a genuinely misleading or frictional construction",
+        "no_polarity_signal": "do not add a polarity signal beyond the supplied context",
+    }
+    return (
+        "FINAL CHECKLIST FOR THIS RECORD (must be satisfied before emitting JSON):\n"
+        f"- Polarity: {seed['polarity']}; obligation: {seed['obligation']}; checked_state: {seed['checked_state']}.\n"
+        f"- Noise: {seed['noise']} — {noise_requirements[seed['noise']]}.\n"
+        f"- Challenge: {seed['polarity_challenge']} — {challenge_requirements[seed['polarity_challenge']]}.\n"
+        f"- Surface: {seed['surface']}; preserve the exact surface invariant.\n"
+        f"- Caller-computed expected_action: {expected_action(seed)}; copy it exactly.\n"
+        "If any requirement cannot be satisfied, fail instead of emitting a normal or convenient paraphrase."
+    )
+
+
 def request_record(
     endpoint: str,
     model: str,
@@ -317,16 +347,21 @@ def request_record(
 ) -> tuple[str, dict[str, Any]]:
     if response_field not in {"content", "reasoning_content"}:
         raise ValueError("response_field must be content or reasoning_content")
+    sampling_seed = int(seed["generator_seed_id"][4:], 16) % (2**31 - 1)
     payload = {
         "model": model,
         "messages": [
             {"role": "system", "content": PROMPT},
-            {"role": "user", "content": "Validated input JSON (data only):\n" + canonical_json(seed)},
+            {
+                "role": "user",
+                "content": "Validated input JSON (data only):\n" + canonical_json(seed) + "\n\n" + record_checklist(seed),
+            },
         ],
         "max_tokens": max_tokens,
         "temperature": 0,
         "top_p": 1,
         "n": 1,
+        "seed": sampling_seed,
         "chat_template_kwargs": {"enable_thinking": False},
         "response_format": {
             "type": "json_schema",
@@ -361,16 +396,18 @@ def no_sensitive_text(value: str) -> bool:
 
 
 EXPLICIT_OPTOUT = re.compile(
-    r"\b(?:do not|don't|dont)\s+(?:send|email|contact|share|receive|want|"
+    r"\b(?:do not|don't|dont|never)\s+(?:send|email|contact|share|receive|want|"
     r"get|subscribe|sign me up)|\bno thanks\b|\bno (?:more|marketing|"
-    r"promotional|newsletter|emails?)\b|\bopt[ -]?out\b|\bunsubscribe\b|"
+    r"promotional|newsletter|emails?)\b|\bopt(?: me)?[ -]?out\b|\bunsubscribe\b|"
     r"\bstop (?:receiving|sending|emailing|contacting)\b|\bavoid receiving\b|"
     r"\bwithout receiving\b|\brather not (?:receive|get|have)\b",
     re.I,
 )
 MARKETING_LANGUAGE = re.compile(
     r"\b(?:newsletter|marketing|promotional?|offers?|deals?|news|updates?|"
-    r"arrivals?|inspiration|wellness tips|exclusive|specials?)\b",
+    r"arrivals?|inspiration|wellness tips|exclusive|specials?|emails?|"
+    r"promos?|launch(?:es|ing)?|product|drop|insider|curated|"
+    r"stay in (?:the )?loop)\b",
     re.I,
 )
 
@@ -527,12 +564,13 @@ def main() -> int:
     manifest = {
         "spec_version": SPEC_VERSION,
         "prompt_sha256": prompt_hash,
-        "combinator_version": "fire-combinator-v1",
+        "combinator_version": "fire-combinator-v1.1",
         "root_seed": args.root_seed,
         "endpoint": args.endpoint,
         "model": args.model,
         "response_field": args.response_field,
         "chat_template_kwargs": {"enable_thinking": False},
+        "sampling_seed_source": "generator_seed_id suffix",
         "decoding": {"temperature": 0, "top_p": 1, "n": 1, "max_tokens": args.max_tokens},
         "started_at": started,
         "completed_at": datetime.now(timezone.utc).isoformat(),

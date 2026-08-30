@@ -177,7 +177,7 @@ Required evaluation fixtures should include static HTML, dynamically inserted fo
 
 ### Phase 1 — Data pipeline
 
-- Implement seed ingestion, normalization, provenance manifests, deduplication, prompt-based LAN generation, and human review queues.
+- Implement seed ingestion, normalization, provenance manifests, deduplication, prompt-based LAN generation, and `gpt-5.6-luna` review queues for synthetic records.
 - Integrate the approved prompt/seed combinator and backend registry; reject malformed, unsafe, contradictory, or duplicate model output before it enters the corpus.
 - Add domain/template-aware train/dev/test splitting.
 - Generate adversarial polarity sets.

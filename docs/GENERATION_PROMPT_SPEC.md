@@ -1,6 +1,6 @@
 # FIRE synthetic checkbox generation specification
 
-**Specification:** `fire-synthetic-checkbox-v1.1`
+**Specification:** `fire-synthetic-checkbox-v1.1` (the staged v1.2 candidate-only pipeline is documented in [STAGED_GENERATION_V1_2.md](STAGED_GENERATION_V1_2.md))
 **Approval:** Approved with amendments by the Project FIRE peer reviewer using `gpt-5.6-sol`  
 **Runtime boundary:** offline dataset generation only; never package this client or endpoint with the extension
 
@@ -106,6 +106,12 @@ preamble, trailing text, or unknown keys.
 
 The caller, not the model, supplies the validated input and recomputes the expected action.
 
+The caller appends a per-record checklist after the JSON seed, restating the
+exact polarity, checked state, noise, challenge, surface invariant, and computed
+action. This is a salience aid only; it does not replace the schema or validator.
+If any checklist item cannot be satisfied, the model must fail the record rather
+than emit a convenient paraphrase.
+
 ## Output schema
 
 ```json
@@ -166,7 +172,7 @@ SHA-256(spec_version || root_seed || canonicalized_tuple)
 
 Set `generator_seed_id` from that digest without embedding source text or personal data.
 
-The pipeline must strictly parse JSON, validate enums and surface invariants, recompute `expected_action`, and reject unknown keys, semantic contradictions, unsafe content, action mismatches, and exact or approximate duplicates. Apply stratified human review to all high-risk categories.
+The pipeline must strictly parse JSON, validate enums and surface invariants, recompute `expected_action`, and reject unknown keys, semantic contradictions, unsafe content, action mismatches, and exact or approximate duplicates. The staged v1.2 pilot applies stratified `gpt-5.6-luna` review to all high-risk categories; human-authored/real-form gold data remains a separate certification requirement.
 
 ## Reproducibility manifest
 
