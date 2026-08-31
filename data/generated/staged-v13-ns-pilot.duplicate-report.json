@@ -1,0 +1,264 @@
+{
+  "records": 174,
+  "exact_duplicate_groups": [
+    [
+      0,
+      54,
+      148
+    ],
+    [
+      9,
+      110
+    ],
+    [
+      13,
+      84,
+      120
+    ],
+    [
+      19,
+      89
+    ],
+    [
+      28,
+      61
+    ],
+    [
+      63,
+      118
+    ],
+    [
+      73,
+      127
+    ],
+    [
+      94,
+      137
+    ],
+    [
+      97,
+      153
+    ]
+  ],
+  "template_duplicate_groups": [
+    [
+      0,
+      54,
+      148
+    ],
+    [
+      9,
+      110
+    ],
+    [
+      13,
+      84,
+      120
+    ],
+    [
+      19,
+      89
+    ],
+    [
+      28,
+      61
+    ],
+    [
+      63,
+      118
+    ],
+    [
+      73,
+      127
+    ],
+    [
+      94,
+      137
+    ],
+    [
+      97,
+      153
+    ]
+  ],
+  "near_duplicate_pairs": [
+    {
+      "left": 0,
+      "right": 54,
+      "jaccard": 1.0
+    },
+    {
+      "left": 0,
+      "right": 148,
+      "jaccard": 1.0
+    },
+    {
+      "left": 9,
+      "right": 110,
+      "jaccard": 1.0
+    },
+    {
+      "left": 13,
+      "right": 84,
+      "jaccard": 1.0
+    },
+    {
+      "left": 13,
+      "right": 120,
+      "jaccard": 1.0
+    },
+    {
+      "left": 19,
+      "right": 89,
+      "jaccard": 1.0
+    },
+    {
+      "left": 28,
+      "right": 61,
+      "jaccard": 1.0
+    },
+    {
+      "left": 54,
+      "right": 148,
+      "jaccard": 1.0
+    },
+    {
+      "left": 63,
+      "right": 118,
+      "jaccard": 1.0
+    },
+    {
+      "left": 73,
+      "right": 127,
+      "jaccard": 1.0
+    },
+    {
+      "left": 84,
+      "right": 120,
+      "jaccard": 1.0
+    },
+    {
+      "left": 94,
+      "right": 137,
+      "jaccard": 1.0
+    },
+    {
+      "left": 97,
+      "right": 153,
+      "jaccard": 1.0
+    }
+  ],
+  "exact_duplicate_rate": 0.06321839080459771,
+  "near_duplicate_rate": 0.07471264367816093,
+  "metadata_token_single_purpose_rate": 0.0,
+  "metadata_token_purposes": {
+    "account": [
+      "age",
+      "ambiguous",
+      "other"
+    ],
+    "cb": [
+      "age",
+      "ambiguous",
+      "functional"
+    ],
+    "choice": [
+      "age",
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "communication": [
+      "functional",
+      "marketing",
+      "security"
+    ],
+    "contact": [
+      "age",
+      "marketing"
+    ],
+    "control": [
+      "ambiguous",
+      "functional",
+      "security"
+    ],
+    "field": [
+      "age",
+      "ambiguous",
+      "functional"
+    ],
+    "form": [
+      "marketing",
+      "security"
+    ],
+    "input": [
+      "ambiguous",
+      "functional"
+    ],
+    "notification": [
+      "ambiguous",
+      "functional",
+      "other",
+      "security"
+    ],
+    "option": [
+      "age",
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "preference": [
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "profile": [
+      "ambiguous",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "selection": [
+      "age",
+      "ambiguous"
+    ],
+    "setting": [
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "settings": [
+      "age",
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "subscription": [
+      "ambiguous",
+      "functional"
+    ],
+    "toggle": [
+      "age",
+      "ambiguous",
+      "security"
+    ],
+    "user": [
+      "functional",
+      "marketing",
+      "other"
+    ]
+  },
+  "inputs": [
+    "data/generated/staged-v13-ns-pilot-llm1.jsonl",
+    "data/generated/staged-v13-ns-pilot-llm2.jsonl",
+    "data/generated/staged-v13-ns-pilot-llm3.jsonl"
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "records": 162,
+  "exact_duplicate_groups": [
+    [
+      1,
+      71,
+      119
+    ],
+    [
+      3,
+      85
+    ],
+    [
+      15,
+      111
+    ],
+    [
+      35,
+      60,
+      110
+    ],
+    [
+      42,
+      95,
+      131
+    ],
+    [
+      49,
+      77,
+      123
+    ],
+    [
+      61,
+      103
+    ],
+    [
+      64,
+      142
+    ],
+    [
+      65,
+      113
+    ],
+    [
+      91,
+      107
+    ]
+  ],
+  "template_duplicate_groups": [
+    [
+      1,
+      71,
+      119
+    ],
+    [
+      3,
+      85
+    ],
+    [
+      15,
+      111
+    ],
+    [
+      35,
+      60,
+      110
+    ],
+    [
+      42,
+      95,
+      131
+    ],
+    [
+      49,
+      77,
+      123
+    ],
+    [
+      58,
+      75,
+      101
+    ],
+    [
+      61,
+      103
+    ],
+    [
+      64,
+      142
+    ],
+    [
+      65,
+      113
+    ],
+    [
+      91,
+      107
+    ]
+  ],
+  "near_duplicate_pairs": [
+    {
+      "left": 1,
+      "right": 71,
+      "jaccard": 1.0
+    },
+    {
+      "left": 1,
+      "right": 119,
+      "jaccard": 1.0
+    },
+    {
+      "left": 3,
+      "right": 85,
+      "jaccard": 1.0
+    },
+    {
+      "left": 15,
+      "right": 111,
+      "jaccard": 1.0
+    },
+    {
+      "left": 35,
+      "right": 60,
+      "jaccard": 1.0
+    },
+    {
+      "left": 35,
+      "right": 110,
+      "jaccard": 1.0
+    },
+    {
+      "left": 42,
+      "right": 95,
+      "jaccard": 1.0
+    },
+    {
+      "left": 42,
+      "right": 131,
+      "jaccard": 1.0
+    },
+    {
+      "left": 49,
+      "right": 77,
+      "jaccard": 1.0
+    },
+    {
+      "left": 49,
+      "right": 123,
+      "jaccard": 1.0
+    },
+    {
+      "left": 60,
+      "right": 110,
+      "jaccard": 1.0
+    },
+    {
+      "left": 61,
+      "right": 103,
+      "jaccard": 1.0
+    },
+    {
+      "left": 64,
+      "right": 142,
+      "jaccard": 1.0
+    },
+    {
+      "left": 65,
+      "right": 113,
+      "jaccard": 1.0
+    },
+    {
+      "left": 71,
+      "right": 119,
+      "jaccard": 1.0
+    },
+    {
+      "left": 77,
+      "right": 123,
+      "jaccard": 1.0
+    },
+    {
+      "left": 91,
+      "right": 107,
+      "jaccard": 1.0
+    },
+    {
+      "left": 95,
+      "right": 131,
+      "jaccard": 1.0
+    }
+  ],
+  "exact_duplicate_rate": 0.08641975308641975,
+  "near_duplicate_rate": 0.1111111111111111,
+  "metadata_token_single_purpose_rate_raw": 0.1111111111111111,
+  "metadata_token_single_purpose_rate": 0,
+  "metadata_suspicious_tokens": {},
+  "metadata_token_purposes": {
+    "account": [
+      "age",
+      "ambiguous",
+      "security"
+    ],
+    "cb": [
+      "functional",
+      "marketing",
+      "other"
+    ],
+    "choice": [
+      "age",
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "communication": [
+      "ambiguous",
+      "functional",
+      "marketing",
+      "security"
+    ],
+    "contact": [
+      "ambiguous",
+      "functional"
+    ],
+    "control": [
+      "ambiguous",
+      "functional",
+      "legal",
+      "marketing"
+    ],
+    "field": [
+      "age",
+      "ambiguous",
+      "functional",
+      "marketing"
+    ],
+    "input": [
+      "ambiguous",
+      "functional"
+    ],
+    "notification": [
+      "ambiguous",
+      "functional",
+      "other"
+    ],
+    "option": [
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other",
+      "security"
+    ],
+    "preference": [
+      "age",
+      "ambiguous",
+      "functional",
+      "other",
+      "security"
+    ],
+    "profile": [
+      "ambiguous",
+      "other",
+      "security"
+    ],
+    "selection": [
+      "ambiguous"
+    ],
+    "service": [
+      "functional"
+    ],
+    "setting": [
+      "ambiguous",
+      "functional"
+    ],
+    "settings": [
+      "age",
+      "ambiguous",
+      "security"
+    ],
+    "subscription": [
+      "ambiguous",
+      "functional",
+      "marketing",
+      "other"
+    ],
+    "user": [
+      "marketing",
+      "other"
+    ]
+  },
+  "inputs": [
+    "data/generated/staged-v13-ns-fallback-llm1.jsonl",
+    "data/generated/staged-v13-ns-fallback-llm2.jsonl",
+    "data/generated/staged-v13-ns-fallback-llm3.jsonl"
+  ]
+}
