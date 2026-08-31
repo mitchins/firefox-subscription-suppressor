@@ -65,7 +65,7 @@ violations, surface-invariant violations, and exact normalized duplicates.
 The caller recomputes the action; the model never supplies it.
 
 Malformed JSON, malformed response envelopes, and recoverable realization
-failures receive at most two deterministic retries. Every attempt is retained
+failures receive at most three deterministic retries. Every attempt is retained
 with its sampling seed, payload/response hashes, status, and error; accepted
 records retain the accepted-attempt index. Cross-backend exact, template, and
 near-duplicate rates are checked by `tools/check_staged_corpus.py`.
@@ -75,6 +75,16 @@ three attempts. Every attempt records its sampling seed, payload hash, response
 hash when available, status, and validator error; retries never change the
 semantic seed or caller-owned action policy. Metadata pools are purpose-
 independent and selected from an index-derived slot to reduce metadata leakage.
+
+The generator supports a bounded diversity experiment through `--temperature`
+(`0.0` through `0.2`) and an allowlisted `--preamble` (`none` or the single
+fictional `ted-flower-shop` candidate). A preamble is delimited, non-authoritative
+user-message context; it never changes the system contract or semantic seed.
+Smoke runs must test temperature-only, preamble-only, and combined variants on
+paired seeds. Any safety, leakage, or quality regression falls back to
+backend-namespaced seeds at temperature 0 with no preamble. Manifests record
+requested/sent temperature, base/effective root seeds, preamble ID/hash, system
+prompt hash, and per-attempt effective-message hashes.
 
 The v1.3 generator distinguishes hard safety conflicts from explicitly named
 soft challenge conflicts. Soft conflicts are allowed only on misleading-dark-
@@ -95,6 +105,12 @@ with no reviewed cell below 95%, at least 95% plausibility overall with no
 profile/challenge cell below 90%, at least 90% normalized uniqueness, at most
 5% near-duplicates, and every pilot record reviewed. Records failing review are
 excluded from training until repaired and re-reviewed.
+
+After review, `tools/admit_staged.py` performs a second global exact/near-
+duplicate pass and keeps one reviewed representative per duplicate group. The
+corpus checker reports raw single-purpose metadata vocabulary separately from
+purpose-coded metadata leakage; only the purpose-coded metric is a gate because
+generic field words become sparse after review filtering.
 
 ## Reproducibility
 

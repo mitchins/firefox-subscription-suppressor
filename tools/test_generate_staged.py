@@ -7,6 +7,8 @@ import json
 import unittest
 
 from generate_staged import (
+    MAX_TEMPERATURE,
+    PREAMBLES,
     compose_record,
     hard_conflicts,
     infer_safety_conflicts,
@@ -27,6 +29,11 @@ def seed_matching(**wanted):
 
 
 class StagedGeneratorTests(unittest.TestCase):
+    def test_diversity_knobs_are_bounded_and_allowlisted(self):
+        self.assertEqual(PREAMBLES["none"], None)
+        self.assertEqual(PREAMBLES["ted-flower-shop"], "You are running Ted's flower shop.")
+        self.assertEqual(MAX_TEMPERATURE, 0.2)
+
     def test_safe_positive_is_the_only_auto_action_shape(self):
         seed = seed_matching(purpose="marketing", challenge="direct_positive")
         seed["checked_state"] = True

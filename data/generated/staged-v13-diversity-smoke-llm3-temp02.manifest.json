@@ -1,0 +1,190 @@
+{
+  "spec_version": "fire-synthetic-checkbox-v1.3",
+  "combinator_version": "fire-staged-combinator-v1.3",
+  "system_prompt_sha256": "b9d77f0265c5290b06719a3758c21718c5c2fa9709934983c99e7f9e173b0699",
+  "prompt_sha256": "b9d77f0265c5290b06719a3758c21718c5c2fa9709934983c99e7f9e173b0699",
+  "root_seed": "fire-staged-v13-diversity-smoke-2026-08-31:llm3",
+  "base_root_seed": "fire-staged-v13-diversity-smoke-2026-08-31",
+  "effective_root_seed": "fire-staged-v13-diversity-smoke-2026-08-31:llm3",
+  "backend": "llm3",
+  "endpoint": "http://localhost:1234/v1/chat/completions",
+  "model": "qwen3.8-27b-uncensored-mlx-4-bit",
+  "response_field": "reasoning_content",
+  "role": "idiomatic/diversity specialist",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "decoding": {
+    "requested_temperature": 0.2,
+    "sent_temperature": 0.2,
+    "top_p": 1,
+    "n": 1,
+    "max_tokens": 220
+  },
+  "preamble": {
+    "id": "none",
+    "sha256": null
+  },
+  "sampling_seed_source": "seed_id suffix plus deterministic attempt offset",
+  "retry_policy": {
+    "max_attempts": 3,
+    "retryable_error_policy": "deterministic realization/format failures only"
+  },
+  "deterministic_seed_support": "requested; backend compliance not independently established",
+  "model_artifact_revision": "model-id:qwen3.8-27b-uncensored-mlx-4-bit",
+  "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",
+  "tokenizer_runtime_hardware": "server-reported details unavailable; client=python-stdlib-http",
+  "generator_sha256": "8d7baeb23868a91dc176d092d4903bb5e47519196c0d272b56286c20ffe6c937",
+  "policy_validator_sha256": "bd28d7ad8b29ce96c2a9df1ba969f3b4a01d4c2f515ca64d851722fdf0b29c83",
+  "transform_version": "fire-staged-combinator-v1.3",
+  "transform_sha256": "b7ca07b46783dc0af33532922ea856990a1d2b5cde85e7969a94090f756f6ee6",
+  "started_at": "2026-08-30T23:15:00.748183+00:00",
+  "completed_at": "2026-08-30T23:17:00.203186+00:00",
+  "requested": 5,
+  "accepted": 2,
+  "rejected": 3,
+  "rejections": [
+    {
+      "index": "2",
+      "seed_id": "seed-6142a11f9ec4097daccd0e88",
+      "error": "conditional negative is not expressed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1868539396,
+          "payload_sha256": "4685cf7074798917ad28247b9af8dbc9b1dceb21b483a2d641df03131db38662",
+          "effective_messages_sha256": "082fde3ff8bd7021a7202647679447d5f40921bb9104c17f1c1a00fd82a711e4",
+          "response_sha256": "770618c01197418a50375d3ed1bf83a1008f7c6206dd08aa9f096d36e26ed66c",
+          "status": "rejected",
+          "error": "conditional negative is not expressed"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1869539399,
+          "payload_sha256": "e684c9e6bd21d9987ac9ffa4df92e73ae6e8fb05c1f6e2fbbd65dd9efe13f05f",
+          "effective_messages_sha256": "d6d8d2bf151b2c1802037210ca9b9a2a16d7b13b0a78f628fd8d4a29a126f077",
+          "response_sha256": "ce3c80744c9b38688341ffc382d16fac456f42b2b23aabe14b0dfa0cd79c8ca7",
+          "status": "rejected",
+          "error": "conditional negative is not expressed"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1870539402,
+          "payload_sha256": "c3070d4e94b41de5e5181a922af3e09ec926081adffc1f2dcf9ee344bb2220a1",
+          "effective_messages_sha256": "d6d8d2bf151b2c1802037210ca9b9a2a16d7b13b0a78f628fd8d4a29a126f077",
+          "response_sha256": "b656c9c43f1991450a4f3c74830f689c6c30d0ae0e473be740ed9193df7bb3f9",
+          "status": "rejected",
+          "error": "conditional negative is not expressed"
+        }
+      ]
+    },
+    {
+      "index": "3",
+      "seed_id": "seed-4815087b27e369607004ff04",
+      "error": "post-transform label semantic conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1612706739,
+          "payload_sha256": "867721ff0ed70e141091994233ceacffd4697d2e046178bbe7c4db67cc08c58e",
+          "effective_messages_sha256": "ae0448fff648e93c0203fb3e92c0f7db1c4a7190c153e753eca82697882e694a",
+          "response_sha256": "3b9e2a8c5ae499a86ce6570915df78c6e9e36d074e7ba412b63c7aacce31af7b",
+          "status": "rejected",
+          "error": "post-transform label semantic conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1613706742,
+          "payload_sha256": "20ab97d368c4872538855e4c4adef5a3dfbe14889d23349686ccdc5ec38820c6",
+          "effective_messages_sha256": "14ff2f98c381414862af84808b20494c5c9a8ca556ca6501a347bd27267ac306",
+          "response_sha256": "9b521d740b6f8ea0c0f76e991e4943f95e52fe6ff69e5da547fe4f816c0403a2",
+          "status": "rejected",
+          "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1614706745,
+          "payload_sha256": "b481605dcf15bc74d4eb7081afd9c0ae314f82e23f71fbd7860da8804004ae3c",
+          "effective_messages_sha256": "3cbc58fa578abff93a5b8026e68054d8c5cdbe87f7b63a21624cc970dc7924da",
+          "response_sha256": "e5049a385920611e590f947d3a94546574185229e37842da7ce3f23ad07c4c01",
+          "status": "rejected",
+          "error": "post-transform label semantic conflicts: missing-marketing-purpose, positive-opt-in-outside-safe-envelope"
+        }
+      ]
+    },
+    {
+      "index": "4",
+      "seed_id": "seed-f6e87d6a75e52c9eb10b1369",
+      "error": "emoji transform not observed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 2021089879,
+          "payload_sha256": "7680a5418fc29f7abce466d0f44d3c98cc972861c5af4138c56e5b7b3ba34074",
+          "effective_messages_sha256": "47b317b33cbe9e8205efae451bffa6c794afe780e863438f14cf965639597472",
+          "response_sha256": "132e2e5b8a00761dcb4c64473ff181523209f6a4c62a67edda8d11ffeb1b2f26",
+          "status": "rejected",
+          "error": "emoji transform not observed"
+        }
+      ]
+    }
+  ],
+  "output_sha256": "70952fab37576ce7dec383dde7e1213e0264f1dd086b860a1725052654545349",
+  "synthetic_only": true,
+  "planned_coverage": {
+    "family_surface_checked": 5,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 5,
+    "profile": 4
+  },
+  "accepted_coverage": {
+    "family_surface_checked": 2,
+    "style": 2,
+    "metadata_style": 2,
+    "noise": 2,
+    "profile": 2
+  },
+  "missing_coverage": {
+    "family_surface_checked": [
+      [
+        0,
+        "label_plus_aria",
+        false
+      ],
+      [
+        11,
+        "label_plus_aria",
+        false
+      ],
+      [
+        3,
+        "label_plus_aria",
+        false
+      ]
+    ],
+    "style": [
+      "dark",
+      "subversive"
+    ],
+    "metadata_style": [
+      "conflicting",
+      "opaque"
+    ],
+    "noise": [
+      "emoji",
+      "typo",
+      "whitespace"
+    ],
+    "profile": [
+      [
+        "SaaS",
+        "preferences"
+      ],
+      [
+        "finance",
+        "preferences"
+      ]
+    ]
+  }
+}

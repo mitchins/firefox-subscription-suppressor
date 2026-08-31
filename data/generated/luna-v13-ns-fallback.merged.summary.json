@@ -1,0 +1,2452 @@
+{
+  "records": 162,
+  "accepted": 49,
+  "errors": [
+    {
+      "record_id": "record-llm1-7fdaf808afea4984eff16d65",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-7fdaf808afea4984eff16d65",
+        "review_id": "adjudication-001",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "mixed_legal_marketing"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible text combines a legal agreement with marketing consent, so purpose and obligation cannot be safely separated."
+      }
+    },
+    {
+      "record_id": "record-llm1-93782f7ae862d5ffdccf2bbc",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-93782f7ae862d5ffdccf2bbc",
+        "review_id": "adjudication-002",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm1-99920da91153544a252e926b",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-99920da91153544a252e926b",
+        "review_id": "adjudication-005",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-5125588e8e49c497ff9b2779",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-5125588e8e49c497ff9b2779",
+        "review_id": "adjudication-006",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-7f6e2cb5f65b74f556e9504a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-7f6e2cb5f65b74f556e9504a",
+        "review_id": "adjudication-007",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.65,
+        "plausibility": 0.65,
+        "noise_realism": 0.96,
+        "surface_plausibility": 0.8,
+        "conflicts": [
+          "placeholder_or_non_checkbox_text"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.7,
+        "reason": "The visible text is a generic field label rather than a clear checkbox purpose."
+      }
+    },
+    {
+      "record_id": "record-llm1-4cb5dddd8a9a1012b0f8f7d7",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-4cb5dddd8a9a1012b0f8f7d7",
+        "review_id": "adjudication-008",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-b84c27d8c250d59cbf36cc42",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-b84c27d8c250d59cbf36cc42",
+        "review_id": "adjudication-012",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.65,
+        "plausibility": 0.65,
+        "noise_realism": 0.96,
+        "surface_plausibility": 0.8,
+        "conflicts": [
+          "placeholder_or_non_checkbox_text"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.7,
+        "reason": "The visible text is a generic field label rather than a clear checkbox purpose."
+      }
+    },
+    {
+      "record_id": "record-llm1-13d3e3a8970e6acfefc0865d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-13d3e3a8970e6acfefc0865d",
+        "review_id": "adjudication-013",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-4fc94b0c5258a2a0dfec75e9",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-4fc94b0c5258a2a0dfec75e9",
+        "review_id": "adjudication-014",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-ea194a80fb7197d9d08979ad",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-ea194a80fb7197d9d08979ad",
+        "review_id": "adjudication-016",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm1-74a6a8e02ac205c16b95633d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-74a6a8e02ac205c16b95633d",
+        "review_id": "adjudication-017",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-bd2cadb19a40ff209878289a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-bd2cadb19a40ff209878289a",
+        "review_id": "adjudication-018",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-1e6ab7185d3039761d690c95",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-1e6ab7185d3039761d690c95",
+        "review_id": "adjudication-019",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-25c6497176716ebdc47e8cb5",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-25c6497176716ebdc47e8cb5",
+        "review_id": "adjudication-020",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-9215f9ad47ffd1a2e0d59da5",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-9215f9ad47ffd1a2e0d59da5",
+        "review_id": "adjudication-021",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-8f0774cee79af7cf4e744e9b",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-8f0774cee79af7cf4e744e9b",
+        "review_id": "adjudication-022",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-2cf1ef5ae1f52204dcbe042c",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-2cf1ef5ae1f52204dcbe042c",
+        "review_id": "adjudication-023",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-e4ed1541d155036bb5b34cd6",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-e4ed1541d155036bb5b34cd6",
+        "review_id": "adjudication-024",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-500ccb94b56d7e65c8a9f399",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm1-500ccb94b56d7e65c8a9f399",
+        "review_id": "primary-record-llm1-500ccb94b56d7e65c8a9f399",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.97,
+        "noise_realism": 0.94,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.94,
+        "reason": "The label describes a functional account, booking, or preference operation, not marketing consent."
+      }
+    },
+    {
+      "record_id": "record-llm1-89f6efb1b3a7f7bba12f63cf",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-89f6efb1b3a7f7bba12f63cf",
+        "review_id": "adjudication-026",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-bad04f8fa516f7118bde0d5c",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-bad04f8fa516f7118bde0d5c",
+        "review_id": "adjudication-027",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-ca5a9fbe64a61b7fb560f9db",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-ca5a9fbe64a61b7fb560f9db",
+        "review_id": "adjudication-028",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-2d2f5e3086c6b1899d278274",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-2d2f5e3086c6b1899d278274",
+        "review_id": "adjudication-030",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-1a23b2c9743dc26e03d7be57",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-1a23b2c9743dc26e03d7be57",
+        "review_id": "adjudication-032",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-ef49c00034ed24bd4f07bf7d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-ef49c00034ed24bd4f07bf7d",
+        "review_id": "adjudication-033",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "mixed_legal_marketing"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible text combines a legal agreement with marketing consent, so purpose and obligation cannot be safely separated."
+      }
+    },
+    {
+      "record_id": "record-llm1-9396cf0156c7893c35fe06db",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm1-9396cf0156c7893c35fe06db",
+        "review_id": "primary-record-llm1-9396cf0156c7893c35fe06db",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.97,
+        "plausibility": 0.9299999999999999,
+        "noise_realism": 0.84,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.97,
+        "reason": "Age or date-of-birth confirmation is a required non-marketing eligibility control."
+      }
+    },
+    {
+      "record_id": "record-llm1-3a7a4fcbf78ac93b94c27d00",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-3a7a4fcbf78ac93b94c27d00",
+        "review_id": "adjudication-035",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-742833810ab23a775bf8735c",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-742833810ab23a775bf8735c",
+        "review_id": "adjudication-036",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-f1c836479695a40daac9acd9",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm1-f1c836479695a40daac9acd9",
+        "review_id": "primary-record-llm1-f1c836479695a40daac9acd9",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.97,
+        "noise_realism": 0.94,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.94,
+        "reason": "The label describes a functional account, booking, or preference operation, not marketing consent."
+      }
+    },
+    {
+      "record_id": "record-llm1-7f68723c102c27220e7ede40",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-7f68723c102c27220e7ede40",
+        "review_id": "adjudication-041",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-9e47af28d7dc77b69ac4f9f7",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-9e47af28d7dc77b69ac4f9f7",
+        "review_id": "adjudication-042",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-7adf4f33c147cf518d753ade",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-7adf4f33c147cf518d753ade",
+        "review_id": "adjudication-043",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "uncheck",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a clear, optional marketing opt-in and the control is checked, so uncheck is the conservative transform."
+      }
+    },
+    {
+      "record_id": "record-llm1-913976bcd194a6adfc337b79",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm1-913976bcd194a6adfc337b79",
+        "review_id": "primary-record-llm1-913976bcd194a6adfc337b79",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.97,
+        "plausibility": 0.9299999999999999,
+        "noise_realism": 0.84,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.97,
+        "reason": "This is optional marketing consent, and the conservative action is to leave the current state unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-d7be2ae91a9061b36e98168d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-d7be2ae91a9061b36e98168d",
+        "review_id": "adjudication-045",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-0a909aab1f73db3683389e8b",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-0a909aab1f73db3683389e8b",
+        "review_id": "adjudication-046",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-74cb31fd4dc6655bddab3e6a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-74cb31fd4dc6655bddab3e6a",
+        "review_id": "adjudication-048",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-263aa660bcf314f88d90718c",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-263aa660bcf314f88d90718c",
+        "review_id": "adjudication-049",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.65,
+        "plausibility": 0.65,
+        "noise_realism": 0.96,
+        "surface_plausibility": 0.8,
+        "conflicts": [
+          "ambiguous_control_purpose"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.7,
+        "reason": "The visible wording is too vague to establish a safe checkbox purpose or mechanical action."
+      }
+    },
+    {
+      "record_id": "record-llm1-118bccdb3122a5304a166eeb",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-118bccdb3122a5304a166eeb",
+        "review_id": "adjudication-052",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm1-34a5abfe5c06c0f56a9e7bcd",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-34a5abfe5c06c0f56a9e7bcd",
+        "review_id": "adjudication-055",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm1-b6164e5557953372cdbed096",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm1-b6164e5557953372cdbed096",
+        "review_id": "adjudication-056",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "uncheck",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a clear, optional marketing opt-in and the control is checked, so uncheck is the conservative transform."
+      }
+    },
+    {
+      "record_id": "record-llm2-20e7efcab3f152c5fe5d6e68",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-20e7efcab3f152c5fe5d6e68",
+        "review_id": "adjudication-058",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns age or birth-date verification, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-dbf5d8caffb4ce27d41ee817",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-dbf5d8caffb4ce27d41ee817",
+        "review_id": "adjudication-059",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-56a085cce283bd0da7590889",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-56a085cce283bd0da7590889",
+        "review_id": "adjudication-060",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-fb5aab82aefbbbece1ad3810",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-fb5aab82aefbbbece1ad3810",
+        "review_id": "adjudication-061",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm2-1c8339fa505b07599fcf9c40",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-1c8339fa505b07599fcf9c40",
+        "review_id": "adjudication-062",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm2-8593ebf9ced7350d8954a38a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-8593ebf9ced7350d8954a38a",
+        "review_id": "adjudication-063",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-5faeb1145d4c19a3472c2cf4",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-5faeb1145d4c19a3472c2cf4",
+        "review_id": "adjudication-064",
+        "inferred_purpose": "security",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns account security or authentication, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-d11327ea48c812a83dffeb60",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-d11327ea48c812a83dffeb60",
+        "review_id": "adjudication-066",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm2-dec6a33c875f99f28d96d152",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-dec6a33c875f99f28d96d152",
+        "review_id": "adjudication-067",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-2cf847644ce12a10e273bf34",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-2cf847644ce12a10e273bf34",
+        "review_id": "adjudication-068",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm2-37585e2bee9b5200e90b7728",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-37585e2bee9b5200e90b7728",
+        "review_id": "adjudication-070",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns age or birth-date verification, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-8ae7c3c5bd31ce6d1c719c98",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-8ae7c3c5bd31ce6d1c719c98",
+        "review_id": "adjudication-071",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-3c1e6ade44b4537bb454f251",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-3c1e6ade44b4537bb454f251",
+        "review_id": "adjudication-072",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm2-a648d020813de03dc4627797",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-a648d020813de03dc4627797",
+        "review_id": "adjudication-073",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-658af2b0660e8cb618176e42",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-658af2b0660e8cb618176e42",
+        "review_id": "adjudication-076",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-09c7177249c2fc634ec4e2e0",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-09c7177249c2fc634ec4e2e0",
+        "review_id": "adjudication-077",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-a305f7ecb8f8df0529dcd196",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-a305f7ecb8f8df0529dcd196",
+        "review_id": "adjudication-080",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-8292260a30cce264a76703f2",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-8292260a30cce264a76703f2",
+        "review_id": "adjudication-081",
+        "inferred_purpose": "security",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns account security or authentication, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-4e36d2e9165e5540b9de516a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-4e36d2e9165e5540b9de516a",
+        "review_id": "adjudication-083",
+        "inferred_purpose": "legal",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns legal terms, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-1edfc42aee02543cf0eafbb3",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-1edfc42aee02543cf0eafbb3",
+        "review_id": "adjudication-084",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-3106572468b2845019b441ae",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-3106572468b2845019b441ae",
+        "review_id": "adjudication-085",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-8f46fefa0bac86abeb9e587f",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-8f46fefa0bac86abeb9e587f",
+        "review_id": "adjudication-086",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-1ef13a1c26a1fd0eeb260ca1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-1ef13a1c26a1fd0eeb260ca1",
+        "review_id": "adjudication-089",
+        "inferred_purpose": "legal",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns legal terms, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-aba5fa1c3a0c9bf3a2512e9a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-aba5fa1c3a0c9bf3a2512e9a",
+        "review_id": "adjudication-091",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-94318329aa8000fd194e195f",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-94318329aa8000fd194e195f",
+        "review_id": "adjudication-093",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-c15b25b16a28aa81f78766d5",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-c15b25b16a28aa81f78766d5",
+        "review_id": "adjudication-095",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-16b74fafb8baf07e9a305cd6",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-16b74fafb8baf07e9a305cd6",
+        "review_id": "adjudication-096",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "uncheck",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a clear, optional marketing opt-in and the control is checked, so uncheck is the conservative transform."
+      }
+    },
+    {
+      "record_id": "record-llm2-7b70f74258e38f4b1ac43787",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-7b70f74258e38f4b1ac43787",
+        "review_id": "adjudication-097",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "uncheck",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a clear, optional marketing opt-in and the control is checked, so uncheck is the conservative transform."
+      }
+    },
+    {
+      "record_id": "record-llm2-5946b62d9b7a99d5743c93ad",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-5946b62d9b7a99d5743c93ad",
+        "review_id": "adjudication-100",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns age or birth-date verification, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm2-f241a4b2c0fe5a62db36a422",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm2-f241a4b2c0fe5a62db36a422",
+        "review_id": "adjudication-102",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-c1116b26548912a0ac56c50e",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-c1116b26548912a0ac56c50e",
+        "review_id": "adjudication-104",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-e2b8270d40aa25c85dac1665",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-e2b8270d40aa25c85dac1665",
+        "review_id": "adjudication-105",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-0db6b832c8bffb6762c8fef1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-0db6b832c8bffb6762c8fef1",
+        "review_id": "adjudication-106",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-d36b9484e50829c678f0fef8",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-d36b9484e50829c678f0fef8",
+        "review_id": "adjudication-107",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-1aedd134ac2e4c58af5420fb",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-1aedd134ac2e4c58af5420fb",
+        "review_id": "primary-record-llm3-1aedd134ac2e4c58af5420fb",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.97,
+        "noise_realism": 0.94,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.94,
+        "reason": "The label describes a functional account, booking, or preference operation, not marketing consent."
+      }
+    },
+    {
+      "record_id": "record-llm3-41379929e8f552f908852517",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-41379929e8f552f908852517",
+        "review_id": "adjudication-110",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "mixed_legal_marketing"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible text combines a legal agreement with marketing consent, so purpose and obligation cannot be safely separated."
+      }
+    },
+    {
+      "record_id": "record-llm3-c7c6a45f16a96e0fa792e45b",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-c7c6a45f16a96e0fa792e45b",
+        "review_id": "adjudication-111",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-58dade41d599db35065fb16d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-58dade41d599db35065fb16d",
+        "review_id": "adjudication-112",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm3-5961cd4451f5b7ed064aa437",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-5961cd4451f5b7ed064aa437",
+        "review_id": "adjudication-113",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-db6b9050518fc8c803aaada7",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-db6b9050518fc8c803aaada7",
+        "review_id": "adjudication-114",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm3-84819ab1c23bb7c47c7dadff",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-84819ab1c23bb7c47c7dadff",
+        "review_id": "adjudication-115",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-43fb0e7a84d153c41734f0c1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-43fb0e7a84d153c41734f0c1",
+        "review_id": "adjudication-116",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-b6088f0e46f7ba01d121a22a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-b6088f0e46f7ba01d121a22a",
+        "review_id": "adjudication-119",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "mixed_legal_marketing"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible text combines a legal agreement with marketing consent, so purpose and obligation cannot be safely separated."
+      }
+    },
+    {
+      "record_id": "record-llm3-8801a7a180552126f399925d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-8801a7a180552126f399925d",
+        "review_id": "adjudication-120",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "unchecked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a marketing opt-in but the control is unchecked; leave it unchanged because auto-checking is not allowed."
+      }
+    },
+    {
+      "record_id": "record-llm3-5f7bf198a331be8c60c1d2da",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-5f7bf198a331be8c60c1d2da",
+        "review_id": "adjudication-121",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-aaa6d071961d1f791be29585",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-aaa6d071961d1f791be29585",
+        "review_id": "adjudication-122",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-5e4ab767b5d5e597d548a876",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-5e4ab767b5d5e597d548a876",
+        "review_id": "adjudication-123",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-dda396277e8d4376861e230d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-dda396277e8d4376861e230d",
+        "review_id": "adjudication-125",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns age or birth-date verification, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-d300ddf3ee25bf54efbe9c60",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-d300ddf3ee25bf54efbe9c60",
+        "review_id": "adjudication-126",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-5c6aea742ee1b50935d198a4",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-5c6aea742ee1b50935d198a4",
+        "review_id": "adjudication-127",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-40aa44742b5fce6ba645b098",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-40aa44742b5fce6ba645b098",
+        "review_id": "adjudication-128",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text concerns age or birth-date verification, a protected purpose that must remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-4a90644d1e723ab6b176da94",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-4a90644d1e723ab6b176da94",
+        "review_id": "primary-record-llm3-4a90644d1e723ab6b176da94",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.97,
+        "noise_realism": 0.94,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.94,
+        "reason": "The label describes a functional account, booking, or preference operation, not marketing consent."
+      }
+    },
+    {
+      "record_id": "record-llm3-bca183884cd739838fad25e2",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-bca183884cd739838fad25e2",
+        "review_id": "adjudication-130",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-e9fc4140579cddc5f83d8abd",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-e9fc4140579cddc5f83d8abd",
+        "review_id": "adjudication-132",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "uncheck",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a clear, optional marketing opt-in and the control is checked, so uncheck is the conservative transform."
+      }
+    },
+    {
+      "record_id": "record-llm3-fe872fc39e26b6209632774b",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-fe872fc39e26b6209632774b",
+        "review_id": "adjudication-133",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-130f26aaf9f22730a9f868e6",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-130f26aaf9f22730a9f868e6",
+        "review_id": "primary-record-llm3-130f26aaf9f22730a9f868e6",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.97,
+        "plausibility": 0.9299999999999999,
+        "noise_realism": 0.84,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.97,
+        "reason": "Age or date-of-birth confirmation is a required non-marketing eligibility control."
+      }
+    },
+    {
+      "record_id": "record-llm3-80b60ad754df1410323b55e1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-80b60ad754df1410323b55e1",
+        "review_id": "adjudication-136",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-3b6dfc07fe5549b7e15e096a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-3b6dfc07fe5549b7e15e096a",
+        "review_id": "adjudication-137",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.65,
+        "plausibility": 0.65,
+        "noise_realism": 0.96,
+        "surface_plausibility": 0.8,
+        "conflicts": [
+          "ambiguous_control_purpose"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.7,
+        "reason": "The visible wording is too vague to establish a safe checkbox purpose or mechanical action."
+      }
+    },
+    {
+      "record_id": "record-llm3-3edff7b43ba96225d86845b4",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-3edff7b43ba96225d86845b4",
+        "review_id": "adjudication-138",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-864fc80d72eea666a9da355a",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-864fc80d72eea666a9da355a",
+        "review_id": "primary-record-llm3-864fc80d72eea666a9da355a",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.97,
+        "noise_realism": 0.94,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.94,
+        "reason": "The label describes a functional account, booking, or preference operation, not marketing consent."
+      }
+    },
+    {
+      "record_id": "record-llm3-df21ac21fd5a6db5a5b37cbb",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-df21ac21fd5a6db5a5b37cbb",
+        "review_id": "adjudication-141",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "ambiguous",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "mixed_legal_marketing"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible text combines a legal agreement with marketing consent, so purpose and obligation cannot be safely separated."
+      }
+    },
+    {
+      "record_id": "record-llm3-a5230698e1de82a958885b52",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-a5230698e1de82a958885b52",
+        "review_id": "adjudication-142",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-a74a9c1b35c8987a9c8ab7e5",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-a74a9c1b35c8987a9c8ab7e5",
+        "review_id": "primary-record-llm3-a74a9c1b35c8987a9c8ab7e5",
+        "inferred_purpose": "age",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "required",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.97,
+        "plausibility": 0.9299999999999999,
+        "noise_realism": 0.84,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.97,
+        "reason": "Age or date-of-birth confirmation is a required non-marketing eligibility control."
+      }
+    },
+    {
+      "record_id": "record-llm3-8c39b238fa19e0e3a4f7df82",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-8c39b238fa19e0e3a4f7df82",
+        "review_id": "adjudication-146",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-84416db2fc7c8c7354bec589",
+      "error": "review gate failed",
+      "pass": "primary",
+      "review": {
+        "record_id": "record-llm3-84416db2fc7c8c7354bec589",
+        "review_id": "primary-record-llm3-84416db2fc7c8c7354bec589",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.97,
+        "noise_realism": 0.94,
+        "surface_plausibility": 0.95,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.94,
+        "reason": "The label describes a functional account, booking, or preference operation, not marketing consent."
+      }
+    },
+    {
+      "record_id": "record-llm3-eba18c943d6ec7551e82585a",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-eba18c943d6ec7551e82585a",
+        "review_id": "adjudication-149",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.85,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-ecbf38209c0bb5b5f84e79c1",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-ecbf38209c0bb5b5f84e79c1",
+        "review_id": "adjudication-150",
+        "inferred_purpose": "marketing",
+        "inferred_polarity": "checked_enables_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "uncheck",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text is a clear, optional marketing opt-in and the control is checked, so uncheck is the conservative transform."
+      }
+    },
+    {
+      "record_id": "record-llm3-7227809540b54425b0486613",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-7227809540b54425b0486613",
+        "review_id": "adjudication-155",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.97,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-f88193e7c31b226637fc9698",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-f88193e7c31b226637fc9698",
+        "review_id": "adjudication-157",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.3,
+        "plausibility": 0.3,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.5,
+        "conflicts": [
+          "contradictory_double_negative"
+        ],
+        "verdict": "reject",
+        "confidence": 0.4,
+        "reason": "The visible wording contains a double negative or contradictory receiving instruction, making the requested meaning unsafe to infer."
+      }
+    },
+    {
+      "record_id": "record-llm3-382664758c9e30067aa00a34",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-382664758c9e30067aa00a34",
+        "review_id": "adjudication-159",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.65,
+        "plausibility": 0.65,
+        "noise_realism": 0.96,
+        "surface_plausibility": 0.8,
+        "conflicts": [
+          "ambiguous_control_purpose"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.7,
+        "reason": "The visible wording is too vague to establish a safe checkbox purpose or mechanical action."
+      }
+    },
+    {
+      "record_id": "record-llm3-63de3c2fa30b4c9715072eaa",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-63de3c2fa30b4c9715072eaa",
+        "review_id": "adjudication-160",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-e15a4012356813d553f8213d",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-e15a4012356813d553f8213d",
+        "review_id": "adjudication-161",
+        "inferred_purpose": "functional",
+        "inferred_polarity": "non_marketing",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.99,
+        "plausibility": 0.99,
+        "noise_realism": 0.99,
+        "surface_plausibility": 0.98,
+        "conflicts": [],
+        "verdict": "accept",
+        "confidence": 0.98,
+        "reason": "The visible text describes a functional control rather than an optional marketing opt-in, so it should remain unchanged."
+      }
+    },
+    {
+      "record_id": "record-llm3-0446b15856836a18f1d503b9",
+      "error": "review gate failed",
+      "pass": "adjudication",
+      "review": {
+        "record_id": "record-llm3-0446b15856836a18f1d503b9",
+        "review_id": "adjudication-162",
+        "inferred_purpose": "ambiguous",
+        "inferred_polarity": "ambiguous",
+        "inferred_obligation": "optional",
+        "inferred_action": "leave",
+        "semantic_fidelity": 0.65,
+        "plausibility": 0.65,
+        "noise_realism": 0.9,
+        "surface_plausibility": 0.8,
+        "conflicts": [
+          "ambiguous_control_purpose"
+        ],
+        "verdict": "needs_adjudication",
+        "confidence": 0.7,
+        "reason": "The visible wording is too vague to establish a safe checkbox purpose or mechanical action."
+      }
+    }
+  ],
+  "all_reviewed": true,
+  "reviewer_model": "gpt-5.6-luna",
+  "review_prompt_sha256": "6d9b7db54571f75f8ed7fdd45b32e5c34b2551f08fe97b33a2b1f9773b22391a"
+}

@@ -1,0 +1,54 @@
+{
+  "records": 45,
+  "exact_duplicate_groups": [],
+  "template_duplicate_groups": [],
+  "near_duplicate_pairs": [],
+  "exact_duplicate_rate": 0.0,
+  "near_duplicate_rate": 0.0,
+  "metadata_token_single_purpose_rate_raw": 0.6363636363636364,
+  "metadata_token_single_purpose_rate": 0,
+  "metadata_suspicious_tokens": {},
+  "metadata_token_purposes": {
+    "account": [
+      "age"
+    ],
+    "cb": [
+      "marketing"
+    ],
+    "choice": [
+      "age",
+      "functional",
+      "security"
+    ],
+    "communication": [
+      "functional",
+      "security"
+    ],
+    "contact": [
+      "functional"
+    ],
+    "field": [
+      "functional"
+    ],
+    "input": [
+      "functional"
+    ],
+    "option": [
+      "marketing"
+    ],
+    "preference": [
+      "age",
+      "functional"
+    ],
+    "settings": [
+      "age",
+      "security"
+    ],
+    "subscription": [
+      "functional"
+    ]
+  },
+  "inputs": [
+    "data/generated/fire-v13-ns-fallback.admitted.jsonl"
+  ]
+}

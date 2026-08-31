@@ -8,6 +8,17 @@ import json
 import re
 from pathlib import Path
 
+GENERIC_METADATA_TOKENS = {
+    "account", "choice", "communication", "contact", "field", "input", "option",
+    "preference", "profile", "selection", "service", "settings", "subscription",
+    "toggle", "user", "updates", "notification", "notifications", "control", "cb",
+}
+PURPOSE_CODED_METADATA_TOKENS = {
+    "newsletter", "marketing", "promo", "promos", "promotional", "offer", "offers",
+    "deal", "deals", "partner", "partners", "terms", "privacy", "consent", "age",
+    "birth", "security", "authentication", "2fa", "payment", "billing", "checkout",
+}
+
 
 def normalize(text: str) -> str:
     text = text.casefold()
@@ -67,7 +78,9 @@ def main() -> int:
     duplicate_groups = [group for group in exact.values() if len(group) > 1]
     template_groups = [group for group in templates.values() if len(group) > 1]
     metadata_tokens = [token for token in metadata_token_purposes if token not in {"", "id"}]
-    single_purpose_tokens = [token for token in metadata_tokens if len(metadata_token_purposes[token]) == 1]
+    raw_single_purpose_tokens = [token for token in metadata_tokens if len(metadata_token_purposes[token]) == 1]
+    suspicious_metadata_tokens = [token for token in metadata_tokens if token in PURPOSE_CODED_METADATA_TOKENS]
+    single_purpose_tokens = [token for token in suspicious_metadata_tokens if len(metadata_token_purposes[token]) == 1]
     report = {
         "records": len(records),
         "exact_duplicate_groups": duplicate_groups,
@@ -75,13 +88,15 @@ def main() -> int:
         "near_duplicate_pairs": near,
         "exact_duplicate_rate": sum(len(group) - 1 for group in duplicate_groups) / len(records) if records else 0,
         "near_duplicate_rate": len(near) / len(records) if records else 0,
-        "metadata_token_single_purpose_rate": len(single_purpose_tokens) / len(metadata_tokens) if metadata_tokens else 0,
+        "metadata_token_single_purpose_rate_raw": len(raw_single_purpose_tokens) / len(metadata_tokens) if metadata_tokens else 0,
+        "metadata_token_single_purpose_rate": len(single_purpose_tokens) / len(suspicious_metadata_tokens) if suspicious_metadata_tokens else 0,
+        "metadata_suspicious_tokens": {token: sorted(metadata_token_purposes[token]) for token in sorted(suspicious_metadata_tokens)},
         "metadata_token_purposes": {token: sorted(purposes) for token, purposes in sorted(metadata_token_purposes.items())},
         "inputs": [str(path) for path in args.inputs],
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({key: report[key] for key in ("records", "exact_duplicate_rate", "near_duplicate_rate", "metadata_token_single_purpose_rate")}, indent=2))
+    print(json.dumps({key: report[key] for key in ("records", "exact_duplicate_rate", "near_duplicate_rate", "metadata_token_single_purpose_rate_raw", "metadata_token_single_purpose_rate")}, indent=2))
     return 1 if duplicate_groups or len(near) / len(records) > 0.05 or sum(len(group) - 1 for group in template_groups) / len(records) > 0.05 or report["metadata_token_single_purpose_rate"] > args.max_metadata_leakage else 0
 
 

@@ -1,0 +1,39 @@
+{
+  "reviewed": 49,
+  "admitted": 45,
+  "dropped": 4,
+  "dropped_records": [
+    {
+      "record_id": "record-llm2-f57b6e78a271db3731cced90",
+      "reason": "exact_normalized_duplicate",
+      "kept_record_id": "record-llm1-5b26478b9d94fac6579d00dd"
+    },
+    {
+      "record_id": "record-llm3-4c679eef849eac0fc9870d05",
+      "reason": "exact_normalized_duplicate",
+      "kept_record_id": "record-llm2-434761691d48ddb0595ecf94"
+    },
+    {
+      "record_id": "record-llm3-ca2a303cf730f3ece5dc240b",
+      "reason": "exact_normalized_duplicate",
+      "kept_record_id": "record-llm1-5b26478b9d94fac6579d00dd"
+    },
+    {
+      "record_id": "record-llm3-4dd281dc301726af50a55764",
+      "reason": "exact_normalized_duplicate",
+      "kept_record_id": "record-llm2-e14ee30ecc3e82adfaa85898"
+    }
+  ],
+  "policy": {
+    "requires_luna_merge": true,
+    "exact_normalized_duplicates": "keep_first",
+    "near_duplicate_jaccard_threshold": 0.92
+  },
+  "output_sha256": "56369bec35bbe819829492a4e5bf137eedf45a209cfb31356e9519a4fd5643e9",
+  "inputs": [
+    "data/generated/staged-v13-ns-fallback-llm1.jsonl",
+    "data/generated/staged-v13-ns-fallback-llm2.jsonl",
+    "data/generated/staged-v13-ns-fallback-llm3.jsonl"
+  ],
+  "reviewed_input": "data/generated/luna-v13-ns-fallback.merged.jsonl"
+}

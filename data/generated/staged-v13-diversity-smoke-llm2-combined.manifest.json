@@ -1,0 +1,240 @@
+{
+  "spec_version": "fire-synthetic-checkbox-v1.3",
+  "combinator_version": "fire-staged-combinator-v1.3",
+  "system_prompt_sha256": "b9d77f0265c5290b06719a3758c21718c5c2fa9709934983c99e7f9e173b0699",
+  "prompt_sha256": "b9d77f0265c5290b06719a3758c21718c5c2fa9709934983c99e7f9e173b0699",
+  "root_seed": "fire-staged-v13-diversity-smoke-2026-08-31:llm2",
+  "base_root_seed": "fire-staged-v13-diversity-smoke-2026-08-31",
+  "effective_root_seed": "fire-staged-v13-diversity-smoke-2026-08-31:llm2",
+  "backend": "llm2",
+  "endpoint": "http://192.168.1.14:8000/v1/chat/completions",
+  "model": "/data/model-conversion/final/Nemotron-3.5-Lightning-30B-A3B-W4A16-G64-cal512",
+  "response_field": "content",
+  "role": "bounded paraphraser/robustness challenger",
+  "chat_template_kwargs": {
+    "enable_thinking": false
+  },
+  "decoding": {
+    "requested_temperature": 0.2,
+    "sent_temperature": 0.2,
+    "top_p": 1,
+    "n": 1,
+    "max_tokens": 220
+  },
+  "preamble": {
+    "id": "ted-flower-shop",
+    "sha256": "8d6d033fea8b36fb5aeeb5ebe4fec549d71c74a8783908d7be7cd0b99fd0192f"
+  },
+  "sampling_seed_source": "seed_id suffix plus deterministic attempt offset",
+  "retry_policy": {
+    "max_attempts": 3,
+    "retryable_error_policy": "deterministic realization/format failures only"
+  },
+  "deterministic_seed_support": "requested; backend compliance not independently established",
+  "model_artifact_revision": "model-id:/data/model-conversion/final/Nemotron-3.5-Lightning-30B-A3B-W4A16-G64-cal512",
+  "model_artifact_revision_status": "artifact digest unavailable from OpenAI-compatible endpoint; bit-for-bit reproducibility not claimed",
+  "tokenizer_runtime_hardware": "server-reported details unavailable; client=python-stdlib-http",
+  "generator_sha256": "8d7baeb23868a91dc176d092d4903bb5e47519196c0d272b56286c20ffe6c937",
+  "policy_validator_sha256": "bd28d7ad8b29ce96c2a9df1ba969f3b4a01d4c2f515ca64d851722fdf0b29c83",
+  "transform_version": "fire-staged-combinator-v1.3",
+  "transform_sha256": "b7ca07b46783dc0af33532922ea856990a1d2b5cde85e7969a94090f756f6ee6",
+  "started_at": "2026-08-30T23:15:00.718451+00:00",
+  "completed_at": "2026-08-30T23:15:04.920456+00:00",
+  "requested": 5,
+  "accepted": 1,
+  "rejected": 4,
+  "rejections": [
+    {
+      "index": "1",
+      "seed_id": "seed-698c513ba31418b3f8d422b7",
+      "error": "semantic safety conflicts: double-negative-ambiguity",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1697487120,
+          "payload_sha256": "7e0978308d871bdaaeedb078cd126f9bdddb5e8b10e3ee173279dfcadeaa302b",
+          "effective_messages_sha256": "29076f948f04b25e8c63d43de2b0441f702e2a9de3a74b88912708eaa1a16a2e",
+          "response_sha256": "61c862df7a601086670bd62f0959953002996d12c720a4e08582b99e95006412",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1698487123,
+          "payload_sha256": "4cb2aa0f70adf49c79271adc1d95eb59c94e6ddc098853248e7e9eb1be591f0a",
+          "effective_messages_sha256": "bdbd70a7fa03492416c8d55f5b39dada5e4ccdb0432817128c32635dc8bd4a23",
+          "response_sha256": "dfad90f81b6abd0513807ff0f14c9d6c4fd4a7b4437df0bb36b95047f9765e1a",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1699487126,
+          "payload_sha256": "b6efc0de168b5a2c9d3ce333d85fe0b4c55a2c08da69311995016843641a1fe3",
+          "effective_messages_sha256": "bdbd70a7fa03492416c8d55f5b39dada5e4ccdb0432817128c32635dc8bd4a23",
+          "response_sha256": "7eb5824a5ec0068c03832a87fa4910b3528f86bcf0632f32979e10ce2226fce9",
+          "status": "rejected",
+          "error": "semantic safety conflicts: double-negative-ambiguity"
+        }
+      ]
+    },
+    {
+      "index": "2",
+      "seed_id": "seed-989b9faa187d477e3ce0de87",
+      "error": "positive marketing lacks marketing signal",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1347021872,
+          "payload_sha256": "4dde2d61733256724344966b139480756af403a3e79883750e5d4743dc6300eb",
+          "effective_messages_sha256": "583202a02063dccded3da4a57c067bde279bd288ffc78929ac2195d0bc6af9de",
+          "response_sha256": "25a4240ae406e8dd895fad9dd65880b5ef6af13f81a4df2ed8273efbd8f45747",
+          "status": "rejected",
+          "error": "positive marketing lacks marketing signal"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1348021875,
+          "payload_sha256": "575be3639a2657e4dc0494b75014fc5dfebc8884e84184b00b5232cf85d8da8f",
+          "effective_messages_sha256": "3fc30fc612dfe3a6b32e3d43f9a37eb25acc6f21674216e1e1d329433a7bb0a3",
+          "response_sha256": "3a9cf48fc12cd6f8ecd310f031971dc470941c0d6e991430205bf1e17dd258d8",
+          "status": "rejected",
+          "error": "semantic safety conflicts: positive-opt-in-outside-safe-envelope"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1349021878,
+          "payload_sha256": "756ecce66a5c9c5dca4d4c57bdd2316fe4e1ff1c3a58ef94aa1b3f33741381bc",
+          "effective_messages_sha256": "a0d8d1e48f842782e83116541e3c165e811abd357a984fc457de4b66ab4801e3",
+          "response_sha256": "b48b6e8e9df39957bb273387e1456f0f48dbcc1e476e41a02f17c7f211a472f8",
+          "status": "rejected",
+          "error": "positive marketing lacks marketing signal"
+        }
+      ]
+    },
+    {
+      "index": "3",
+      "seed_id": "seed-b247e60767482f51a541a709",
+      "error": "could not apply controlled typo",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 1022467535,
+          "payload_sha256": "3312eed05ee6f44a7b4e93f91ef02f296120d87d254dc11a7d0ff32378242c81",
+          "effective_messages_sha256": "e387617d0d61c27b5ad7b11e36df1f22ac22edf64b1b6be1f05607403f89b4ab",
+          "response_sha256": "acc0ec828eae8ea653c446951ee8cdff07e77164bfe51adae0b3cad1ed742f70",
+          "status": "rejected",
+          "error": "purpose functional is not expressed"
+        },
+        {
+          "attempt": 2,
+          "sampling_seed": 1023467538,
+          "payload_sha256": "572a4fe31d0e883b16812988bc7c2c07c5e7b027c62fadf1f0a0cc085dd77849",
+          "effective_messages_sha256": "5449c9a1c43fdfbd2544ff63d63ce71f691ecd8df00be36967c3bf829720cbb4",
+          "response_sha256": "e71859aab43609d5289f594d18c5bec7994de38f7979f6a5e8612052ddbf94b8",
+          "status": "rejected",
+          "error": "could not apply controlled typo"
+        },
+        {
+          "attempt": 3,
+          "sampling_seed": 1024467541,
+          "payload_sha256": "78e3f9270cb20587071c58a06931ac7fe919a6f886c8eca92d68b19e2cfb182e",
+          "effective_messages_sha256": "e251af8648264cb81089c0fe40f9a921636fe1eff4958b84a1e5de9eea8278a1",
+          "response_sha256": "22654b3e8bea005ba5ba429be2188d2fbac21b7450cb0df58f9aeeaf44f7d537",
+          "status": "rejected",
+          "error": "could not apply controlled typo"
+        }
+      ]
+    },
+    {
+      "index": "4",
+      "seed_id": "seed-b1056d8f2d3dae2efeaafd17",
+      "error": "emoji transform not observed",
+      "attempts": [
+        {
+          "attempt": 1,
+          "sampling_seed": 490475447,
+          "payload_sha256": "2c40817abe236eb3811a6022b2b29e2b39ba84d20f0e73b48b01461b8835bc47",
+          "effective_messages_sha256": "a9d8cb3792f94f66248de8d2d6145b9a79c03c3d7f881df40cfc70fad2e67bf5",
+          "response_sha256": "680329f44bcfc30a8197eea1c1f19096d1c9dbb7b9f1a5617974c16de2647bce",
+          "status": "rejected",
+          "error": "emoji transform not observed"
+        }
+      ]
+    }
+  ],
+  "output_sha256": "4f25c4efd596a1e28c941605a93e5edb0b656834800c1a714d4d12d817a470e3",
+  "synthetic_only": true,
+  "planned_coverage": {
+    "family_surface_checked": 5,
+    "style": 4,
+    "metadata_style": 4,
+    "noise": 5,
+    "profile": 5
+  },
+  "accepted_coverage": {
+    "family_surface_checked": 1,
+    "style": 1,
+    "metadata_style": 1,
+    "noise": 1,
+    "profile": 1
+  },
+  "missing_coverage": {
+    "family_surface_checked": [
+      [
+        0,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        2,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        6,
+        "mixed_dom_context",
+        false
+      ],
+      [
+        8,
+        "mixed_dom_context",
+        false
+      ]
+    ],
+    "style": [
+      "dark",
+      "friendly",
+      "subversive"
+    ],
+    "metadata_style": [
+      "conflicting",
+      "neutral",
+      "opaque"
+    ],
+    "noise": [
+      "casing",
+      "emoji",
+      "typo",
+      "whitespace"
+    ],
+    "profile": [
+      [
+        "SaaS",
+        "account_creation"
+      ],
+      [
+        "marketplace",
+        "checkout"
+      ],
+      [
+        "publisher",
+        "lead_capture"
+      ],
+      [
+        "retailer",
+        "checkout"
+      ]
+    ]
+  }
+}

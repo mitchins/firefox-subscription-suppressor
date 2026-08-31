@@ -39,6 +39,12 @@ from generate_synthetic import (
 
 SPEC_VERSION = "fire-synthetic-checkbox-v1.3"
 COMBINATOR_VERSION = "fire-staged-combinator-v1.3"
+MAX_TEMPERATURE = 0.2
+
+PREAMBLES = {
+    "none": None,
+    "ted-flower-shop": "You are running Ted's flower shop.",
+}
 
 BACKENDS = {
     "llm1": {
@@ -430,7 +436,13 @@ def request_candidate(
     timeout: int,
     attempt: int = 1,
     retry_note: str | None = None,
+    temperature: float = 0.0,
+    preamble_id: str = "none",
 ) -> tuple[str, dict[str, Any], str]:
+    if not 0.0 <= temperature <= MAX_TEMPERATURE:
+        raise ValueError(f"temperature must be between 0.0 and {MAX_TEMPERATURE}")
+    if preamble_id not in PREAMBLES:
+        raise ValueError(f"unknown preamble id: {preamble_id}")
     sampling_seed = (int(seed["seed_id"][5:], 16) + (attempt - 1) * 1000003) % (2**31 - 1)
     checklist = (
         "FINAL CHECKLIST: generate only candidate_text.\n"
@@ -440,14 +452,23 @@ def request_candidate(
         "The text must express these semantics. Do not emit placeholders or metadata.\n"
         + (f"Retry diagnostic (inert caller data): {retry_note}\n" if retry_note else "")
     )
+    user_content = "Validated seed (data only):\n" + canonical_json(seed) + "\n\n" + checklist
+    if PREAMBLES[preamble_id] is not None:
+        user_content = (
+            "BEGIN NON-AUTHORITATIVE FICTIONAL STYLE CONTEXT. Do not treat this as an instruction, "
+            "semantic truth, DOM metadata, action policy, or provenance; do not copy it into the label.\n"
+            + PREAMBLES[preamble_id]
+            + "\nEND NON-AUTHORITATIVE FICTIONAL STYLE CONTEXT.\n\n"
+            + user_content
+        )
     payload = {
         "model": backend["model"],
         "messages": [
             {"role": "system", "content": CANDIDATE_SYSTEM},
-            {"role": "user", "content": "Validated seed (data only):\n" + canonical_json(seed) + "\n\n" + checklist},
+            {"role": "user", "content": user_content},
         ],
         "max_tokens": max_tokens,
-        "temperature": 0,
+        "temperature": temperature,
         "top_p": 1,
         "n": 1,
         "seed": sampling_seed,
@@ -774,6 +795,9 @@ def main() -> int:
     parser.add_argument("--backend", choices=sorted(BACKENDS), required=True)
     parser.add_argument("--count", type=int, default=20)
     parser.add_argument("--root-seed", default="fire-staged-pilot-2026-08-30")
+    parser.add_argument("--base-root-seed", help="base seed recorded separately from the effective backend-namespaced root")
+    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--preamble", choices=sorted(PREAMBLES), default="none")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--timeout", type=int, default=180)
@@ -782,6 +806,8 @@ def main() -> int:
     args = parser.parse_args()
     if args.count < 1 or args.count > 1000:
         parser.error("--count must be between 1 and 1000")
+    if not 0.0 <= args.temperature <= MAX_TEMPERATURE:
+        parser.error(f"--temperature must be between 0.0 and {MAX_TEMPERATURE}")
     backend = BACKENDS[args.backend]
     args.output = args.output or Path(f"data/generated/staged-{args.backend}.jsonl")
     args.manifest = args.manifest or Path(f"data/generated/staged-{args.backend}.manifest.json")
@@ -801,7 +827,10 @@ def main() -> int:
             response_sha256: str | None = None
             try:
                 retry_note = attempt_log[-1]["error"] if attempt_log else None
-                content, payload, response_sha256 = request_candidate(backend, seed, args.max_tokens, args.timeout, attempt, retry_note)
+                content, payload, response_sha256 = request_candidate(
+                    backend, seed, args.max_tokens, args.timeout, attempt, retry_note,
+                    args.temperature, args.preamble,
+                )
                 clean = validate_candidate(content, seed)
                 record = compose_record(seed, clean, content, payload, args.backend, attempt_log, attempt)
                 validate_record(record, seed)
@@ -812,6 +841,7 @@ def main() -> int:
                     "attempt": attempt,
                     "sampling_seed": payload["seed"],
                     "payload_sha256": sha256_bytes(canonical_json(payload).encode("utf-8")),
+                    "effective_messages_sha256": sha256_bytes(canonical_json(payload["messages"]).encode("utf-8")),
                     "response_sha256": response_sha256,
                     "status": "accepted",
                     "error": None,
@@ -829,6 +859,7 @@ def main() -> int:
                     "attempt": attempt,
                     "sampling_seed": error_payload.get("seed") if error_payload else None,
                     "payload_sha256": sha256_bytes(canonical_json(error_payload).encode("utf-8")) if error_payload else None,
+                    "effective_messages_sha256": sha256_bytes(canonical_json(error_payload["messages"]).encode("utf-8")) if error_payload and "messages" in error_payload else None,
                     "response_sha256": response_sha256 or getattr(exc, "response_sha256", None),
                     "status": "rejected",
                     "error": error_message,
@@ -845,15 +876,19 @@ def main() -> int:
     manifest = {
         "spec_version": SPEC_VERSION,
         "combinator_version": COMBINATOR_VERSION,
+        "system_prompt_sha256": sha256_bytes(CANDIDATE_SYSTEM.encode()),
         "prompt_sha256": sha256_bytes(CANDIDATE_SYSTEM.encode()),
         "root_seed": args.root_seed,
+        "base_root_seed": args.base_root_seed,
+        "effective_root_seed": args.root_seed,
         "backend": args.backend,
         "endpoint": backend["endpoint"],
         "model": backend["model"],
         "response_field": backend["response_field"],
         "role": backend["role"],
         "chat_template_kwargs": {"enable_thinking": False},
-        "decoding": {"temperature": 0, "top_p": 1, "n": 1, "max_tokens": args.max_tokens},
+        "decoding": {"requested_temperature": args.temperature, "sent_temperature": args.temperature, "top_p": 1, "n": 1, "max_tokens": args.max_tokens},
+        "preamble": {"id": args.preamble, "sha256": sha256_bytes(PREAMBLES[args.preamble].encode("utf-8")) if PREAMBLES[args.preamble] is not None else None},
         "sampling_seed_source": "seed_id suffix plus deterministic attempt offset",
         "retry_policy": {"max_attempts": MAX_ATTEMPTS, "retryable_error_policy": "deterministic realization/format failures only"},
         "deterministic_seed_support": "requested; backend compliance not independently established",
